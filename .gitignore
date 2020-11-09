@@ -1,1 +1,11 @@
 cb-multios/
+test/ijon.maze.small.*
+test/Recipe_Database
+test/output/
+test/output04/
+test/loop04
+test/loop04-ijon
+test/*.pov
+test/RD_input/
+test/RD_output/
+test/input/
