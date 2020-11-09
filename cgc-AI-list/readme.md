@@ -8,8 +8,8 @@
 |CNMP               |	306	     |178	   |58.17%       |
 |HackMan	|642	|402|	62.62%|
 |Barcoder	        |1331	     | 916	   | 68.82%      |
+|Recipe_Database	|795	     | 1111	   | 71.55%      |
 |Secure_Compression |1388        | 1134    | 81.70%      |
 |Board_Game	        |757	     | 642     | 84.81%      |
 |SCUBA_Dive_Logging	|1289	     |1205	   |93.48%       |
-|Recipe_Database	|1130	     | 1061	   | 93.89%      |
 |CableGrindLlama	|16611	     | 16427   | 98.89%      |
