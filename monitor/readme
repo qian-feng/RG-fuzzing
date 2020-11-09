@@ -12,3 +12,9 @@ $ ASAN_OPTIONS=strip_path_prefix=`pwd`/ ./a.out
 
 # the command used for compiling cov version of the binaries:
 $ CC=clang CXX=clang++ CFLAGS="-fsanitize-coverage=edge,no-prune,trace-pc-guard -fsanitize=address" ./build.sh
+
+# command to run monitor component using cb:
+$ ./create.sh <cb name>
+$ ./execute.sh <cb name>
+$ ./attach.sh <cb name>
+    $ ./getmiss.sh <cb name> <resuming point> <ending point>
