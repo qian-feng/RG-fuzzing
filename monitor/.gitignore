@@ -1,0 +1,7 @@
+a.out
+trace-pc-guard-cb.so
+trace-pc-guard-example.o
+cb-multios/workdir/seed_corpus/
+cb-multios/workdir/output/
+cb-multios/build
+cb-multios/challenges

@@ -1,0 +1,14 @@
+# this directory is for collecting the info regarding hard-to-reach code region in CGC binaries
+
+$ git clone https://github.com/trailofbits/cb-multios.git
+$ git clone https://github.com/shyshrimp/cb-multios.git
+
+# command line to build docker:
+$ sudo docker build -t fuzzcgc ./
+
+$ clang++ -g  -fsanitize-coverage=trace-pc-guard trace-pc-guard-example.cc -c
+$ clang++ trace-pc-guard-cb.cc trace-pc-guard-example.o -fsanitize=address
+$ ASAN_OPTIONS=strip_path_prefix=`pwd`/ ./a.out
+
+# the command used for compiling cov version of the binaries:
+$ CC=clang CXX=clang++ CFLAGS="-fsanitize-coverage=edge,no-prune,trace-pc-guard -fsanitize=address" ./build.sh
