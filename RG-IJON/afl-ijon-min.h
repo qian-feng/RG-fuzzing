@@ -27,7 +27,7 @@ u8 ijon_should_schedule(ijon_min_state* self);
 
 ijon_input_info* ijon_get_input(ijon_min_state* self);
 
-u8 ijon_update_max(ijon_min_state* self, shared_data_t* shared, uint8_t* data, size_t len);
+void ijon_update_max(ijon_min_state* self, shared_data_t* shared, uint8_t* data, size_t len);
 
 
 #endif

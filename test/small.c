@@ -33,11 +33,11 @@ void draw ()
 	printf ("\n");
 }
 
-int distance(int x, int low, int high) {
-	int middle = (low + high) / 2;
-	int half = (high - low) / 2;
-	return (abs(x - middle) - half);
-}
+// int distance(int x, int low, int high) {
+// 	int middle = (low + high) / 2;
+// 	int half = (high - low) / 2;
+// 	return (abs(x - middle) - half);
+// }
 
 int
 main (int argc, char *argv[])
@@ -83,10 +83,12 @@ main (int argc, char *argv[])
 		// func distance (var, lower, higher)
 		// IJON_SET(ijon_hashint(x,y));
 		// IJON_MIN(distance)
-		IJON_MIN(MAX(0, distance(x, 1, 10)));
-		printf("x: %d\n", MAX(0, distance(x, 1, 10)));
-		IJON_MIN(MAX(0, distance(y, 1, 1)));
-		printf("y: %d\n", MAX(0, distance(y, 1, 1)));
+		// IJON_MIN(MAX(0, distance(x, 1, 10)));
+		// printf("x: %d\n", MAX(0, distance(x, 1, 10)));
+		// IJON_MIN(MAX(0, distance(y, 1, 1)));
+		// printf("y: %d\n", MAX(0, distance(y, 1, 1)));
+		IJON_RANGE(x, 1, 10);
+		//IJON_RANGE(y, 1, 1);
 		if (maze[y][x] == '#')
 		{
       		assert(0);

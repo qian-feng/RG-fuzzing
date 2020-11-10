@@ -1,4 +1,4 @@
-CC=/home/fengqian/workdir/jie/RG-fuzzing/ijon/afl-clang-fast
+CC=/home/fengqian/workdir/jie/RG-fuzzing/RG-IJON/afl-clang-fast
 rm ijon.maze.*
 $CC	small.c -o ijon.maze.small.bt
 $CC -DMAZE_NO_BT small.c -o ijon.maze.small.nobt

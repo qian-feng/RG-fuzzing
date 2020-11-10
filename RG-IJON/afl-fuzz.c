@@ -3133,12 +3133,12 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
 
   if (fault == crash_mode) {
   
-		maxsave = ijon_update_max(ijon_state, shared_data, mem, len);
+		ijon_update_max(ijon_state, shared_data, mem, len);
 
     /* Keep only if there are new bits in the map, add to queue for
        future fuzzing, etc. */
 
-    if (!(hnb = has_new_bits(virgin_bits)) && !maxsave) {
+    if (!(hnb = has_new_bits(virgin_bits))) {
       if (crash_mode) total_crashes++;
       return 0;
     }    

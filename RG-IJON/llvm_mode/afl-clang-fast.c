@@ -35,6 +35,7 @@
 #include <assert.h>
 #include <limits.h>
 
+
 static u8*  obj_path;               /* Path to runtime libraries         */
 static u8** cc_params;              /* Parameters passed to the real CC  */
 static u32  cc_par_cnt = 1;         /* Param count, including argv0      */

@@ -53,6 +53,7 @@ void ijon_store_max_input(ijon_min_state* self, int i, uint8_t* data, size_t len
   ijon_input_info* inf = self->infos[i];
   inf->len = len;
   int fd = open(inf->filename, O_CREAT|O_TRUNC|O_WRONLY,0600);
+  //printf("write to file: %s\n", inf->filename);
   assert(write(fd,data,len) == len);
   close(fd);
 	
@@ -60,12 +61,13 @@ void ijon_store_max_input(ijon_min_state* self, int i, uint8_t* data, size_t len
 	assert(asprintf(&filename, "%s/finding_%lu_%lu", self->max_dir, self->num_updates, time(0)) > 0);
 	self->num_updates+=1;
   fd = open(filename, O_CREAT|O_TRUNC|O_WRONLY,0600);
+  //printf("write to file: %s\n", filename);
   assert(write(fd,data,len) == len);
   close(fd);
 	free(filename);
 }
 
-u8 ijon_update_max(ijon_min_state* self, shared_data_t* shared, uint8_t* data, size_t len){
+void ijon_update_max(ijon_min_state* self, shared_data_t* shared, uint8_t* data, size_t len){
 	int should_min = (len>512) ;
   for(int i=0; i<MAXMAP_SIZE; i++){ 
     if(shared->afl_max[i] > self->max_map[i] || shared->afl_max[i] == 0xffffffffffffffff){
@@ -79,9 +81,5 @@ u8 ijon_update_max(ijon_min_state* self, shared_data_t* shared, uint8_t* data, s
       printf("minimized maxmap %d: %lx (len: %ld)\n", i, self->max_map[i], len);
 			ijon_store_max_input(self,i,data,len);
 		}
-    else {
-      return 0;
-    }
-    return 1;
   }
 }

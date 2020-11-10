@@ -8,3 +8,4 @@ test/*.pov
 test/RD_input/
 test/RD_output/
 test/input/
+test/log/txt

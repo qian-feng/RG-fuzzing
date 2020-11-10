@@ -93,7 +93,9 @@ void ijon_min(uint32_t addr, uint64_t val){
 
 void ijon_range(uint32_t addr, uint64_t val, uint64_t low, uint64_t high) {
   uint64_t distance = abs(val - (low + high) / 2) - (high - low) / 2;
+  fprintf(stderr, "before MAX: %d\n", distance);
   distance = MAX(0, distance);
+  fprintf(stderr, "after MAX: %d\n", distance);
   ijon_min(addr, distance);
 }
 
@@ -403,6 +405,7 @@ __attribute__((constructor(CONST_PRIO))) void __afl_auto_init(void) {
 
 void __sanitizer_cov_trace_pc_guard(uint32_t* guard) {
   __afl_area_ptr[*guard]++;
+  printf("see if it works!");
 }
 
 
