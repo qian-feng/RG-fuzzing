@@ -22,6 +22,7 @@ void ijon_push_state(ijon_u32_t);
 
 void ijon_map_inc(ijon_u32_t);
 void ijon_map_set(ijon_u32_t);
+void aif_map_set(ijon_u32_t index, ijon_u32_t addr);
 
 ijon_u32_t ijon_strdist(char* a,char* b);
 ijon_u32_t ijon_memdist(char* a,char* b, ijon_size_t len);
@@ -29,7 +30,7 @@ ijon_u32_t ijon_memdist(char* a,char* b, ijon_size_t len);
 void ijon_max(ijon_u32_t addr, ijon_u64_t val);
 
 void ijon_min(ijon_u32_t addr, ijon_u64_t val);
-void ijon_range(ijon_u32_t addr, ijon_u64_t val, ijon_u64_t low, ijon_u64_t high);
+void aif_range(ijon_u32_t addr, ijon_u64_t index, ijon_u64_t val, ijon_u64_t low, ijon_u64_t high);
 
 
 ijon_u64_t ijon_simple_hash(ijon_u64_t val);
@@ -53,10 +54,11 @@ void ijon_disable_feedback();
 #define IJON_BITS(x) ((x==0)?{0}:__builtin_clz(x))
 #define IJON_INC(x) ijon_map_inc(ijon_hashstr(__LINE__,__FILE__)^(x))
 #define IJON_SET(x) ijon_map_set(ijon_hashstr(__LINE__,__FILE__)^(x))
+#define AIF_SET(i, x) aif_map_set(i, ijon_hashstr(__LINE__,__FILE__)^(x))
 
 #define IJON_CTX(x) ({ uint32_t hash = hashstr(__LINE__,__FILE__); ijon_xor_state(hash); __typeof__(x) IJON_UNIQ_NAME() = (x); ijon_xor_state(hash); IJON_UNIQ_NAME(); })
 
-#define IJON_RANGE(x,y,z) ijon_range(ijon_hashstr(__LINE__,__FILE__), (x), (y), (z))
+#define AIF_RANGE(i,x,y,z) aif_range(ijon_hashstr(__LINE__,__FILE__), (i), (x), (y), (z))
 #define IJON_MAX(x) ijon_max(ijon_hashstr(__LINE__,__FILE__),(x))
 #define IJON_MIN(x) ijon_max(ijon_hashstr(__LINE__,__FILE__),0xffffffffffffffff-(x))
 #define IJON_CMP(x,y) IJON_INC(__builtin_popcount((x)^(y)))

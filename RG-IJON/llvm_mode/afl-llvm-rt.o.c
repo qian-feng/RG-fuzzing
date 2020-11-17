@@ -39,6 +39,14 @@
 #include <execinfo.h>
 
 #define MAX(a,b) ((a) > (b) ? a : b)
+#define UNTOUCH  '0'
+#define TOUCHED  '1'
+#define NOTCOND  '2'
+
+#define LOGGING  1
+
+#define KEY       1000
+#define SIZE      65536
 
 /* This is a somewhat ugly hack for the experimental 'trace-pc-guard' mode.
    Basically, we need to make sure that the forkserver is initialized after
@@ -56,12 +64,17 @@
    is used for instrumentation output before __afl_map_shm() has a chance to run.
    It will end up as .comm, so it shouldn't be too wasteful. */
 
+u8 __aif_brc_map[65536];
+u8* __aif_untouched_ptr = __aif_brc_map;
+
 u8  __afl_area_initial[MAP_SIZE];
 u8* __afl_area_ptr = __afl_area_initial;
 
 uint64_t  __afl_max_initial[MAXMAP_SIZE];
 uint64_t* __afl_max_ptr = __afl_max_initial;
 
+uint64_t  __aif_max_index[MAXMAP_SIZE];
+uint64_t* __aif_max_index_ptr = __aif_max_index;
 
 shared_data_t* shared_data = NULL;
 
@@ -91,12 +104,24 @@ void ijon_min(uint32_t addr, uint64_t val){
   ijon_max(addr, val);
 }
 
-void ijon_range(uint32_t addr, uint64_t val, uint64_t low, uint64_t high) {
+void aif_range(uint32_t addr, ijon_u64_t index, uint64_t val, uint64_t low, uint64_t high) {  
+  if(__aif_brc_map[index] != UNTOUCH) { 
+    return;
+  }
+#ifdef LOGGING
+  FILE *fp = fopen("/data/debug.log", "a+");
+  fprintf(fp, "[AIF_RANGE]: alive at index %d, status:%c\n", index, __aif_brc_map[index]);
+  fclose(fp);
+#endif
+  
   uint64_t distance = abs(val - (low + high) / 2) - (high - low) / 2;
-  fprintf(stderr, "before MAX: %d\n", distance);
   distance = MAX(0, distance);
-  fprintf(stderr, "after MAX: %d\n", distance);
-  ijon_min(addr, distance);
+  distance = 0xffffffffffffffff-distance;
+  if(__afl_max_ptr[addr%MAXMAP_SIZE] < distance) {
+    __afl_max_ptr[addr%MAXMAP_SIZE] = distance; // remember distance
+    __aif_max_index_ptr[addr%MAXMAP_SIZE] = index; // remember which watch point this is for
+  }
+
 }
 
 
@@ -105,6 +130,18 @@ void ijon_map_inc(uint32_t addr){
 }
 
 void ijon_map_set(uint32_t addr){ 
+  __afl_area_ptr[(__afl_state^addr)%MAP_SIZE]|=1;
+}
+
+void aif_map_set(ijon_u32_t index, ijon_u32_t addr){
+  if(__aif_brc_map[index] != UNTOUCH) { 
+    return;
+  }
+#ifdef LOGGING
+  FILE *fp = fopen("/data/debug.log", "a+");
+  fprintf(fp, "[AIF_SET]: alive at index %d, status:%c\n", index, __aif_brc_map[index]);
+  fclose(fp);
+#endif
   __afl_area_ptr[(__afl_state^addr)%MAP_SIZE]|=1;
 }
 
@@ -208,6 +245,7 @@ static void __afl_map_shm(void) {
 
     __afl_area_ptr = &shared_data->afl_area[0];
     __afl_max_ptr = &shared_data->afl_max[0];
+    __aif_max_index_ptr = &shared_data->aif_index[0];
 
     /* Whooooops. */
 
@@ -221,6 +259,33 @@ static void __afl_map_shm(void) {
 
 }
 
+/* memory shared with monitor   */
+static void __monitor_map_shm(void) {
+    
+    u32 shm_id = shmget(KEY, SIZE, 0);
+    if(shm_id == -1) {
+      fprintf(stderr,  "fail to load shm: %d\n", shm_id);
+      _exit(1); // Abort if fails to load existing segment
+    }
+    __aif_untouched_ptr = shmat(shm_id, NULL, 0);
+    if(__aif_untouched_ptr == (void*)-1) _exit(1);
+#ifdef LOGGING
+    FILE *fp = fopen("/data/debug.log", "a+");
+    fprintf(fp,   "load shm successfully, key: %d, size: %d, id: %d\n", KEY, SIZE, shm_id);    
+    fprintf(fp, "__aif_untouched_ptr: %p\n",__aif_untouched_ptr);
+    
+    int i = 0;
+    int cnt_touched = 0;
+    for (i = 0; i<SIZE; i++) {
+      if(__aif_brc_map[i] == TOUCHED) {
+        cnt_touched += 1;
+      }
+    }
+    
+    fprintf(fp, "%d touched when first loading\n", cnt_touched);
+    fclose(fp);
+#endif
+}
 
 /* Fork server logic. */
 
@@ -321,6 +386,7 @@ int __afl_persistent_loop(unsigned int max_cnt) {
 
       memset(__afl_area_ptr, 0, MAP_SIZE);
       memset(__afl_max_ptr, 0, MAXMAP_SIZE*sizeof(uint64_t));
+      memset(__aif_max_index_ptr, 0, MAXMAP_SIZE*sizeof(uint64_t));
       __afl_area_ptr[0] = 1;
       __afl_prev_loc = 0;
       __afl_state = 0;
@@ -375,6 +441,7 @@ void __afl_manual_init(void) {
   if (!init_done) {
 
     __afl_map_shm();
+    __monitor_map_shm();
     __afl_start_forkserver();
     init_done = 1;
 
@@ -405,7 +472,6 @@ __attribute__((constructor(CONST_PRIO))) void __afl_auto_init(void) {
 
 void __sanitizer_cov_trace_pc_guard(uint32_t* guard) {
   __afl_area_ptr[*guard]++;
-  printf("see if it works!");
 }
 
 
@@ -422,7 +488,6 @@ void __sanitizer_cov_trace_pc_guard_init(uint32_t* start, uint32_t* stop) {
 
   x = getenv("AFL_INST_RATIO");
   if (x) inst_ratio = atoi(x);
-  //fprintf(stderr, "check if printout is allowed here\n");
   if (!inst_ratio || inst_ratio > 100) {
     fprintf(stderr, "[-] ERROR: Invalid AFL_INST_RATIO (must be 1-100).\n");
     abort();

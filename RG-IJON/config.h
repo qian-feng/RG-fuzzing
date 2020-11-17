@@ -271,6 +271,8 @@
 /* Environment variable used to pass SHM ID to the called program. */
 
 #define SHM_ENV_VAR         "__AFL_SHM_ID"
+#define AIF_SHM_SIZE         "AIF_SIZE"
+#define AIF_SHM_KEY         "AIF_KEY"
 
 /* Other less interesting, internal-only variables. */
 
@@ -326,6 +328,7 @@
 typedef struct{
   u8  afl_area[MAP_SIZE];
   uint64_t afl_max[MAXMAP_SIZE];
+  uint64_t aif_index[MAXMAP_SIZE]; // the index of watch point
   uint8_t is_selected;
 } shared_data_t;
 

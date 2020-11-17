@@ -153,7 +153,8 @@ static volatile u8 stop_soon,         /* Ctrl-C pressed?                  */
                    clear_screen = 1,  /* Window resized?                  */
                    child_timed_out;   /* Traced process timed out?        */
 
-EXP_ST u32 queued_paths,              /* Total number of queued testcases */
+EXP_ST u32 range_seeds,               /* Total number of queued aif_range seeds */
+           queued_paths,              /* Total number of queued testcases */
            queued_variable,           /* Testcases with variable behavior */
            queued_at_start,           /* Total number of initial inputs   */
            queued_discovered,         /* Items discovered during this run */
@@ -3129,11 +3130,14 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
   u8  hnb, maxsave;
   s32 fd;
   u8  keeping = 0, res;
+  int num_kept;
 
 
   if (fault == crash_mode) {
-  
-		ijon_update_max(ijon_state, shared_data, mem, len);
+    
+		num_kept = ijon_update_max(ijon_state, shared_data, mem, len, range_seeds);
+    range_seeds += num_kept; // new seed kept, inc seed id  
+    
 
     /* Keep only if there are new bits in the map, add to queue for
        future fuzzing, etc. */

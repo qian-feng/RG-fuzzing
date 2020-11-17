@@ -1,0 +1,6 @@
+To use monitor.py:
+$ python monitor.py -i afl_queue -o output -m seed_output -- ./Recipe_Database.cov (opt)
+
+# monitor.py use the dynamic build version.
+# RG-fuzz use the static build version. Recipe_Database.aif
+
