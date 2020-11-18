@@ -64,8 +64,7 @@
    is used for instrumentation output before __afl_map_shm() has a chance to run.
    It will end up as .comm, so it shouldn't be too wasteful. */
 
-u8 __aif_brc_map[65536];
-u8* __aif_untouched_ptr = __aif_brc_map;
+u8* __aif_untouched_ptr;
 
 u8  __afl_area_initial[MAP_SIZE];
 u8* __afl_area_ptr = __afl_area_initial;
@@ -105,22 +104,26 @@ void ijon_min(uint32_t addr, uint64_t val){
 }
 
 void aif_range(uint32_t addr, ijon_u64_t index, uint64_t val, uint64_t low, uint64_t high) {  
-  if(__aif_brc_map[index] != UNTOUCH) { 
+  if(__aif_untouched_ptr[index] != UNTOUCH) { 
     return;
-  }
-#ifdef LOGGING
+  }   
   FILE *fp = fopen("/data/debug.log", "a+");
-  fprintf(fp, "[AIF_RANGE]: alive at index %d, status:%c\n", index, __aif_brc_map[index]);
-  fclose(fp);
-#endif
-  
   uint64_t distance = abs(val - (low + high) / 2) - (high - low) / 2;
+  fprintf(fp, "distance1: %lu\n", distance);
   distance = MAX(0, distance);
+  fprintf(fp, "distance2: %lu\n", distance);
   distance = 0xffffffffffffffff-distance;
+  fprintf(fp, "distance3: %lu\n", distance);
+  fprintf(fp, "__afl_max_ptr[]: %lu\n", __afl_max_ptr[addr%MAXMAP_SIZE]);
   if(__afl_max_ptr[addr%MAXMAP_SIZE] < distance) {
     __afl_max_ptr[addr%MAXMAP_SIZE] = distance; // remember distance
     __aif_max_index_ptr[addr%MAXMAP_SIZE] = index; // remember which watch point this is for
   }
+// #ifdef LOGGING
+  
+  fprintf(fp, "[AIF_RANGE]: index %d, status:%d, distance: %d\n", index, __aif_untouched_ptr[index]-'0', distance);
+  fclose(fp);
+// #endif
 
 }
 
@@ -134,14 +137,15 @@ void ijon_map_set(uint32_t addr){
 }
 
 void aif_map_set(ijon_u32_t index, ijon_u32_t addr){
-  if(__aif_brc_map[index] != UNTOUCH) { 
-    return;
-  }
+  
 #ifdef LOGGING
   FILE *fp = fopen("/data/debug.log", "a+");
-  fprintf(fp, "[AIF_SET]: alive at index %d, status:%c\n", index, __aif_brc_map[index]);
+  fprintf(fp, "[AIF_SET]: alive at index %d, status:%c\n", index, __aif_untouched_ptr[index]);
   fclose(fp);
 #endif
+  if(__aif_untouched_ptr[index] != UNTOUCH) { 
+    return;
+  }
   __afl_area_ptr[(__afl_state^addr)%MAP_SIZE]|=1;
 }
 
@@ -276,13 +280,22 @@ static void __monitor_map_shm(void) {
     
     int i = 0;
     int cnt_touched = 0;
+    int cnt_untouch = 0;
+    int cnt_notcond = 0;
     for (i = 0; i<SIZE; i++) {
-      if(__aif_brc_map[i] == TOUCHED) {
+      if(__aif_untouched_ptr[i] == TOUCHED) {
         cnt_touched += 1;
+        fprintf(fp, "touch index: %d\n", i);
+      }
+      if(__aif_untouched_ptr[i] == UNTOUCH) {
+        cnt_untouch += 1;
+      }
+      if(__aif_untouched_ptr[i] == NOTCOND) {
+        cnt_notcond += 1;
       }
     }
     
-    fprintf(fp, "%d touched when first loading\n", cnt_touched);
+    fprintf(fp, "[beginning]: %d touched, %d untouch, %d don't care \n", cnt_touched, cnt_untouch, cnt_notcond);
     fclose(fp);
 #endif
 }

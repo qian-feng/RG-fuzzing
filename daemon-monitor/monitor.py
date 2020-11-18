@@ -49,12 +49,18 @@ def GetInstrumentedPCs(binary):
   return set(int(line.strip(), 16) + 4 for line in proc.stdout)
 
 # create & initialize shared memory to inform fuzzer about branch status
-def create_shm(size=SIZE):
-    mem = sysv_ipc.SharedMemory(KEY, sysv_ipc.IPC_CREAT, size=size)
+def create_shm(size):
+    # overwrite if necessary:
+    mem = sysv_ipc.SharedMemory(KEY)
+    mem.detach()
+    mem.remove()
+
+    mem = sysv_ipc.SharedMemory(KEY, sysv_ipc.IPC_CREX, size=SIZE)
     if mem.id < 0:
         print("Error creating shm: errno is %d\n" % (mem.id))
         exit(1)
     mem.write("0"*size)
+    mem.write("2"*(SIZE-size), size)
     # os.environ["AIF_SIZE"] = str(size)
     # os.environ["AIF_KEY"] = str(mem.key) 
     # os.system("export AIF_SIZE=%s"%str(size))
@@ -74,19 +80,29 @@ def print_untouched(binary, joblist, filename):
             # write to file
             fp.write("0x%x,%s,%d\n" % (each, stdout.strip("\n"), brc_id))
             # write to dict
-            untouch_dict[each] = [brc_id, UNTOUCH]
+            untouch_dict[each] = [brc_id, UNTOUCH, stdout.strip("\n")]
             brc_id = brc_id + 1
     assert len(joblist) == len(untouch_dict)
+
+def dump_covered():
+    filename = "/data/cover.log"
+    # my debug func, to dump the newly covered edge:
+    if os.path.isfile(filename):
+        os.unlink(filename)
+    for i in untouch_dict:
+        if untouch_dict[i][1] == TOUCHED:
+            with open(filename, "a+") as fp:
+                fp.write("covered: 0x%x, %s\n" % (i, untouch_dict[i][2]))
 
 def main():   
     args = parse_args()
 
     # initialization stage:
     instrumented = GetInstrumentedPCs(args.cmd[0])
-    #shm = create_shm(len(instrumented))
-    shm = create_shm(SIZE) # fixed length now. 
+    shm = create_shm(len(instrumented))
+    #shm = create_shm(SIZE) # fixed length now. 
     print_untouched(args.cmd[0], instrumented, os.path.join(args.output_dir, args.cmd[0]+".txt")) 
-
+    print("[+] Initialization done!\n")
     # second stage of initialization:
     # TODO: load from TIS and update for status=2
     
@@ -128,6 +144,9 @@ def main():
         # here just to check whether the env set is success:
         #print("env check: %s, %s, %s\n" % (os.environ.get('AIF_SIZE'), os.environ.get('AIF_KEY'), os.environ.get('PATH')))
         print("[coverage]: %d total, %d covered, %.2f%% coverage ratio, by %dth seed\n" % (total_num, covered_num, 100.0 * covered_num / total_num, q_index))
+        if q_index % 5 == 0:
+            dump_covered()
+        
 
     return 0
 

@@ -129,14 +129,7 @@ Current number of guards: 1403
 [touched] 0xf7f2bc12  (/data/daemon-monitor/libcgc.so+0x1c12)
 [touched] 0xf7f2bc28  (/data/daemon-monitor/libcgc.so+0x1c28)
 [touched] 0xf7f2bc4c  (/data/daemon-monitor/libcgc.so+0x1c4c)
-[touched] 0x817808e  (/data/daemon-monitor/Recipe_Database.cov+0x8Invalid command
-
-1 - Enter a Recipe
-2 - Find a Recipe
-3 - Print Tagged Recipes
-4 - Print Shopping List
-5 - Exit
-17808e)
+[touched] 0x817808e  (/data/daemon-monitor/Recipe_Database.cov+0x817808e)
 [touched] 0x8178113  (/data/daemon-monitor/Recipe_Database.cov+0x8178113)
 [touched] 0x81780f7  (/data/daemon-monitor/Recipe_Database.cov+0x81780f7)
 [touched] 0x81781e5  (/data/daemon-monitor/Recipe_Database.cov+0x81781e5)
@@ -163,16 +156,8 @@ Current number of guards: 1403
 [touched] 0x8176824  (/data/daemon-monitor/Recipe_Database.cov+0x8176824)
 [touched] 0x8175b49  (/data/daemon-monitor/Recipe_Database.cov+0x8175b49)
 [touched] 0x8175b7a  (/data/daemon-monitor/Recipe_Database.cov+0x8175b7a)
-[touched] 0x8175b95  (/data/daemon-monitor/Recipe_Database.cov+0x8175b95)
-[touched] 0x8175bc8  (/data/daemon-monitor/Recipe_Database.cov+0x8175bc8)
-[touched] 0x8175be0  (/data/daemon-monitor/Recipe_Database.cov+0x8175be0)
-[touched] 0x81769cc  (/data/daemon-monitor/Recipe_Database.cov+0x81769cc)
-[touched] 0x8176a23  (/data/daemon-monitor/Recipe_Database.cov+0x8176a23)
-[touched] 0x8176a45  (/data/daemon-monitor/Recipe_Database.cov+0x8176a45)
-[touched] 0x8176a58  (/data/daemon-monitor/Recipe_Database.cov+0x8176a58)
-[touched] 0x817f14f  (/data/daemon-monitor/Recipe_Database.cov+0x817f14f)
-[touched] 0x817f17d  (/data/daemon-monitor/Recipe_Database.cov+0x817f17d)
 [touched] 0x8175bab  (/data/daemon-monitor/Recipe_Database.cov+0x8175bab)
+[touched] 0x8175be0  (/data/daemon-monitor/Recipe_Database.cov+0x8175be0)
 [touched] 0x8176889  (/data/daemon-monitor/Recipe_Database.cov+0x8176889)
 [touched] 0x81768a4  (/data/daemon-monitor/Recipe_Database.cov+0x81768a4)
 [touched] 0x81768e6  (/data/daemon-monitor/Recipe_Database.cov+0x81768e6)
@@ -181,7 +166,12 @@ Current number of guards: 1403
 [touched] 0x81769e2  (/data/daemon-monitor/Recipe_Database.cov+0x81769e2)
 [touched] 0x81769f3  (/data/daemon-monitor/Recipe_Database.cov+0x81769f3)
 [touched] 0x8176a04  (/data/daemon-monitor/Recipe_Database.cov+0x8176a04)
-[touched] 0x8176691  (/data/daemon-monitor/Recipe_Database.cov+0x8176691)
+[touched] 0x8175b64  (/data/daemon-monitor/Recipe_Database.cov+0x8175b64)
+[touched] 0x8175bc8  (/data/daemon-monitor/Recipe_Database.cov+0x8175bc8)
+[touched] 0x81769cc  (/data/daemon-monitor/Recipe_Database.cov+0x81769cc)
+[touched] 0x8176a23  (/data/daemon-monitor/Recipe_Database.cov+0x8176a23)
+[touched] 0x8176a45  (/data/daemon-monitor/Recipe_Database.cov+0x8176a45)
+[touched] 0x8176a58  (/data/daemon-monitor/Recipe_Database.cov+0x8176a58)
 [touched] 0x817f073  (/data/daemon-monitor/Recipe_Database.cov+0x817f073)
 [touched] 0x817cea5  (/data/daemon-monitor/Recipe_Database.cov+0x817cea5)
 [touched] 0x817cf6c  (/data/daemon-monitor/Recipe_Database.cov+0x817cf6c)
@@ -192,12 +182,12 @@ Current number of guards: 1403
 [touched] 0x816b994  (/data/daemon-monitor/Recipe_Database.cov+0x816b994)
 [touched] 0x816b9f7  (/data/daemon-monitor/Recipe_Database.cov+0x816b9f7)
 [touched] 0x816ba28  (/data/daemon-monitor/Recipe_Database.cov+0x816ba28)
-[touched] 0x816ceeEnter Title: Enter the measurement and ingredients, one per line.  A blank line ends.
-
-4  (/data/daemon-monitor/Recipe_Database.cov+0x816cee4)
+[touched] 0x816cee4  (/data/daemon-monitor/Recipe_Database.cov+0x816cee4)
 [touched] 0x816cf44  (/data/daemon-monitor/Recipe_Database.cov+0x816cf44)
 [touched] 0x816cf7c  (/data/daemon-monitor/Recipe_Database.cov+0x816cf7c)
-[touched] 0xf7f2d3c9  (/data/daemon-monitor/libcgc.so+0x33c9)
+[touched] 0xf7f2d3Enter Title: Enter the measurement and ingredients, one per line.  A blank line ends.
+
+c9  (/data/daemon-monitor/libcgc.so+0x33c9)
 [touched] 0xf7f2d3f0  (/data/daemon-monitor/libcgc.so+0x33f0)
 [touched] 0xf7f2d42a  (/data/daemon-monitor/libcgc.so+0x342a)
 [touched] 0xf7f2d50f  (/data/daemon-monitor/libcgc.so+0x350f)
@@ -250,9 +240,99 @@ Current number of guards: 1403
 [touched] 0x8176fba  (/data/daemon-monitor/Recipe_Database.cov+0x8176fba)
 [touched] 0x8176fd9  (/data/daemon-monitor/Recipe_Database.cov+0x8176fd9)
 [touched] 0x8176fea  (/data/daemon-monitor/Recipe_Database.cov+0x8176fea)
-[touched] 0x817f75d  (/data/daemon-monitor/Recipe_DataEnter the step by step instructions.  A blank line to end.
+[touched] 0x817f75d  (/data/daemon-monitor/Recipe_Database.cov+0x817f75d)
+[touched] 0x817f86a  (/data/daemon-monitor/Recipe_Database.cov+0x817f86a)
+[touched] 0x817f914  (/data/daemon-monitor/Recipe_Database.cov+0x817f914)
+[touched] 0x817f95e  (/data/daemon-monitor/Recipe_DataEnter the step by step instructions.  A blank line to end.
 
 Step 1: 
+1 - Enter a Recipe
+2 - Find a Recipe
+3 - Print Tagged Recipes
+4 - Print Shopping List
+5 - Exit
+base.cov+0x817f95e)
+[touched] 0x8177639  (/data/daemon-monitor/Recipe_Database.cov+0x8177639)
+[touched] 0x8177671  (/data/daemon-monitor/Recipe_Database.cov+0x8177671)
+[touched] 0x8177682  (/data/daemon-monitor/Recipe_Database.cov+0x8177682)
+[touched] 0x81776fe  (/data/daemon-monitor/Recipe_Database.cov+0x81776fe)
+[touched] 0x817770f  (/data/daemon-monitor/Recipe_Database.cov+0x817770f)
+[touched] 0x817f9b2  (/data/daemon-monitor/Recipe_Database.cov+0x817f9b2)
+[touched] 0x817fad9  (/data/daemon-monitor/Recipe_Database.cov+0x817fad9)
+[touched] 0x817fb6d  (/data/daemon-monitor/Recipe_Database.cov+0x817fb6d)
+[touched] 0x817fe43  (/data/daemon-monitor/Recipe_Database.cov+0x817fe43)
+[touched] 0x8176a90  (/data/daemon-monitor/Recipe_Database.cov+0x8176a90)
+[touched] 0x8176aa8  (/data/daemon-monitor/Recipe_Database.cov+0x8176aa8)
+[touched] 0x8176b08  (/data/daemon-monitor/Recipe_Database.cov+0x8176b08)
+[touched] 0x8176bde  (/data/daemon-monitor/Recipe_Database.cov+0x8176bde)
+[touched] 0x817fea9  (/data/daemon-monitor/Recipe_Database.cov+0x817fea9)
+[touched] 0x817ff1b  (/data/daemon-monitor/Recipe_Database.cov+0x817ff1b)
+[touched] 0x817ffca  (/data/daemon-monitor/Recipe_Database.cov+0x817ffca)
+[touched] 0x81800c4  (/data/daemon-monitor/Recipe_Database.cov+0x81800c4)
+[touched] 0x8177131  (/data/daemon-monitor/Recipe_Database.cov+0x8177131)
+[touched] 0x8177142  (/data/daemon-monitor/Recipe_Database.cov+0x8177142)
+[touched] 0x817719f  (/data/daemon-monitor/Recipe_Database.cov+0x817719f)
+[touched] 0x8177267  (/data/daemon-monitor/Recipe_Database.cov+0x8177267)
+[touched] 0x81772b0  (/data/daemon-monitor/Recipe_Database.cov+0x81772b0)
+[touched] 0x8180170  (/data/daemon-monitor/Recipe_Database.cov+0x8180170)
+[touched] 0x81801ca  (/data/daemon-monitor/Recipe_Database.cov+0x81801ca)
+[touched] 0x8180228  (/data/daemon-monitor/Recipe_Database.cov+0x8180228)
+[touched] 0x8180286  (/data/daemon-monitor/Recipe_Database.cov+0x8180286)
+[touched] 0x81802c6  (/data/daemon-monitor/Recipe_Database.cov+0x81802c6)
+[touched] 0x818036d  (/data/daemon-monitor/Recipe_Database.cov+0x818036d)
+[touched] 0x8176b1e  (/data/daemon-monitor/Recipe_Database.cov+0x8176b1e)
+[touched] 0x8176bbf  (/data/daemon-monitor/Recipe_Database.cov+0x8176bbf)
+[touched] 0x81803bb  (/data/daemon-monitor/Recipe_Database.cov+0x81803bb)
+[touched] 0x8175836  (/data/daemon-monitor/Recipe_Database.cov+0x8175836)
+[touched] 0x817584e  (/data/daemon-monitor/Recipe_Database.cov+0x817584e)
+[touched] 0x817586b  (/data/daemon-monitor/Recipe_Database.cov+0x817586b)
+[touched] 0x817591a  (/data/daemon-monitor/Recipe_Database.cov+0x817591a)
+[touched] 0x817b163  (/data/daemon-monitor/Recipe_Database.cov+0x817b163)
+[touched] 0x817b279  (/data/daemon-monitor/Recipe_Database.cov+0x817b279)
+[touched] 0x817b2e7  (/data/daemon-monitor/Recipe_Database.cov+0x817b2e7)
+[touched] 0x81776df  (/data/daemon-monitor/Recipe_Database.cov+0x81776df)
+[touched] 0x817f9dc  (/data/daemon-monitor/Recipe_Database.cov+0x817f9dc)
+[touched] 0x817fbac  (/data/daemon-monitor/Recipe_Database.cov+0x817fbac)
+[touched] 0x817fc48  (/data/daemon-monitor/Recipe_Database.cov+0x817fc48)
+[touched] 0x817fcd6  (/data/daemon-monitor/Recipe_Database.cov+0x817fcd6)
+[touched] 0x817fd64  (/data/daemon-monitor/Recipe_Database.cov+0x817fd64)
+[touched] 0x817b147  (/data/daemon-monitor/Recipe_Database.cov+0x817b147)
+[touched] 0x817b303  (/data/daemon-monitor/Recipe_Database.cov+0x817b303)
+[touched] 0x817b330  (/data/daemon-monitor/Recipe_Database.cov+0x817b330)
+[touched] 0x817d9e3  (/data/daemon-monitor/Recipe_Database.cov+0x817d9e3)
+[touched] 0x817b5c0  (/data/daemon-monitor/Recipe_Database.cov+0x817b5c0)
+[touched] 0x817b685  (/data/daemon-monitor/Recipe_Database.cov+0x817b685)
+[touched] 0x817be1f  (/data/daemon-monitor/Recipe_Database.cov+0x817be1f)
+[touched] 0x817be7f  (/data/daemon-monitor/Recipe_Database.cov+0x817be7f)
+[touched] 0x817beb2  (/data/daemon-monitor/Recipe_Database.cov+0x817beb2)
+[touched] 0x817da22  (/data/daemon-monitor/Recipe_Database.cov+0x817da22)
+[touched] 0x817f17d  (/data/daemon-monitor/Recipe_Database.cov+0x817f17d)
+[touchInvalid command
+
+1 - Enter a Recipe
+2 - Find a Recipe
+3 - Print Tagged Recipes
+4 - Print Shopping List
+5 - Exit
+Invalid command
+
+1 - Enter a Recipe
+2 - Find a Recipe
+3 - Print Tagged Recipes
+4 - Print Shopping List
+5 - Exit
+Invalid command
+
+1 - Enter a Recipe
+2 - Find a Recipe
+3 - Print Tagged Recipes
+4 - Print Shopping List
+5 - Exit
+Enter Title: Enter the measurement and ingredients, one per line.  A blank line ends.
+
+Enter the step by step instructions.  A blank line to end.
+
+Step 1: Step 2: 
 1 - Enter a Recipe
 2 - Find a Recipe
 3 - Print Tagged Recipes

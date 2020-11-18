@@ -1,100 +1,100 @@
-INIT: 0xf7f00130 0xf7f002e0
+INIT: 0xf7f48130 0xf7f482e0
 Current number of guards: 108
 ---
-INIT: 0xf7f08150 0xf7f0842c
+INIT: 0xf7f50150 0xf7f5042c
 Current number of guards: 291
 ---
-[touched] 0xf7f04857  (/data/daemon-monitor/libcgc.so+0x3857)
-[touched] 0xf7f04908  (/data/daemon-monitor/libcgc.so+0x3908)
-[touched] 0xf7f04a26  (/data/daemon-monitor/libcgc.so+0x3a26)
-[touched] 0xf7f04a73  (/data/daemon-monitor/libcgc.so+0x3a73)
-[touched] 0xf7f04af8  (/data/daemon-monitor/libcgc.so+0x3af8)
-[touched] 0xf7f04c7b  (/data/daemon-monitor/libcgc.so+0x3c7b)
-[touched] 0xf7f05062  (/data/daemon-monitor/libcgc.so+0x4062)
-[touched] 0xf7f04cf0  (/data/daemon-monitor/libcgc.so+0x3cf0)
-[touched] 0xf7f05149  (/data/daemon-monitor/libcgc.so+0x4149)
-[touched] 0xf7f05166  (/data/daemon-monitor/libcgc.so+0x4166)
-[touched] 0xf7f05188  (/data/daemon-monitor/libcgc.so+0x4188)
-[touched] 0xf7f0520b  (/data/daemon-monitor/libcgc.so+0x420b)
-[touched] 0xf7f05531  (/data/daemon-monitor/libcgc.so+0x4531)
-[touched] 0xf7ef8989  (/data/daemon-monitor/libtiny-AES128-C.so+0x989)
-[touched] 0xf7ef8a02  (/data/daemon-monitor/libtiny-AES128-C.so+0xa02)
-[touched] 0xf7ef8a1c  (/data/daemon-monitor/libtiny-AES128-C.so+0xa1c)
-[touched] 0xf7ef8a3f  (/data/daemon-monitor/libtiny-AES128-C.so+0xa3f)
-[touched] 0xf7ef8af1  (/data/daemon-monitor/libtiny-AES128-C.so+0xaf1)
-[touched] 0xf7ef8b15  (/data/daemon-monitor/libtiny-AES128-C.so+0xb15)
-[touched] 0xf7ef8c18  (/data/daemon-monitor/libtiny-AES128-C.so+0xc18)
-[touched] 0xf7ef8c4b  (/data/daemon-monitor/libtiny-AES128-C.so+0xc4b)
-[touched] 0xf7ef8c77  (/data/daemon-monitor/libtiny-AES128-C.so+0xc77)
-[touched] 0xf7ef907e  (/data/daemon-monitor/libtiny-AES128-C.so+0x107e)
-[touched] 0xf7ef90b1  (/data/daemon-monitor/libtiny-AES128-C.so+0x10b1)
-[touched] 0xf7ef90d0  (/data/daemon-monitor/libtiny-AES128-C.so+0x10d0)
-[touched] 0xf7ef90fc  (/data/daemon-monitor/libtiny-AES128-C.so+0x10fc)
-[touched] 0xf7ef9125  (/data/daemon-monitor/libtiny-AES128-C.so+0x1125)
-[touched] 0xf7ef9151  (/data/daemon-monitor/libtiny-AES128-C.so+0x1151)
-[touched] 0xf7ef9262  (/data/daemon-monitor/libtiny-AES128-C.so+0x1262)
-[touched] 0xf7ef9295  (/data/daemon-monitor/libtiny-AES128-C.so+0x1295)
-[touched] 0xf7ef92c6  (/data/daemon-monitor/libtiny-AES128-C.so+0x12c6)
-[touched] 0xf7efaa6b  (/data/daemon-monitor/libtiny-AES128-C.so+0x2a6b)
-[touched] 0xf7ef9b34  (/data/daemon-monitor/libtiny-AES128-C.so+0x1b34)
-[touched] 0xf7efa02c  (/data/daemon-monitor/libtiny-AES128-C.so+0x202c)
-[touched] 0xf7ef9b15  (/data/daemon-monitor/libtiny-AES128-C.so+0x1b15)
-[touched] 0xf7efa05f  (/data/daemon-monitor/libtiny-AES128-C.so+0x205f)
-[touched] 0xf7efa0e5  (/data/daemon-monitor/libtiny-AES128-C.so+0x20e5)
-[touched] 0xf7efaafd  (/data/daemon-monitor/libtiny-AES128-C.so+0x2afd)
-[touched] 0xf7efab17  (/data/daemon-monitor/libtiny-AES128-C.so+0x2b17)
-[touched] 0xf7efab3a  (/data/daemon-monitor/libtiny-AES128-C.so+0x2b3a)
-[touched] 0xf7efab54  (/data/daemon-monitor/libtiny-AES128-C.so+0x2b54)
-[touched] 0xf7efab77  (/data/daemon-monitor/libtiny-AES128-C.so+0x2b77)
-[touched] 0xf7efac5a  (/data/daemon-monitor/libtiny-AES128-C.so+0x2c5a)
-[touched] 0xf7efac7e  (/data/daemon-monitor/libtiny-AES128-C.so+0x2c7e)
-[touched] 0xf7efac94  (/data/daemon-monitor/libtiny-AES128-C.so+0x2c94)
-[touched] 0xf7efacb8  (/data/daemon-monitor/libtiny-AES128-C.so+0x2cb8)
-[touched] 0xf7efa117  (/data/daemon-monitor/libtiny-AES128-C.so+0x2117)
-[touched] 0xf7efa13a  (/data/daemon-monitor/libtiny-AES128-C.so+0x213a)
-[touched] 0xf7efacf5  (/data/daemon-monitor/libtiny-AES128-C.so+0x2cf5)
-[touched] 0xf7efad0f  (/data/daemon-monitor/libtiny-AES128-C.so+0x2d0f)
-[touched] 0xf7efad32  (/data/daemon-monitor/libtiny-AES128-C.so+0x2d32)
-[touched] 0xf7efad4c  (/data/daemon-monitor/libtiny-AES128-C.so+0x2d4c)
-[touched] 0xf7efad6f  (/data/daemon-monitor/libtiny-AES128-C.so+0x2d6f)
-[touched] 0xf7efae4b  (/data/daemon-monitor/libtiny-AES128-C.so+0x2e4b)
-[touched] 0xf7efae6f  (/data/daemon-monitor/libtiny-AES128-C.so+0x2e6f)
-[touched] 0xf7efae85  (/data/daemon-monitor/libtiny-AES128-C.so+0x2e85)
-[touched] 0xf7efaea9  (/data/daemon-monitor/libtiny-AES128-C.so+0x2ea9)
+[touched] 0xf7f4c857  (/data/daemon-monitor/libcgc.so+0x3857)
+[touched] 0xf7f4c908  (/data/daemon-monitor/libcgc.so+0x3908)
+[touched] 0xf7f4ca26  (/data/daemon-monitor/libcgc.so+0x3a26)
+[touched] 0xf7f4ca73  (/data/daemon-monitor/libcgc.so+0x3a73)
+[touched] 0xf7f4caf8  (/data/daemon-monitor/libcgc.so+0x3af8)
+[touched] 0xf7f4cc7b  (/data/daemon-monitor/libcgc.so+0x3c7b)
+[touched] 0xf7f4d062  (/data/daemon-monitor/libcgc.so+0x4062)
+[touched] 0xf7f4ccf0  (/data/daemon-monitor/libcgc.so+0x3cf0)
+[touched] 0xf7f4d149  (/data/daemon-monitor/libcgc.so+0x4149)
+[touched] 0xf7f4d166  (/data/daemon-monitor/libcgc.so+0x4166)
+[touched] 0xf7f4d188  (/data/daemon-monitor/libcgc.so+0x4188)
+[touched] 0xf7f4d20b  (/data/daemon-monitor/libcgc.so+0x420b)
+[touched] 0xf7f4d531  (/data/daemon-monitor/libcgc.so+0x4531)
+[touched] 0xf7f40989  (/data/daemon-monitor/libtiny-AES128-C.so+0x989)
+[touched] 0xf7f40a02  (/data/daemon-monitor/libtiny-AES128-C.so+0xa02)
+[touched] 0xf7f40a1c  (/data/daemon-monitor/libtiny-AES128-C.so+0xa1c)
+[touched] 0xf7f40a3f  (/data/daemon-monitor/libtiny-AES128-C.so+0xa3f)
+[touched] 0xf7f40af1  (/data/daemon-monitor/libtiny-AES128-C.so+0xaf1)
+[touched] 0xf7f40b15  (/data/daemon-monitor/libtiny-AES128-C.so+0xb15)
+[touched] 0xf7f40c18  (/data/daemon-monitor/libtiny-AES128-C.so+0xc18)
+[touched] 0xf7f40c4b  (/data/daemon-monitor/libtiny-AES128-C.so+0xc4b)
+[touched] 0xf7f40c77  (/data/daemon-monitor/libtiny-AES128-C.so+0xc77)
+[touched] 0xf7f4107e  (/data/daemon-monitor/libtiny-AES128-C.so+0x107e)
+[touched] 0xf7f410b1  (/data/daemon-monitor/libtiny-AES128-C.so+0x10b1)
+[touched] 0xf7f410d0  (/data/daemon-monitor/libtiny-AES128-C.so+0x10d0)
+[touched] 0xf7f410fc  (/data/daemon-monitor/libtiny-AES128-C.so+0x10fc)
+[touched] 0xf7f41125  (/data/daemon-monitor/libtiny-AES128-C.so+0x1125)
+[touched] 0xf7f41151  (/data/daemon-monitor/libtiny-AES128-C.so+0x1151)
+[touched] 0xf7f41262  (/data/daemon-monitor/libtiny-AES128-C.so+0x1262)
+[touched] 0xf7f41295  (/data/daemon-monitor/libtiny-AES128-C.so+0x1295)
+[touched] 0xf7f412c6  (/data/daemon-monitor/libtiny-AES128-C.so+0x12c6)
+[touched] 0xf7f42a6b  (/data/daemon-monitor/libtiny-AES128-C.so+0x2a6b)
+[touched] 0xf7f41b34  (/data/daemon-monitor/libtiny-AES128-C.so+0x1b34)
+[touched] 0xf7f4202c  (/data/daemon-monitor/libtiny-AES128-C.so+0x202c)
+[touched] 0xf7f41b15  (/data/daemon-monitor/libtiny-AES128-C.so+0x1b15)
+[touched] 0xf7f4205f  (/data/daemon-monitor/libtiny-AES128-C.so+0x205f)
+[touched] 0xf7f420e5  (/data/daemon-monitor/libtiny-AES128-C.so+0x20e5)
+[touched] 0xf7f42afd  (/data/daemon-monitor/libtiny-AES128-C.so+0x2afd)
+[touched] 0xf7f42b17  (/data/daemon-monitor/libtiny-AES128-C.so+0x2b17)
+[touched] 0xf7f42b3a  (/data/daemon-monitor/libtiny-AES128-C.so+0x2b3a)
+[touched] 0xf7f42b54  (/data/daemon-monitor/libtiny-AES128-C.so+0x2b54)
+[touched] 0xf7f42b77  (/data/daemon-monitor/libtiny-AES128-C.so+0x2b77)
+[touched] 0xf7f42c5a  (/data/daemon-monitor/libtiny-AES128-C.so+0x2c5a)
+[touched] 0xf7f42c7e  (/data/daemon-monitor/libtiny-AES128-C.so+0x2c7e)
+[touched] 0xf7f42c94  (/data/daemon-monitor/libtiny-AES128-C.so+0x2c94)
+[touched] 0xf7f42cb8  (/data/daemon-monitor/libtiny-AES128-C.so+0x2cb8)
+[touched] 0xf7f42117  (/data/daemon-monitor/libtiny-AES128-C.so+0x2117)
+[touched] 0xf7f4213a  (/data/daemon-monitor/libtiny-AES128-C.so+0x213a)
+[touched] 0xf7f42cf5  (/data/daemon-monitor/libtiny-AES128-C.so+0x2cf5)
+[touched] 0xf7f42d0f  (/data/daemon-monitor/libtiny-AES128-C.so+0x2d0f)
+[touched] 0xf7f42d32  (/data/daemon-monitor/libtiny-AES128-C.so+0x2d32)
+[touched] 0xf7f42d4c  (/data/daemon-monitor/libtiny-AES128-C.so+0x2d4c)
+[touched] 0xf7f42d6f  (/data/daemon-monitor/libtiny-AES128-C.so+0x2d6f)
+[touched] 0xf7f42e4b  (/data/daemon-monitor/libtiny-AES128-C.so+0x2e4b)
+[touched] 0xf7f42e6f  (/data/daemon-monitor/libtiny-AES128-C.so+0x2e6f)
+[touched] 0xf7f42e85  (/data/daemon-monitor/libtiny-AES128-C.so+0x2e85)
+[touched] 0xf7f42ea9  (/data/daemon-monitor/libtiny-AES128-C.so+0x2ea9)
 [touche
 1 - Enter a Recipe
 2 - Find a Recipe
 3 - Print Tagged Recipes
 4 - Print Shopping List
 5 - Exit
-d] 0xf7efaeda  (/data/daemon-monitor/libtiny-AES128-C.so+0x2eda)
-[touched] 0xf7efb7da  (/data/daemon-monitor/libtiny-AES128-C.so+0x37da)
-[touched] 0xf7efb7f4  (/data/daemon-monitor/libtiny-AES128-C.so+0x37f4)
-[touched] 0xf7efb817  (/data/daemon-monitor/libtiny-AES128-C.so+0x3817)
-[touched] 0xf7efbf68  (/data/daemon-monitor/libtiny-AES128-C.so+0x3f68)
-[touched] 0xf7efbf0c  (/data/daemon-monitor/libtiny-AES128-C.so+0x3f0c)
-[touched] 0xf7efbf30  (/data/daemon-monitor/libtiny-AES128-C.so+0x3f30)
-[touched] 0xf7efa177  (/data/daemon-monitor/libtiny-AES128-C.so+0x2177)
-[touched] 0xf7efa19b  (/data/daemon-monitor/libtiny-AES128-C.so+0x219b)
-[touched] 0xf7f05879  (/data/daemon-monitor/libcgc.so+0x4879)
-[touched] 0xf7f05896  (/data/daemon-monitor/libcgc.so+0x4896)
-[touched] 0xf7f058d1  (/data/daemon-monitor/libcgc.so+0x48d1)
-[touched] 0xf7f059d1  (/data/daemon-monitor/libcgc.so+0x49d1)
-[touched] 0xf7f058b6  (/data/daemon-monitor/libcgc.so+0x48b6)
-[touched] 0xf7f059f5  (/data/daemon-monitor/libcgc.so+0x49f5)
-[touched] 0xf7f05674  (/data/daemon-monitor/libcgc.so+0x4674)
-[touched] 0xf7f056be  (/data/daemon-monitor/libcgc.so+0x46be)
-[touched] 0xf7f05791  (/data/daemon-monitor/libcgc.so+0x4791)
-[touched] 0xf7f057df  (/data/daemon-monitor/libcgc.so+0x47df)
-[touched] 0xf7f0522f  (/data/daemon-monitor/libcgc.so+0x422f)
-[touched] 0xf7f05245  (/data/daemon-monitor/libcgc.so+0x4245)
-[touched] 0xf7f052cf  (/data/daemon-monitor/libcgc.so+0x42cf)
-[touched] 0xf7f052f7  (/data/daemon-monitor/libcgc.so+0x42f7)
-[touched] 0xf7f0531d  (/data/daemon-monitor/libcgc.so+0x431d)
-[touched] 0xf7f052ad  (/data/daemon-monitor/libcgc.so+0x42ad)
-[touched] 0xf7f05432  (/data/daemon-monitor/libcgc.so+0x4432)
-[touched] 0xf7f057b2  (/data/daemon-monitor/libcgc.so+0x47b2)
-[touched] 0xf7f0544d  (/data/daemon-monitor/libcgc.so+0x444d)
+d] 0xf7f42eda  (/data/daemon-monitor/libtiny-AES128-C.so+0x2eda)
+[touched] 0xf7f437da  (/data/daemon-monitor/libtiny-AES128-C.so+0x37da)
+[touched] 0xf7f437f4  (/data/daemon-monitor/libtiny-AES128-C.so+0x37f4)
+[touched] 0xf7f43817  (/data/daemon-monitor/libtiny-AES128-C.so+0x3817)
+[touched] 0xf7f43f68  (/data/daemon-monitor/libtiny-AES128-C.so+0x3f68)
+[touched] 0xf7f43f0c  (/data/daemon-monitor/libtiny-AES128-C.so+0x3f0c)
+[touched] 0xf7f43f30  (/data/daemon-monitor/libtiny-AES128-C.so+0x3f30)
+[touched] 0xf7f42177  (/data/daemon-monitor/libtiny-AES128-C.so+0x2177)
+[touched] 0xf7f4219b  (/data/daemon-monitor/libtiny-AES128-C.so+0x219b)
+[touched] 0xf7f4d879  (/data/daemon-monitor/libcgc.so+0x4879)
+[touched] 0xf7f4d896  (/data/daemon-monitor/libcgc.so+0x4896)
+[touched] 0xf7f4d8d1  (/data/daemon-monitor/libcgc.so+0x48d1)
+[touched] 0xf7f4d9d1  (/data/daemon-monitor/libcgc.so+0x49d1)
+[touched] 0xf7f4d8b6  (/data/daemon-monitor/libcgc.so+0x48b6)
+[touched] 0xf7f4d9f5  (/data/daemon-monitor/libcgc.so+0x49f5)
+[touched] 0xf7f4d674  (/data/daemon-monitor/libcgc.so+0x4674)
+[touched] 0xf7f4d6be  (/data/daemon-monitor/libcgc.so+0x46be)
+[touched] 0xf7f4d791  (/data/daemon-monitor/libcgc.so+0x4791)
+[touched] 0xf7f4d7df  (/data/daemon-monitor/libcgc.so+0x47df)
+[touched] 0xf7f4d22f  (/data/daemon-monitor/libcgc.so+0x422f)
+[touched] 0xf7f4d245  (/data/daemon-monitor/libcgc.so+0x4245)
+[touched] 0xf7f4d2cf  (/data/daemon-monitor/libcgc.so+0x42cf)
+[touched] 0xf7f4d2f7  (/data/daemon-monitor/libcgc.so+0x42f7)
+[touched] 0xf7f4d31d  (/data/daemon-monitor/libcgc.so+0x431d)
+[touched] 0xf7f4d2ad  (/data/daemon-monitor/libcgc.so+0x42ad)
+[touched] 0xf7f4d432  (/data/daemon-monitor/libcgc.so+0x4432)
+[touched] 0xf7f4d7b2  (/data/daemon-monitor/libcgc.so+0x47b2)
+[touched] 0xf7f4d44d  (/data/daemon-monitor/libcgc.so+0x444d)
 INIT: 0x81d31b0 0x81d4310
 Current number of guards: 1403
 ---
@@ -109,12 +109,12 @@ Current number of guards: 1403
 [touched] 0x81700b4  (/data/daemon-monitor/Recipe_Database.cov+0x81700b4)
 [touched] 0x81727f4  (/data/daemon-monitor/Recipe_Database.cov+0x81727f4)
 [touched] 0x816e5cd  (/data/daemon-monitor/Recipe_Database.cov+0x816e5cd)
-[touched] 0xf7f028df  (/data/daemon-monitor/libcgc.so+0x18df)
-[touched] 0xf7f02990  (/data/daemon-monitor/libcgc.so+0x1990)
-[touched] 0xf7f029cb  (/data/daemon-monitor/libcgc.so+0x19cb)
-[touched] 0xf7f02a32  (/data/daemon-monitor/libcgc.so+0x1a32)
-[touched] 0xf7f02a48  (/data/daemon-monitor/libcgc.so+0x1a48)
-[touched] 0xf7f02a6c  (/data/daemon-monitor/libcgc.so+0x1a6c)
+[touched] 0xf7f4a8df  (/data/daemon-monitor/libcgc.so+0x18df)
+[touched] 0xf7f4a990  (/data/daemon-monitor/libcgc.so+0x1990)
+[touched] 0xf7f4a9cb  (/data/daemon-monitor/libcgc.so+0x19cb)
+[touched] 0xf7f4aa32  (/data/daemon-monitor/libcgc.so+0x1a32)
+[touched] 0xf7f4aa48  (/data/daemon-monitor/libcgc.so+0x1a48)
+[touched] 0xf7f4aa6c  (/data/daemon-monitor/libcgc.so+0x1a6c)
 [touched] 0x816e687  (/data/daemon-monitor/Recipe_Database.cov+0x816e687)
 [touched] 0x8172888  (/data/daemon-monitor/Recipe_Database.cov+0x8172888)
 [touched] 0x81728a6  (/data/daemon-monitor/Recipe_Database.cov+0x81728a6)
@@ -123,13 +123,69 @@ Current number of guards: 1403
 [touched] 0x8177ecc  (/data/daemon-monitor/Recipe_Database.cov+0x8177ecc)
 [touched] 0x8177fa1  (/data/daemon-monitor/Recipe_Database.cov+0x8177fa1)
 [touched] 0x8177fc7  (/data/daemon-monitor/Recipe_Database.cov+0x8177fc7)
-[touched] 0xf7f02abf  (/data/daemon-monitor/libcgc.so+0x1abf)
-[touched] 0xf7f02b70  (/data/daemon-monitor/libcgc.so+0x1b70)
-[touched] 0xf7f02bab  (/data/daemon-monitor/libcgc.so+0x1bab)
-[touched] 0xf7f02c12  (/data/daemon-monitor/libcgc.so+0x1c12)
-[touched] 0xf7f02c28  (/data/daemon-monitor/libcgc.so+0x1c28)
-[touched] 0xf7f02c4c  (/data/daemon-monitor/libcgc.so+0x1c4c)
+[touched] 0xf7f4aabf  (/data/daemon-monitor/libcgc.so+0x1abf)
+[touched] 0xf7f4ab70  (/data/daemon-monitor/libcgc.so+0x1b70)
+[touched] 0xf7f4abab  (/data/daemon-monitor/libcgc.so+0x1bab)
+[touched] 0xf7f4ac12  (/data/daemon-monitor/libcgc.so+0x1c12)
+[touched] 0xf7f4ac28  (/data/daemon-monitor/libcgc.so+0x1c28)
+[touched] 0xf7f4ac4c  (/data/daemon-monitor/libcgc.so+0x1c4c)
 [touched] 0x817808e  (/data/daemon-monitor/Recipe_Database.cov+0x8Invalid command
+
+1 - Enter a Recipe
+2 - Find a Recipe
+3 - Print Tagged Recipes
+4 - Print Shopping List
+5 - Exit
+Invalid command
+
+1 - Enter a Recipe
+2 - Find a Recipe
+3 - Print Tagged Recipes
+4 - Print Shopping List
+5 - Exit
+Invalid command
+
+1 - Enter a Recipe
+2 - Find a Recipe
+3 - Print Tagged Recipes
+4 - Print Shopping List
+5 - Exit
+Invalid command
+
+1 - Enter a Recipe
+2 - Find a Recipe
+3 - Print Tagged Recipes
+4 - Print Shopping List
+5 - Exit
+Invalid command
+
+1 - Enter a Recipe
+2 - Find a Recipe
+3 - Print Tagged Recipes
+4 - Print Shopping List
+5 - Exit
+Invalid command
+
+1 - Enter a Recipe
+2 - Find a Recipe
+3 - Print Tagged Recipes
+4 - Print Shopping List
+5 - Exit
+Invalid command
+
+1 - Enter a Recipe
+2 - Find a Recipe
+3 - Print Tagged Recipes
+4 - Print Shopping List
+5 - Exit
+Invalid command
+
+1 - Enter a Recipe
+2 - Find a Recipe
+3 - Print Tagged Recipes
+4 - Print Shopping List
+5 - Exit
+Invalid command
 
 1 - Enter a Recipe
 2 - Find a Recipe
@@ -172,6 +228,8 @@ Current number of guards: 1403
 [touched] 0x8176a58  (/data/daemon-monitor/Recipe_Database.cov+0x8176a58)
 [touched] 0x817f14f  (/data/daemon-monitor/Recipe_Database.cov+0x817f14f)
 [touched] 0x817f17d  (/data/daemon-monitor/Recipe_Database.cov+0x817f17d)
+[touched] 0x8176691  (/data/daemon-monitor/Recipe_Database.cov+0x8176691)
+[touched] 0x8175b64  (/data/daemon-monitor/Recipe_Database.cov+0x8175b64)
 [touched] 0x8175bab  (/data/daemon-monitor/Recipe_Database.cov+0x8175bab)
 [touched] 0x8176889  (/data/daemon-monitor/Recipe_Database.cov+0x8176889)
 [touched] 0x81768a4  (/data/daemon-monitor/Recipe_Database.cov+0x81768a4)
@@ -181,7 +239,6 @@ Current number of guards: 1403
 [touched] 0x81769e2  (/data/daemon-monitor/Recipe_Database.cov+0x81769e2)
 [touched] 0x81769f3  (/data/daemon-monitor/Recipe_Database.cov+0x81769f3)
 [touched] 0x8176a04  (/data/daemon-monitor/Recipe_Database.cov+0x8176a04)
-[touched] 0x8176691  (/data/daemon-monitor/Recipe_Database.cov+0x8176691)
 [touched] 0x817f073  (/data/daemon-monitor/Recipe_Database.cov+0x817f073)
 [touched] 0x817cea5  (/data/daemon-monitor/Recipe_Database.cov+0x817cea5)
 [touched] 0x817cf6c  (/data/daemon-monitor/Recipe_Database.cov+0x817cf6c)
@@ -191,19 +248,19 @@ Current number of guards: 1403
 [touched] 0x816b983  (/data/daemon-monitor/Recipe_Database.cov+0x816b983)
 [touched] 0x816b994  (/data/daemon-monitor/Recipe_Database.cov+0x816b994)
 [touched] 0x816b9f7  (/data/daemon-monitor/Recipe_Database.cov+0x816b9f7)
-[touched] 0x816ba28  (/data/daemon-monitor/Recipe_Database.cov+0x816ba28)
-[touched] 0x816ceeEnter Title: Enter the measurement and ingredients, one per line.  A blank line ends.
+[touched] 0x816ba2Enter Title: Enter the measurement and ingredients, one per line.  A blank line ends.
 
-4  (/data/daemon-monitor/Recipe_Database.cov+0x816cee4)
+8  (/data/daemon-monitor/Recipe_Database.cov+0x816ba28)
+[touched] 0x816cee4  (/data/daemon-monitor/Recipe_Database.cov+0x816cee4)
 [touched] 0x816cf44  (/data/daemon-monitor/Recipe_Database.cov+0x816cf44)
 [touched] 0x816cf7c  (/data/daemon-monitor/Recipe_Database.cov+0x816cf7c)
-[touched] 0xf7f043c9  (/data/daemon-monitor/libcgc.so+0x33c9)
-[touched] 0xf7f043f0  (/data/daemon-monitor/libcgc.so+0x33f0)
-[touched] 0xf7f0442a  (/data/daemon-monitor/libcgc.so+0x342a)
-[touched] 0xf7f0450f  (/data/daemon-monitor/libcgc.so+0x350f)
-[touched] 0xf7f0454a  (/data/daemon-monitor/libcgc.so+0x354a)
-[touched] 0xf7f045b1  (/data/daemon-monitor/libcgc.so+0x35b1)
-[touched] 0xf7f045fa  (/data/daemon-monitor/libcgc.so+0x35fa)
+[touched] 0xf7f4c3c9  (/data/daemon-monitor/libcgc.so+0x33c9)
+[touched] 0xf7f4c3f0  (/data/daemon-monitor/libcgc.so+0x33f0)
+[touched] 0xf7f4c42a  (/data/daemon-monitor/libcgc.so+0x342a)
+[touched] 0xf7f4c50f  (/data/daemon-monitor/libcgc.so+0x350f)
+[touched] 0xf7f4c54a  (/data/daemon-monitor/libcgc.so+0x354a)
+[touched] 0xf7f4c5b1  (/data/daemon-monitor/libcgc.so+0x35b1)
+[touched] 0xf7f4c5fa  (/data/daemon-monitor/libcgc.so+0x35fa)
 [touched] 0x816cfea  (/data/daemon-monitor/Recipe_Database.cov+0x816cfea)
 [touched] 0x816ba47  (/data/daemon-monitor/Recipe_Database.cov+0x816ba47)
 [touched] 0x816bb05  (/data/daemon-monitor/Recipe_Database.cov+0x816bb05)
@@ -236,23 +293,27 @@ Current number of guards: 1403
 [touched] 0x8176e93  (/data/daemon-monitor/Recipe_Database.cov+0x8176e93)
 [touched] 0x817d7c7  (/data/daemon-monitor/Recipe_Database.cov+0x817d7c7)
 [touched] 0x817ad19  (/data/daemon-monitor/Recipe_Database.cov+0x817ad19)
-[touched] 0x817ae58  (/data/daemon-monitor/Recipe_Database.cov+0x817ae58)
-[touched] 0x816ba12  (/data/daemon-monitor/Recipe_Database.cov+0x816ba12)
-[touched] 0x817aedb  (/data/daemon-monitor/Recipe_Database.cov+0x817aedb)
-[touched] 0x817aef2  (/data/daemon-monitor/Recipe_Database.cov+0x817aef2)
-[touched] 0x817af81  (/data/daemon-monitor/Recipe_Database.cov+0x817af81)
-[touched] 0x817afa5  (/data/daemon-monitor/Recipe_Database.cov+0x817afa5)
-[touched] 0x8176ebf  (/data/daemon-monitor/Recipe_Database.cov+0x8176ebf)
-[touched] 0x8176efd  (/data/daemon-monitor/Recipe_Database.cov+0x8176efd)
-[touched] 0x8176f2e  (/data/daemon-monitor/Recipe_Database.cov+0x8176f2e)
-[touched] 0x8176f46  (/data/daemon-monitor/Recipe_Database.cov+0x8176f46)
-[touched] 0x8176f63  (/data/daemon-monitor/Recipe_Database.cov+0x8176f63)
-[touched] 0x8176fba  (/data/daemon-monitor/Recipe_Database.cov+0x8176fba)
-[touched] 0x8176fd9  (/data/daemon-monitor/Recipe_Database.cov+0x8176fd9)
-[touched] 0x8176fea  (/data/daemon-monitor/Recipe_Database.cov+0x8176fea)
-[touched] 0x817f75d  (/data/daemon-monitor/Recipe_DataEnter the step by step instructions.  A blank line to end.
+[touched] 0x817ae28  (/data/daemon-monitor/Recipe_Database.cov+0x817ae28)
+[touched] 0x817b330  (/data/daemon-monitor/Recipe_Database.cov+0x817b330)
+[touched] 0x817d7fb  (/data/daemon-monitor/Recipe_Database.cov+0x817d7fb)
+[touched] 0x817d888  (/data/daemon-monitor/Recipe_Database.cov+0x817d888)
+[touched] 0x817d8f1  (/data/daemon-monitor/Recipe_Database.cov+0x817d8f1)
+[touched] 0x816d26e  (/data/daemon-monitor/Recipe_Database.cov+0x816d26e)
+[touched] 0x816d2f2  (/data/daemon-monitor/Recipe_Database.cov+0x816d2f2)
+[touched] 0x816d36a  (/data/daemon-monitor/Recipe_Database.cov+0x816d36a)
+[touched] 0x816d422  (/data/daemon-monitor/Recipe_Database.cov+0x816d422)
+[touched] 0x816d570  (/data/daemon-monitor/Recipe_Database.cov+0x816d570)
+[touched] 0x816d5e1  (/data/daemon-monitor/Recipe_Database.cov+0x816d5e1)
+[touched] 0x816d64c  (/data/daemon-monitor/Recipe_Database.cov+0x816d64c)
+[touched] 0x816d72e  (/data/daemon-monitor/Recipe_Database.cov+0x816d72e)
+[touched] 0x816d8d1  (/data/daemon-monitor/Recipe_Data
+1 - Enter a Recipe
+2 - Find a Recipe
+3 - Print Tagged Recipes
+4 - Print Shopping List
+5 - Exit
 
-Step 1: 
+
 1 - Enter a Recipe
 2 - Find a Recipe
 3 - Print Tagged Recipes
@@ -265,64 +326,15 @@ Invalid command
 3 - Print Tagged Recipes
 4 - Print Shopping List
 5 - Exit
-Enter search term: 
-base.cov+0x817f75d)
-[touched] 0x817f86a  (/data/daemon-monitor/Recipe_Database.cov+0x817f86a)
-[touched] 0x817f914  (/data/daemon-monitor/Recipe_Database.cov+0x817f914)
-[touched] 0x817f95e  (/data/daemon-monitor/Recipe_Database.cov+0x817f95e)
-[touched] 0x8177639  (/data/daemon-monitor/Recipe_Database.cov+0x8177639)
-[touched] 0x8177671  (/data/daemon-monitor/Recipe_Database.cov+0x8177671)
-[touched] 0x8177682  (/data/daemon-monitor/Recipe_Database.cov+0x8177682)
-[touched] 0x81776df  (/data/daemon-monitor/Recipe_Database.cov+0x81776df)
-[touched] 0x81776fe  (/data/daemon-monitor/Recipe_Database.cov+0x81776fe)
-[touched] 0x817770f  (/data/daemon-monitor/Recipe_Database.cov+0x817770f)
-[touched] 0x817f9b2  (/data/daemon-monitor/Recipe_Database.cov+0x817f9b2)
-[touched] 0x817f9dc  (/data/daemon-monitor/Recipe_Database.cov+0x817f9dc)
-[touched] 0x817fad9  (/data/daemon-monitor/Recipe_Database.cov+0x817fad9)
-[touched] 0x817fb6d  (/data/daemon-monitor/Recipe_Database.cov+0x817fb6d)
-[touched] 0x817fbac  (/data/daemon-monitor/Recipe_Database.cov+0x817fbac)
-[touched] 0x817fc48  (/data/daemon-monitor/Recipe_Database.cov+0x817fc48)
-[touched] 0x817fcd6  (/data/daemon-monitor/Recipe_Database.cov+0x817fcd6)
-[touched] 0x817fd64  (/data/daemon-monitor/Recipe_Database.cov+0x817fd64)
-[touched] 0x8176a90  (/data/daemon-monitor/Recipe_Database.cov+0x8176a90)
-[touched] 0x8176aa8  (/data/daemon-monitor/Recipe_Database.cov+0x8176aa8)
-[touched] 0x8176b1e  (/data/daemon-monitor/Recipe_Database.cov+0x8176b1e)
-[touched] 0x8176bbf  (/data/daemon-monitor/Recipe_Database.cov+0x8176bbf)
-[touched] 0x8176b08  (/data/daemon-monitor/Recipe_Database.cov+0x8176b08)
-[touched] 0x8176bde  (/data/daemon-monitor/Recipe_Database.cov+0x8176bde)
-[touched] 0x81803bb  (/data/daemon-monitor/Recipe_Database.cov+0x81803bb)
-[touched] 0x8175836  (/data/daemon-monitor/Recipe_Database.cov+0x8175836)
-[touched] 0x817584e  (/data/daemon-monitor/Recipe_Database.cov+0x817584e)
-[touched] 0x817586b  (/data/daemon-monitor/Recipe_Database.cov+0x817586b)
-[touched] 0x817591a  (/data/daemon-monitor/Recipe_Database.cov+0x817591a)
-[touched] 0x817b147  (/data/daemon-monitor/Recipe_Database.cov+0x817b147)
-[touched] 0x817b2e7  (/data/daemon-monitor/Recipe_Database.cov+0x817b2e7)
-[touched] 0x817b303  (/data/daemon-monitor/Recipe_Database.cov+0x817b303)
-[touched] 0x817b330  (/data/daemon-monitor/Recipe_Database.cov+0x817b330)
-[touched] 0x817d9e3  (/data/daemon-monitor/Recipe_Database.cov+0x817d9e3)
-[touched] 0x817b5c0  (/data/daemon-monitor/Recipe_Database.cov+0x817b5c0)
-[touched] 0x817b685  (/data/daemon-monitor/Recipe_Database.cov+0x817b685)
-[touched] 0x817be1f  (/data/daemon-monitor/Recipe_Database.cov+0x817be1f)
-[touched] 0x817be7f  (/data/daemon-monitor/Recipe_Database.cov+0x817be7f)
-[touched] 0x817beb2  (/data/daemon-monitor/Recipe_Database.cov+0x817beb2)
-[touched] 0x817da22  (/data/daemon-monitor/Recipe_Database.cov+0x817da22)
-[touched] 0x8175b64  (/data/daemon-monitor/Recipe_Database.cov+0x8175b64)
-[touched] 0x817f0a6  (/data/daemon-monitor/Recipe_Database.cov+0x817f0a6)
-[touched] 0x817a0bf  (/data/daemon-monitor/Recipe_Database.cov+0x817a0bf)
-[touched] 0x817a184  (/data/daemon-monitor/Recipe_Database.cov+0x817a184)
-[touched] 0x817a1b2  (/data/daemon-monitor/Recipe_Database.cov+0x817a1b2)
-[touched] 0x817a1d6  (/data/daemon-monitor/Recipe_Database.cov+0x817a1d6)
-[touched] 0x817bfb4  (/data/daemon-monitor/Recipe_Database.cov+0x817bfb4)
-[touched] 0x817bfcc  (/data/daemon-monitor/Recipe_Database.cov+0x817bfcc)
-[touched] 0x817c046  (/data/daemon-monitor/Recipe_Database.cov+0x817c046)
-[touched] 0x817c0a9  (/data/daemon-monitor/Recipe_Database.cov+0x817c0a9)
-[touched] 0x817c0db  (/data/daemon-monitor/Recipe_Database.cov+0x817c0db)
-[touched] 0x817c51d  (/data/daemon-monitor/Recipe_Database.cov+0x817c51d)
-[touched] 0x817c5a2  (/data/daemon-monitor/Recipe_Database.cov+0x817c5a2)
-[touched] 0x817c65f  (/data/daemon-monitor/Recipe_Database.cov+0x817c65f)
-[touched] 0x817c6e7  (/data/daemon-monitor/Recipe_Database.cov+0x817c6e7)
-[touched] 0x817cb7c  (/data/daemon-monitor/Recipe_Database.cov+0x817cb7c)
-[touch
+Invalid command
+
+1 - Enter a Recipe
+2 - Find a Recipe
+3 - Print Tagged Recipes
+4 - Print Shopping List
+5 - Exit
+Invalid command
+
 1 - Enter a Recipe
 2 - Find a Recipe
 3 - Print Tagged Recipes

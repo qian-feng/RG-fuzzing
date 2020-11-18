@@ -3137,6 +3137,7 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
     
 		num_kept = ijon_update_max(ijon_state, shared_data, mem, len, range_seeds);
     range_seeds += num_kept; // new seed kept, inc seed id  
+    ACTF("num_kept = %d, range_seeds = %d\n", num_kept, range_seeds);
     
 
     /* Keep only if there are new bits in the map, add to queue for
