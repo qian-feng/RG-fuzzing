@@ -1,0 +1,17 @@
+def div(n, m):
+	while m>n:
+		n1, m1 = l(n,m)
+		n1,m1 =r(n,m)
+		n=n1
+		m=m1
+
+def l(n,m):
+	mid = (n+m)/2
+	print "L:", n, mid
+	return n, mid
+
+def r(n,m):
+	mid = (n+m)/2
+	print "R: ", mid+1, m
+	return mid+1, m
+
