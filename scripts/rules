@@ -1,0 +1,56 @@
+
+2
+find_recipe.c!V
+thenIJON_Range(book,{0});
+2
+find_recipe.c!>
+thenIJON_Range(size,{0});
+2
+find_recipe.c!_
+thenIJON_Range(size,{0});
+6
+compare_strings.c!"
+thenIJON_Range(str2,{0});
+Æ
+	service.c†9 
+caseIJON_Range(command,{5}); 
+caseIJON_Range(command,{4}); 
+caseIJON_Range(command,{3}); 
+caseIJON_Range(command,{2}); 
+caseIJON_Range(command,{1});Ò
+elseËIJON_Range(size,{2, 3});
+IJON_Range(buffer[0..9],[--..--]);
+IJON_Range(command,{1});
+IJON_Range(size,{1, 2, 3});
+IJON_Range(buffer[0..199],[--..--]);
+IJON_Range(size,[2..100]);
+IJON_Range(tmp,{0, 1, 2, 3});
+IJON_Range(previous,{0});
+“
+print_recipe.cø'∫
+then±IJON_Range(buffer[0..9],[--..--]);
+IJON_Range(tmp,{0, 1, 2, 3});
+IJON_Range(command,{2});
+IJON_Range(ingredient,UNINITIALIZED);
+IJON_Range(size,{1, 2, 3});
+IJON_Range(book,{0});
+º
+print_recipe.c©+§
+thenõIJON_Range(tmp,{0, 1, 2, 3});
+IJON_Range(buffer[0..9],[--..--]);
+IJON_Range(command,{2});
+IJON_Range(ingredient,UNINITIALIZED);
+IJON_Range(size,{1, 2, 3});
+U
+print_recipe.cC
+thenIJON_Range(temp,{0}); 
+elseIJON_Range(size,{2, 3});
+z
+print_shopping_list.ca5]
+thenUIJON_Range(previous,{0});
+IJON_Range(list,{0});
+IJON_Range(ingredient,UNINITIALIZED);
+Å
+get_ingredients.clX3
+then+IJON_Range(size,[2..18446744073709551615]);3
+else+IJON_Range(size,[2..18446744073709551615]);

@@ -5,6 +5,7 @@ import re
 import pdb
 import argparse
 import json
+import rules_pb2
 
 # def parseRange(ra):
 # 	#straid
@@ -53,10 +54,24 @@ def valid(var):
 		return False
 	if "_" in var:
 		return False
+	if "&" in var:
+		return False
 	return True
 
+def getRan(value):
+	#all the values
+	#ran = root['value'].replace(';',',')
+	try:
+		ran = re.findall(r"\{([0-9]+)(.*?)([0-9]*)\}", value)[0]
+		if ran[1] == '':
+			return [ran[0],ran[0]]
+		return [ran[0],ran[-1]]
+	except:
+		return None
 
-def getDiff(f1, f2):
+
+
+def getDiff(idx, f1, f2):
 	t1 = json.load(open(f1, "r"))
 	t2 = json.load(open(f2, "r"))
 	diffs = DeepDiff(t1, t2)
@@ -72,28 +87,33 @@ def getDiff(f1, f2):
 					root = eval(x.split("[\'value\'")[0])
 				else:
 					root = eval(x.split("[\'offset\'")[0])
-				ran = root['value'].replace(';',',')
+				ran = root['value']
 				if not valid(ran):
 					continue
 				if len(root) == 1:
+					#pdb.set_trace()
 					offset = ''
 				else:
 					offset = root['offset']	
+					## do not consider array  or objects here.
+					continue
 				var_name = eval(x.split("[\'values\'")[0])['base']
 				if valid(var_name):
-					st = "IJON_Range({0},{1});".format(var_name+offset, ran)
-					results.append(st)
+					ran = getRan(root['value'])
+					if ran:
+						st = "IJON_Range({0},{1},{2},{3});".format(idx, var_name, ran[0], ran[1])
+						results.append(st)
 	return results
 
 
 def getFiles(dirs):
 	rules = {}
 	for fullname in os.listdir(dirs):
-		items = re.findall(r"(.*?):([0-9]+).([a-z0-9]+)_([0-9]+)*", fullname)[0]
+		items = re.findall(r"(.*?):([0-9]+):([-0-9]+).([a-z0-9]+)_([0-9]+)*", fullname)[0]
 		fname = items[0]
-		branch = items[2]
+		branch = items[3]
 		line = int(items[1])
-		idx = int(items[3])
+		idx = int(items[2])
 		if fname not in rules:
 			rules[fname] = {}
 		if line not in rules[fname]:
@@ -101,22 +121,22 @@ def getFiles(dirs):
 		if branch not in rules[fname][line]:
 			rules[fname][line][branch] = {}
 			rules[fname][line][branch]['name'] = []
+		rules[fname][line][branch]['idx'] = idx	
 		rules[fname][line][branch]['name'].append(fullname)
 	return rules
 
 def genSwitch(bran_dic):
 	bran_dic['switch']['name'].sort()
 	sw_fp = bran_dic['switch']['name'][-1]
+	rs = []
 	for case in bran_dic:
 		if case != 'switch':
 			bran_dic[case]['name'].sort()
 			case_fp = bran_dic[case]['name'][-1]
-			rule_case = genDiff(os.path.join(dirs,sw_fp), os.path.join(dirs,case_fp))
+			rule_case = getDiff(bran_dic['switch']['idx'],os.path.join(dirs,sw_fp), os.path.join(dirs,case_fp))
 			if len(rule_case) != 0:
-				if 'case_rule' not in bran_dic:
-					bran_dic['case_rule'] = {}
-				idx = re.findall(r"*([0-9]+)", case)
-				bran_dic['case_rule'][idx] = rule_case
+				rs.append("\n".join(rule_case))
+	bran_dic['rule'] = "\n".join(rs)
 
 
 def genOthers(bran_dic):
@@ -126,16 +146,16 @@ def genOthers(bran_dic):
 	if 'then'in bran_dic:
 		bran_dic['then']['name'].sort()
 		then_fp = bran_dic['then']['name'][-1]
-		rule_if = getDiff(os.path.join(dirs,if_fp), os.path.join(dirs,then_fp))
+		rule_if = getDiff(bran_dic['if']['idx'],os.path.join(dirs,if_fp), os.path.join(dirs,then_fp))
 		if len(rule_if) != 0:
-			bran_dic['then_rule'] = rule_if
+			bran_dic['then_rule'] = "\n".join(rule_if)
 	#check else
 	if 'else' in bran_dic:
 		bran_dic['else']['name'].sort()
 		else_fp = bran_dic['else']['name'][-1]
-		rule_else = getDiff(os.path.join(dirs,if_fp), os.path.join(dirs,else_fp))
+		rule_else = getDiff(bran_dic['else']['idx'],os.path.join(dirs,if_fp), os.path.join(dirs,else_fp))
 		if len(rule_else) != 0:
-			bran_dic['else_rule'] = rule_else
+			bran_dic['else_rule'] = "\n".join(rule_else)
 
 def genRules(dirs):
 	rules = getFiles(dirs)
@@ -143,7 +163,7 @@ def genRules(dirs):
 		for line in rules[fname]:
 			#check if
 			bran_dic = rules[fname][line]
-			if 'case' in rules[fname][line]:
+			if 'switch' in rules[fname][line]:
 				genSwitch(bran_dic)
 			else:
 				genOthers(bran_dic)
@@ -167,17 +187,52 @@ def profile(rules):
 				print f, l, rules[f][l]['else_rule']
 	print hit*1.0/n_b
 
+def storeRules(rules, outfile):
+	rs = rules_pb2.Rules()
+	for filename in rules:
+		rule = rs.rules.add()
+		rule.fname = filename
+		# if filename == 'compare_strings.c':
+		# 	pdb.set_trace()
+		# 	print "s"
+		for l in rules[filename]:
+			line = rule.line.add()
+			line.lnum = l
+			if 'then_rule' in rules[filename][l]:
+				lrule = line.lrule.add()
+				lrule.branch = 'then'
+				lrule.r = rules[filename][l]['then_rule']
 
-			
+			elif 'else_rule' in rules[filename][l]:
+				lrule = line.lrule.add()
+				lrule.branch = 'else'
+				lrule.r = rules[filename][l]['else_rule']
+
+			elif 'rule' in rules[filename][l]:
+				lrule = line.lrule.add()
+				lrule.branch = 'switch'
+				lrule.r = rules[filename][l]['rule']
+			else:
+				del rule.line[-1]
+
+		if len(rule.line) == 0:
+			del rs.rules[-1]
+	pdb.set_trace()
+	f = open(outfile, "wb")
+	f.write(rs.SerializeToString())
+	f.close()
+
 			
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='Process some integers.')
-	parser.add_argument('-dirs',
-	                    help='dirs for ranges ')
+	parser.add_argument('-dirs', help='dirs for ranges ')
+	parser.add_argument('-out', help='dirs for ranges ')
 	args = parser.parse_args()
 	dirs = args.dirs
+	outfile = args.out
 	rules = genRules(dirs)
-	profile(rules)
+	#profile(rules)
+	storeRules(rules, outfile)
 	pdb.set_trace()
 	print "Finished!"
 

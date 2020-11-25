@@ -1,0 +1,25 @@
+syntax = "proto2";
+
+package tutorial;
+
+message Lrule{
+	required string branch = 1;
+	required string r = 2;
+
+}
+
+message Line {
+  required int32 lnum = 1;
+  repeated Lrule lrule= 2;
+
+}
+
+message Rule {
+  required string fname = 1;
+  repeated Line line= 2;
+}
+
+
+message Rules {
+    repeated Rule rules = 1;
+}
