@@ -34,6 +34,7 @@ import rules_pb2
 # 	else:
 # 		print "****************parse error********************"
 # 		return 0
+#diff.py -dirs=/home/data/RG-Fuzzing/dataset/cb-multios-tis/challenges/Recipe_Database/src/tmp/ -out=./rules_data
 
 def valid(var):
 	if "__fc" in var:
@@ -187,6 +188,35 @@ def profile(rules):
 				print f, l, rules[f][l]['else_rule']
 	print hit*1.0/n_b
 
+def storeJson(rules, outfile):
+	js_rs = {}
+	for filename in rules:
+		for l in rules[filename]:
+			if 'then_rule' in rules[filename][l]:
+				if filename not in js_rs:
+					js_rs[filename] = {}
+				if l not in js_rs[filename]:
+					js_rs[filename][l] = {}
+				js_rs[filename][l]['then'] = rules[filename][l]['then_rule']
+
+			elif 'else_rule' in rules[filename][l]:
+				if filename not in js_rs:
+					js_rs[filename] = {}
+				if l not in js_rs[filename]:
+					js_rs[filename][l] = {}
+				js_rs[filename][l]['else'] = rules[filename][l]['else_rule']
+
+			elif 'rule' in rules[filename][l]:
+				if filename not in js_rs:
+					js_rs[filename] = {}
+				if l not in js_rs[filename]:
+					js_rs[filename][l] = {}
+				js_rs[filename][l]['switch'] = rules[filename][l]['rule']
+	pdb.set_trace()
+	f = open(outfile, "w")
+	json.dump(js_rs,f, indent = 6)
+
+
 def storeRules(rules, outfile):
 	rs = rules_pb2.Rules()
 	for filename in rules:
@@ -217,8 +247,9 @@ def storeRules(rules, outfile):
 
 		if len(rule.line) == 0:
 			del rs.rules[-1]
-	pdb.set_trace()
+	#pdb.set_trace()
 	f = open(outfile, "wb")
+	#json.dump(rules,outfile, indent = 6)
 	f.write(rs.SerializeToString())
 	f.close()
 
@@ -232,7 +263,7 @@ if __name__ == '__main__':
 	outfile = args.out
 	rules = genRules(dirs)
 	#profile(rules)
-	storeRules(rules, outfile)
+	storeJson(rules, outfile)
 	pdb.set_trace()
 	print "Finished!"
 
