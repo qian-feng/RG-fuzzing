@@ -103,27 +103,40 @@ void ijon_min(uint32_t addr, uint64_t val){
   ijon_max(addr, val);
 }
 
-void aif_range(uint32_t addr, ijon_u64_t index, uint64_t val, uint64_t low, uint64_t high) {  
-  if(__aif_untouched_ptr[index] != UNTOUCH) { 
-    return;
-  }   
-  FILE *fp = fopen("/data/debug.log", "a+");
-  uint64_t distance = abs(val - (low + high) / 2) - (high - low) / 2;
-  fprintf(fp, "distance1: %lu\n", distance);
+void aif_range(uint32_t addr, int index, int val, int low, int high) { 
+#ifdef LOGGING
+  FILE *fp1 = fopen("/data/debug.log", "a+");
+  fprintf(fp1, "[aif_range][109]: addr: %p, index(%lu), val(%d), low(%d), high(%d)\n", addr, index, val, low, high);
+  fclose(fp1);
+#endif 
+  if(index != -1) {
+    // skip the return 
+    if(__aif_untouched_ptr[index] != UNTOUCH) { 
+      return;
+    } 
+  }
+  uint64_t distance = abs(val - (low + high) / 2) - (high - low) / 2;  
   distance = MAX(0, distance);
-  fprintf(fp, "distance2: %lu\n", distance);
+#ifdef LOGGING
+  FILE *fp3 = fopen("/data/debug.log", "a+");
+  fprintf(fp3, "[debug aif_range]: distance: %lu\n", distance);
+  fclose(fp3);
+#endif 
   distance = 0xffffffffffffffff-distance;
-  fprintf(fp, "distance3: %lu\n", distance);
-  fprintf(fp, "__afl_max_ptr[]: %lu\n", __afl_max_ptr[addr%MAXMAP_SIZE]);
   if(__afl_max_ptr[addr%MAXMAP_SIZE] < distance) {
     __afl_max_ptr[addr%MAXMAP_SIZE] = distance; // remember distance
     __aif_max_index_ptr[addr%MAXMAP_SIZE] = index; // remember which watch point this is for
   }
-// #ifdef LOGGING
-  
-  fprintf(fp, "[AIF_RANGE]: index %d, status:%d, distance: %d\n", index, __aif_untouched_ptr[index]-'0', distance);
+#ifdef LOGGING
+  FILE *fp = fopen("/data/debug.log", "a+");
+  if(index != -1){
+    fprintf(fp, "[AIF_RANGE]: index %d, status:%d, distance: %llx\n", index, __aif_untouched_ptr[index]-'0', distance);
+  }
+  else {
+    fprintf(fp, "[AIF_RANGE]: index %d, status:%d, distance: %llx\n", index, index, distance);
+  }
   fclose(fp);
-// #endif
+#endif
 
 }
 
@@ -285,7 +298,7 @@ static void __monitor_map_shm(void) {
     for (i = 0; i<SIZE; i++) {
       if(__aif_untouched_ptr[i] == TOUCHED) {
         cnt_touched += 1;
-        fprintf(fp, "touch index: %d\n", i);
+        //fprintf(fp, "touch index: %d\n", i);
       }
       if(__aif_untouched_ptr[i] == UNTOUCH) {
         cnt_untouch += 1;
@@ -303,7 +316,6 @@ static void __monitor_map_shm(void) {
 /* Fork server logic. */
 
 static void __afl_start_forkserver(void) {
-
   static u8 tmp[4];
   s32 child_pid;
 
@@ -313,16 +325,13 @@ static void __afl_start_forkserver(void) {
      assume we're not running in forkserver mode and just execute program. */
 
   if (write(FORKSRV_FD + 1, tmp, 4) != 4) return;
-
   while (1) {
-
     u32 was_killed;
     int status;
 
     /* Wait for parent by reading from the pipe. Abort if read fails. */
 
     if (read(FORKSRV_FD, &was_killed, 4) != 4) _exit(1);
-
     /* If we stopped the child in persistent mode, but there was a race
        condition and afl-fuzz already issued SIGKILL, write off the old
        process. */
@@ -342,11 +351,9 @@ static void __afl_start_forkserver(void) {
       /* In child process: close fds, resume execution. */
 
       if (!child_pid) {
-
         close(FORKSRV_FD);
         close(FORKSRV_FD + 1);
-        return;
-  
+        return;  
       }
 
     } else {
@@ -356,7 +363,6 @@ static void __afl_start_forkserver(void) {
 
       kill(child_pid, SIGCONT);
       child_stopped = 0;
-
     }
 
     /* In parent process: write PID to pipe, then wait for child. */
@@ -375,7 +381,6 @@ static void __afl_start_forkserver(void) {
     /* Relay wait status to pipe, then loop back. */
 
     if (write(FORKSRV_FD + 1, &status, 4) != 4) _exit(1);
-
   }
 
 }

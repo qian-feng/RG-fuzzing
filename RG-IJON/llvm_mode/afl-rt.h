@@ -30,7 +30,7 @@ ijon_u32_t ijon_memdist(char* a,char* b, ijon_size_t len);
 void ijon_max(ijon_u32_t addr, ijon_u64_t val);
 
 void ijon_min(ijon_u32_t addr, ijon_u64_t val);
-void aif_range(ijon_u32_t addr, ijon_u64_t index, ijon_u64_t val, ijon_u64_t low, ijon_u64_t high);
+void aif_range(ijon_u32_t addr, int index, int val, int low, int high);
 
 
 ijon_u64_t ijon_simple_hash(ijon_u64_t val);

@@ -1,0 +1,46 @@
+{
+    "find_recipe.c": {
+          "62": {
+                "then": "IJON_Range(-1,size,0,0);"
+          }, 
+          "95": {
+                "then": "IJON_Range(-1,size,0,0);"
+          }
+    }, 
+    "get_instructions.c": {
+          "47": {
+                "else": "IJON_Range(932,size,2,5);\nIJON_Range(932,command,1,1);\nIJON_Range(932,size,2,5);\nIJON_Range(932,previous,0,0);"
+          }
+    }, 
+    "compare_strings.c": {
+          "32": {
+                "then": "IJON_Range(-1,swapped,0,1);\nIJON_Range(-1,str2,0,0);"
+          }, 
+          "50": {
+                "then": "IJON_Range(-1,str2,0,0);"
+          }, 
+          "30": {
+                "then": "IJON_Range(-1,str1,0,0);"
+          }
+    }, 
+    "service.c": {
+          "56": {
+                "switch": "IJON_Range(-1,command,5,5);\nIJON_Range(-1,command,3,3);\nIJON_Range(-1,command,4,4);\nIJON_Range(-1,command,1,1);\nIJON_Range(-1,command,2,2);"
+          }
+    }, 
+    "new_recipe.c": {
+          "83": {
+                "then": "IJON_Range(-1,size,0,1);"
+          }
+    }, 
+    "print_shopping_list.c": {
+          "53": {
+                "then": "IJON_Range(-1,previous,0,0);\nIJON_Range(-1,list,0,0);"
+          }
+    }, 
+    "get_ingredients.c": {
+          "50": {
+                "then": "IJON_Range(-1,size,0,1);"
+          }
+    }
+}

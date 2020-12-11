@@ -1,0 +1,46 @@
+{
+    "find_recipe.c": {
+          "62": {
+                "then": "AIF_RANGE(84,size,0,0);"
+          }, 
+          "95": {
+                "then": "AIF_RANGE(298,size,0,0);"
+          }
+    }, 
+    "get_instructions.c": {
+          "47": {
+                "else": "AIF_RANGE(858,size,2,5);"
+          }
+    }, 
+    "compare_strings.c": {
+          "32": {
+                "then": "AIF_RANGE(899,str2,0,0);"
+          }, 
+          "50": {
+                "then": "AIF_RANGE(-1,str2,0,0);"
+          }, 
+          "30": {
+                "then": "AIF_RANGE(-1,str1,0,0);"
+          }
+    }, 
+    "service.c": {
+          "56": {
+                "switch": "AIF_RANGE(-1,command,5,5);\nAIF_RANGE(873,command,3,3);\nAIF_RANGE(1109,command,4,4);\nAIF_RANGE(1019,command,1,1);\nAIF_RANGE(695,command,2,2);"
+          }
+    }, 
+    "new_recipe.c": {
+          "83": {
+                "then": "AIF_RANGE(941,size,0,1);"
+          }
+    }, 
+    "print_shopping_list.c": {
+          "53": {
+                "then": "AIF_RANGE(270,previous,0,0);\nAIF_RANGE(270,list,0,0);"
+          }
+    }, 
+    "get_ingredients.c": {
+          "50": {
+                "then": "AIF_RANGE(-1,size,0,1);"
+          }
+    }
+}

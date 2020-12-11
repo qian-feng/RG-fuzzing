@@ -11,11 +11,12 @@ import sys
 import subprocess
 import sysv_ipc
 import glob
+import time
 
 # status value
-UNTOUCH = 0
-TOUCHED = 1
-NOTCOND = 2
+UNTOUCH = 0 # initial active
+TOUCHED = 1 # inactive
+NOTCOND = 2 # default
 
 # fix the key and size, seems like the env set from python is not visible to whole system
 KEY=1000
@@ -28,7 +29,8 @@ def parse_args():
     p = argparse.ArgumentParser("")
     p.add_argument("-i", dest="afl_queue", required=True)
     p.add_argument("-o", dest="output_dir", required=True)
-    p.add_argument("-m", dest="seed_touched_dir", required=True)
+    p.add_argument("-m", dest="tmp_outdir", required=True)
+    p.add_argument("-l", dest="logfile", required=True)
     p.add_argument("cmd", nargs="+", help="cmdline")
     return p.parse_args()
 
@@ -50,10 +52,12 @@ def GetInstrumentedPCs(binary):
 
 # create & initialize shared memory to inform fuzzer about branch status
 def create_shm(size):
-    # overwrite if necessary:
-    mem = sysv_ipc.SharedMemory(KEY)
-    mem.detach()
-    mem.remove()
+    try: # overwrite if necessary
+        mem = sysv_ipc.SharedMemory(KEY)
+        mem.detach()
+        mem.remove()
+    except sysv_ipc.ExistentialError:
+        print("No stale SharedMemory.")
 
     mem = sysv_ipc.SharedMemory(KEY, sysv_ipc.IPC_CREX, size=SIZE)
     if mem.id < 0:
@@ -92,7 +96,7 @@ def dump_covered():
     for i in untouch_dict:
         if untouch_dict[i][1] == TOUCHED:
             with open(filename, "a+") as fp:
-                fp.write("covered: 0x%x, %s\n" % (i, untouch_dict[i][2]))
+                fp.write("covered: 0x%x, index: %d, %s\n" % (i, untouch_dict[i][0], untouch_dict[i][2]))
 
 def main():   
     args = parse_args()
@@ -109,14 +113,24 @@ def main():
     # spin for new seed and update shm accordingly
     q_index = 0
     covered_num = 0
+    last_cov = 0
     total_num = len(instrumented)
+    start_time = 0
     while True:
         newseed = glob.glob(os.path.join(args.afl_queue, "id:%06d*"%q_index))
         if not len(newseed):
             continue
+        
+        if not start_time:
+            start_time = time.time()
+            if os.path.isfile(args.logfile):
+                os.unlink(args.logfile) # refresh the plotfile
+            with open(args.logfile, "a+") as f1:        
+                f1.write("time,covered,cov-ratio\n")
+
         newseed = newseed[0]
 
-        parse_file = "%s/%d.txt"%(args.seed_touched_dir, q_index)
+        parse_file = "%s/%d.txt"%(args.tmp_outdir, q_index)
         cmd = "LD_LIBRARY_PATH=%s %s < %s 1>%s 2>/dev/null" % (os.getcwd(), args.cmd[0], newseed, parse_file)
         #print(cmd)
         os.system(cmd)
@@ -141,14 +155,16 @@ def main():
                             #print("write to %d from %d to %d\n" %(offset, oldstatus, TOUCHED))
                             shm.write(str(TOUCHED), offset)
         q_index = q_index + 1
-        # here just to check whether the env set is success:
-        #print("env check: %s, %s, %s\n" % (os.environ.get('AIF_SIZE'), os.environ.get('AIF_KEY'), os.environ.get('PATH')))
-        print("[coverage]: %d total, %d covered, %.2f%% coverage ratio, by %dth seed\n" % (total_num, covered_num, 100.0 * covered_num / total_num, q_index))
-        if q_index % 5 == 0:
-            dump_covered()
         
-
-    return 0
+        
+        if last_cov != covered_num:
+            print("[coverage]: %d total, %d covered, %.2f%% coverage ratio, by %dth seed\n" % (total_num, covered_num, 100.0 * covered_num / total_num, q_index))
+            # for plotting
+            with open(args.logfile, "a+") as f1:        
+                #f1.write("[coverage]: %d total, %d covered, %.2f%% coverage ratio, by %dth seed\n" % (total_num, covered_num, 100.0 * covered_num / total_num, q_index))
+                f1.write("%.2f,%d,%.2f%%\n"%(time.time()-start_time,covered_num,100.0 * covered_num / total_num))
+            last_cov = covered_num
+            dump_covered()
 
 if __name__ == "__main__":
 	main()
