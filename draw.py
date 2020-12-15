@@ -23,6 +23,9 @@ def plot_csv(csvfile, label, MAX_TIME):
 
         for row in rows:
             if float(row[0]) > MAX_TIME: # only aquire the first 1h result 
+                # time_list.append(MAX_TIME)
+                # cover_list.append(cover_list[-1])
+                #plt.text(time_list[-1], cover_list[-1], "%f,%f"%(time_list[-1], cover_list[-1]))
                 break
             time_list.append(float(row[0]))
             cover_list.append(int(row[1]))
@@ -43,7 +46,7 @@ def main ():
     plt.suptitle('Recipe_Database',fontsize=20, y=0.5)
 
     plot_csv(file1, "RG", args.max_time)
-    plot_csv(file2, "VN", args.max_time)
+    plot_csv(file2, "AFL", args.max_time)
     plt.legend(loc='lower right',fontsize='large')
 
     plt.savefig('RD.png',format='png')
