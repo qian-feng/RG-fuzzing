@@ -58,7 +58,7 @@ def get_average(maxtime, f1, f2, f3, label, islog=0): # input: the 3 csv files
 
     if islog:
         plt.xscale('log')
-    plt.plot(xnew, ynew, label=label)
+    plt.plot(xnew, ynew,  label=label, linewidth=2)
 
 
 def draw1 ():
