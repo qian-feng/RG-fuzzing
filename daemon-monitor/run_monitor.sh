@@ -6,4 +6,6 @@ prefixname=$1_$2
 
 rm -rf ${prefixname}/${modelname}
 mkdir -p ${prefixname}/${modelname}/queue
+mkdir -p ${prefixname}_fortis
+mkdir -p ${prefixname}_tmp
 python monitor.py -i ${prefixname}/${modelname}/queue -o ${prefixname}_fortis -m ${prefixname}_tmp -l /data/${prefixname}.log -- ./Recipe_Database.cov

@@ -26,3 +26,5 @@ RD.png
 debug.log
 test/RD_output-backup/
 test/log.txt
+daemon-monitor/AFL_*
+daemon-monitor/RG_*
