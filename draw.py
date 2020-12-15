@@ -31,6 +31,9 @@ def plot_csv(csvfile, label, MAX_TIME):
             cover_list.append(int(row[1]))
             ratio_list.append(float(row[2].strip('%')))
     
+    for i in range(0, len(time_list)):
+        time_list[i] = time_list[i] / 3600.0
+
     plt.plot(time_list, cover_list, marker=".", label=label, linewidth=2)
 
 
@@ -40,7 +43,7 @@ def main ():
 
     args = parse_args()
 
-    plt.xlabel("Time(s)", fontsize = "large")
+    plt.xlabel("Time(h)", fontsize = "large")
     plt.ylabel("Cumulative edge coverage", fontsize="large")
     
     plt.suptitle('Recipe_Database',fontsize=20, y=0.5)
