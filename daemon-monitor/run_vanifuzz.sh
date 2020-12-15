@@ -1,1 +1,1 @@
-LD_LIBRARY_PATH=./lib-aif/ AFL_NO_UI=1 /data/RG-IJON/afl-fuzz -S VN -m 200 -i ./input -o ./res_dir -- ./Recipe_Database.vani
+LD_LIBRARY_PATH=./lib-aif/ AFL_NO_UI=1 /data/RG-IJON/afl-fuzz -S VN -m 200 -i ./input -o ./res_dir_vani -- ./Recipe_Database.vani

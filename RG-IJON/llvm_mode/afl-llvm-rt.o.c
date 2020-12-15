@@ -43,7 +43,7 @@
 #define TOUCHED  '1'
 #define NOTCOND  '2'
 
-#define LOGGING  1
+#define LOGGING  0
 
 #define KEY       1000
 #define SIZE      65536
@@ -109,14 +109,19 @@ void aif_range(uint32_t addr, int index, int val, int low, int high) {
   fprintf(fp1, "[aif_range][109]: addr: %p, index(%lu), val(%d), low(%d), high(%d)\n", addr, index, val, low, high);
   fclose(fp1);
 #endif 
-  if(index != -1) {
-    // skip the return 
-    if(__aif_untouched_ptr[index] != UNTOUCH) { 
-      return;
-    } 
-  }
+  // if(index != -1) {
+  //   // skip the return 
+  //   if(__aif_untouched_ptr[index] != UNTOUCH) { 
+  //     return;
+  //   } 
+  // }
   uint64_t distance = abs(val - (low + high) / 2) - (high - low) / 2;  
   distance = MAX(0, distance);
+
+  if(distance == 0) {
+    // todo, delete correlated seeds. 
+    return; // if already inside the range, let's delete those seeds and return early. 
+  }
 #ifdef LOGGING
   FILE *fp3 = fopen("/data/debug.log", "a+");
   fprintf(fp3, "[debug aif_range]: distance: %lu\n", distance);

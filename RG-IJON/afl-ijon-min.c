@@ -48,8 +48,9 @@ ijon_input_info* ijon_get_input(ijon_min_state* self){
   //   }
   // }
   printf("schedule: %i %s\n",rnd, self->infos[rnd]->filename);
+  return self->infos[rnd];
 
-  return 0;
+  //return 0;
 }
 
 void ijon_store_max_input(ijon_min_state* self, int i, uint8_t* data, size_t len, int index, int seed_id, uint64_t distance){
