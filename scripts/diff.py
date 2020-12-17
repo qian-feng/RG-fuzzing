@@ -5,7 +5,7 @@ import re
 import pdb
 import argparse
 import json
-import rules_pb2
+#import rules_pb2
 
 # def parseRange(ra):
 # 	#straid
@@ -35,7 +35,7 @@ import rules_pb2
 # 		print "****************parse error********************"
 # 		return 0
 #diff.py -dirs=/home/data/RG-Fuzzing/dataset/cb-multios-tis/challenges/Recipe_Database/src/tmp/ -out=./rules_data
-
+idx = 0
 def valid(var):
 	if "__fc" in var:
 		return False
@@ -72,7 +72,7 @@ def getRan(value):
 
 
 
-def getDiff(idx, f1, f2):
+def getDiff(f1, f2):
 	t1 = json.load(open(f1, "r"))
 	t2 = json.load(open(f2, "r"))
 	diffs = DeepDiff(t1, t2)
@@ -102,8 +102,12 @@ def getDiff(idx, f1, f2):
 				if valid(var_name):
 					ran = getRan(root['value'])
 					if ran:
+						global idx
 						st = "IJON_Range({0},{1},{2},{3});".format(idx, var_name, ran[0], ran[1])
+						idx += 1
+						#pdb.set_trace()
 						results.append(st)
+	#pdb.set_trace()
 	return results
 
 
@@ -134,10 +138,11 @@ def genSwitch(bran_dic):
 		if case != 'switch':
 			bran_dic[case]['name'].sort()
 			case_fp = bran_dic[case]['name'][-1]
-			rule_case = getDiff(bran_dic['switch']['idx'],os.path.join(dirs,sw_fp), os.path.join(dirs,case_fp))
+			rule_case = getDiff(os.path.join(dirs,sw_fp), os.path.join(dirs,case_fp))
 			if len(rule_case) != 0:
 				rs.append("\n".join(rule_case))
-	bran_dic['rule'] = "\n".join(rs)
+	if len(rs) != 0:
+		bran_dic['rule'] = "\n".join(rs)
 
 
 def genOthers(bran_dic):
@@ -147,14 +152,14 @@ def genOthers(bran_dic):
 	if 'then'in bran_dic:
 		bran_dic['then']['name'].sort()
 		then_fp = bran_dic['then']['name'][-1]
-		rule_if = getDiff(bran_dic['if']['idx'],os.path.join(dirs,if_fp), os.path.join(dirs,then_fp))
+		rule_if = getDiff(os.path.join(dirs,if_fp), os.path.join(dirs,then_fp))
 		if len(rule_if) != 0:
 			bran_dic['then_rule'] = "\n".join(rule_if)
 	#check else
 	if 'else' in bran_dic:
 		bran_dic['else']['name'].sort()
 		else_fp = bran_dic['else']['name'][-1]
-		rule_else = getDiff(bran_dic['else']['idx'],os.path.join(dirs,if_fp), os.path.join(dirs,else_fp))
+		rule_else = getDiff(os.path.join(dirs,if_fp), os.path.join(dirs,else_fp))
 		if len(rule_else) != 0:
 			bran_dic['else_rule'] = "\n".join(rule_else)
 
@@ -192,6 +197,9 @@ def storeJson(rules, outfile):
 	js_rs = {}
 	for filename in rules:
 		for l in rules[filename]:
+			if filename == "moves.c" and l == 134:
+				pdb.set_trace()
+				print "findall"
 			if 'then_rule' in rules[filename][l]:
 				if filename not in js_rs:
 					js_rs[filename] = {}
@@ -199,14 +207,14 @@ def storeJson(rules, outfile):
 					js_rs[filename][l] = {}
 				js_rs[filename][l]['then'] = rules[filename][l]['then_rule']
 
-			elif 'else_rule' in rules[filename][l]:
+			if 'else_rule' in rules[filename][l]:
 				if filename not in js_rs:
 					js_rs[filename] = {}
 				if l not in js_rs[filename]:
 					js_rs[filename][l] = {}
 				js_rs[filename][l]['else'] = rules[filename][l]['else_rule']
 
-			elif 'rule' in rules[filename][l]:
+			if 'rule' in rules[filename][l]:
 				if filename not in js_rs:
 					js_rs[filename] = {}
 				if l not in js_rs[filename]:
@@ -262,6 +270,7 @@ if __name__ == '__main__':
 	dirs = args.dirs
 	outfile = args.out
 	rules = genRules(dirs)
+	pdb.set_trace()
 	#profile(rules)
 	storeJson(rules, outfile)
 	pdb.set_trace()

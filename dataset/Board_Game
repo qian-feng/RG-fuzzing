@@ -1,0 +1,100 @@
+{
+      "moves.c": {
+            "134": {
+                  "then": "IJON_Range(0,srcy,0,7);", 
+                  "else": "IJON_Range(1,tmp,1,1);"
+            }, 
+            "136": {
+                  "then": "IJON_Range(2,srcy,0,7);\nIJON_Range(3,tmp,0,0);"
+            }, 
+            "141": {
+                  "then": "IJON_Range(4,dsty,0,7);", 
+                  "else": "IJON_Range(5,tmp,1,1);"
+            }, 
+            "143": {
+                  "then": "IJON_Range(6,dsty,0,7);"
+            }, 
+            "147": {
+                  "switch": "IJON_Range(7,tmp,1,1);\nIJON_Range(8,tmp,1,1);\nIJON_Range(9,tmp,1,1);\nIJON_Range(10,tmp,1,1);\nIJON_Range(11,tmp,1,1);\nIJON_Range(12,tmp,1,1);\nIJON_Range(13,tmp,1,1);\nIJON_Range(14,tmp,1,1);\nIJON_Range(15,tmp,1,1);\nIJON_Range(16,tmp,1,1);\nIJON_Range(17,tmp,1,1);\nIJON_Range(18,tmp,1,1);\nIJON_Range(19,tmp,1,1);"
+            }, 
+            "46": {
+                  "then": "IJON_Range(33,dsty,1,7);\nIJON_Range(34,srcy,0,6);\nIJON_Range(35,dsty,0,7);", 
+                  "else": "IJON_Range(36,dsty,0,7);\nIJON_Range(37,dsty,0,7);"
+            }, 
+            "282": {
+                  "then": "IJON_Range(21,coord1,0,0);"
+            }, 
+            "160": {
+                  "then": "IJON_Range(22,dsty,1,7);"
+            }, 
+            "162": {
+                  "then": "IJON_Range(23,dsty,1,8);", 
+                  "else": "IJON_Range(24,dsty,0,7);"
+            }, 
+            "35": {
+                  "then": "IJON_Range(25,srcy,0,7);", 
+                  "else": "IJON_Range(26,srcy,7,7);\nIJON_Range(27,v,0,7);"
+            }, 
+            "164": {
+                  "then": "IJON_Range(28,dsty,0,6);"
+            }, 
+            "166": {
+                  "else": "IJON_Range(29,dsty,0,7);"
+            }, 
+            "168": {
+                  "then": "IJON_Range(30,dsty,2,7);"
+            }, 
+            "170": {
+                  "else": "IJON_Range(31,dsty,0,7);"
+            }, 
+            "172": {
+                  "then": "IJON_Range(32,dsty,2,7);"
+            }, 
+            "174": {
+                  "else": "IJON_Range(20,dsty,0,7);"
+            }, 
+            "60": {
+                  "then": "IJON_Range(38,dsty,1,7);\nIJON_Range(39,srcy,0,6);\nIJON_Range(40,dsty,0,7);", 
+                  "else": "IJON_Range(41,dsty,0,7);\nIJON_Range(42,dsty,0,7);"
+            }, 
+            "245": {
+                  "then": "IJON_Range(53,tmp,0,1);\nIJON_Range(54,rxcount,0,0);"
+            }, 
+            "320": {
+                  "then": "IJON_Range(45,dsty,0,7);"
+            }, 
+            "197": {
+                  "then": "IJON_Range(46,dsty,0,7);\nIJON_Range(47,tmp,1,1);"
+            }, 
+            "211": {
+                  "then": "IJON_Range(48,dsty,1,7);"
+            }, 
+            "94": {
+                  "then": "IJON_Range(49,y,1,7);"
+            }, 
+            "100": {
+                  "then": "IJON_Range(50,y,0,6);"
+            }, 
+            "114": {
+                  "then": "IJON_Range(51,t,0,0);", 
+                  "else": "IJON_Range(52,t,0,6);"
+            }, 
+            "117": {
+                  "then": "IJON_Range(43,t,6,6);", 
+                  "else": "IJON_Range(44,t,0,5);"
+            }, 
+            "191": {
+                  "then": "IJON_Range(55,tmp,1,1);"
+            }
+      }, 
+      "service.c": {
+            "44": {
+                  "then": "IJON_Range(56,tmp,0,0);"
+            }
+      }, 
+      "board.c": {
+            "37": {
+                  "then": "IJON_Range(57,y,2,5);\nIJON_Range(58,x,0,7);"
+            }
+      }
+}
