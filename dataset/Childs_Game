@@ -1,0 +1,83 @@
+{
+      "ttt_move.c": {
+            "34": {
+                  "switch": "IJON_Range(0,corner,3,3);\nIJON_Range(1,corner,2,2);\nIJON_Range(2,corner,1,1);\nIJON_Range(3,corner,0,0);"
+            }, 
+            "67": {
+                  "then": "IJON_Range(4,depth,0,0);\nIJON_Range(5,player,64,64);\nIJON_Range(6,j,2,2);"
+            }, 
+            "69": {
+                  "then": "IJON_Range(7,score,0,10);\nIJON_Range(8,i,1,1);"
+            }, 
+            "71": {
+                  "then": "IJON_Range(9,score,0,10);\nIJON_Range(10,j,1,1);"
+            }, 
+            "73": {
+                  "else": "IJON_Range(11,score,0,10);\nIJON_Range(12,i,0,2);\nIJON_Range(13,j,0,2);"
+            }, 
+            "79": {
+                  "then": "IJON_Range(14,i,0,2);"
+            }, 
+            "84": {
+                  "then": "IJON_Range(15,score,10,10);"
+            }
+      }, 
+      "main.c": {
+            "226": {
+                  "switch": "IJON_Range(18,choice,4,4);\nIJON_Range(19,choice,3,3);\nIJON_Range(20,choice,2,2);\nIJON_Range(21,choice,1,1);"
+            }, 
+            "203": {
+                  "then": "IJON_Range(17,choice,2,2);"
+            }, 
+            "198": {
+                  "then": "IJON_Range(16,choice,1,1);"
+            }
+      }, 
+      "board.c": {
+            "97": {
+                  "then": "IJON_Range(22,posy,0,2);\nIJON_Range(23,posx,0,2);"
+            }, 
+            "66": {
+                  "then": "IJON_Range(24,j,2,2);\nIJON_Range(25,posy,0,0);\nIJON_Range(26,posx,2,2);\nIJON_Range(27,score,0,10);\nIJON_Range(28,i,0,0);"
+            }, 
+            "67": {
+                  "then": "IJON_Range(29,j,0,2);\nIJON_Range(30,posy,0,2);\nIJON_Range(31,posx,0,2);\nIJON_Range(32,i,0,2);"
+            }, 
+            "71": {
+                  "then": "IJON_Range(33,j,0,0);\nIJON_Range(34,posy,1,1);\nIJON_Range(35,posx,0,0);\nIJON_Range(36,i,1,1);"
+            }, 
+            "111": {
+                  "then": "IJON_Range(66,i,0,0);\nIJON_Range(67,posx,1,2);\nIJON_Range(68,j,1,2);\nIJON_Range(69,posy,0,0);"
+            }, 
+            "77": {
+                  "then": "IJON_Range(40,j,2,2);\nIJON_Range(41,posx,2,2);"
+            }, 
+            "46": {
+                  "then": "IJON_Range(42,posy,0,2);\nIJON_Range(43,posx,0,2);"
+            }, 
+            "45": {
+                  "then": "IJON_Range(44,j,2,2);\nIJON_Range(45,posy,0,0);\nIJON_Range(46,posx,2,2);\nIJON_Range(47,i,0,0);"
+            }, 
+            "48": {
+                  "then": "IJON_Range(48,j,1,2);\nIJON_Range(49,posy,0,1);\nIJON_Range(50,posx,1,2);\nIJON_Range(51,i,0,1);"
+            }, 
+            "59": {
+                  "then": "IJON_Range(52,j,0,2);\nIJON_Range(53,posy,0,2);\nIJON_Range(54,posx,0,2);\nIJON_Range(55,i,0,2);"
+            }, 
+            "50": {
+                  "then": "IJON_Range(56,j,0,2);\nIJON_Range(57,posy,0,2);\nIJON_Range(58,posx,0,2);\nIJON_Range(59,i,0,2);"
+            }, 
+            "62": {
+                  "then": "IJON_Range(70,posy,0,2);\nIJON_Range(71,j,0,2);\nIJON_Range(72,i,0,2);\nIJON_Range(73,posx,0,2);"
+            }, 
+            "54": {
+                  "then": "IJON_Range(61,depth,0,0);\nIJON_Range(62,i,0,2);\nIJON_Range(63,player,64,64);\nIJON_Range(64,j,0,2);\nIJON_Range(65,player,64,64);"
+            }, 
+            "91": {
+                  "then": "IJON_Range(37,i,0,0);\nIJON_Range(38,posy,0,0);\nIJON_Range(39,score,0,0);"
+            }, 
+            "94": {
+                  "then": "IJON_Range(60,posx,0,2);"
+            }
+      }
+}
