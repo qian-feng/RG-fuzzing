@@ -1,0 +1,83 @@
+{
+      "moves.c": {
+            "134": {
+                  "then": "AIF_RANGE(0,srcy,0,7);"
+            }, 
+            "136": {
+                  "then": "AIF_RANGE(2,srcy,0,7);"
+            }, 
+            "141": {
+                  "then": "AIF_RANGE(4,dsty,0,7);"
+            }, 
+            "143": {
+                  "then": "AIF_RANGE(6,dsty,0,7);"
+            }, 
+            "46": {
+                  "then": "AIF_RANGE(33,dsty,1,7);\nAIF_RANGE(34,srcy,0,6);\nAIF_RANGE(35,dsty,0,7);", 
+                  "else": "AIF_RANGE(36,dsty,0,7);\nAIF_RANGE(37,dsty,0,7);"
+            }, 
+            "282": {
+                  "then": "AIF_RANGE(21,coord1,0,0);"
+            }, 
+            "160": {
+                  "then": "AIF_RANGE(22,dsty,1,7);"
+            }, 
+            "162": {
+                  "then": "AIF_RANGE(23,dsty,1,8);", 
+                  "else": "AIF_RANGE(24,dsty,0,7);"
+            }, 
+            "164": {
+                  "then": "AIF_RANGE(28,dsty,0,6);"
+            }, 
+            "166": {
+                  "else": "AIF_RANGE(29,dsty,0,7);"
+            }, 
+            "168": {
+                  "then": "AIF_RANGE(30,dsty,2,7);"
+            }, 
+            "170": {
+                  "else": "AIF_RANGE(31,dsty,0,7);"
+            }, 
+            "172": {
+                  "then": "AIF_RANGE(32,dsty,2,7);"
+            }, 
+            "174": {
+                  "else": "AIF_RANGE(20,dsty,0,7);"
+            }, 
+            "60": {
+                  "then": "AIF_RANGE(38,dsty,1,7);\nAIF_RANGE(39,srcy,0,6);\nAIF_RANGE(40,dsty,0,7);", 
+                  "else": "AIF_RANGE(41,dsty,0,7);\nAIF_RANGE(42,dsty,0,7);"
+            }, 
+            "245": {
+                  "then": "AIF_RANGE(54,rxcount,0,0);"
+            }, 
+            "320": {
+                  "then": "AIF_RANGE(45,dsty,0,7);"
+            }, 
+            "197": {
+                  "then": "AIF_RANGE(46,dsty,0,7);"
+            }, 
+            "211": {
+                  "then": "AIF_RANGE(48,dsty,1,7);"
+            }, 
+            "94": {
+                  "then": "AIF_RANGE(49,y,1,7);"
+            }, 
+            "100": {
+                  "then": "AIF_RANGE(50,y,0,6);"
+            }, 
+            "114": {
+                  "then": "AIF_RANGE(51,t,0,0);", 
+                  "else": "AIF_RANGE(52,t,0,6);"
+            }, 
+            "117": {
+                  "then": "AIF_RANGE(43,t,6,6);", 
+                  "else": "AIF_RANGE(44,t,0,5);"
+            }
+      }, 
+      "board.c": {
+            "37": {
+                  "then": "AIF_RANGE(57,y,2,5);\nAIF_RANGE(58,x,0,7);"
+            }
+      }
+}

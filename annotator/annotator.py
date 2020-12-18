@@ -43,19 +43,17 @@ def parse_dict(thenline, elseline):
     for i in range(0, len(elseline)):
         if elseline[i] not in elseifline:
             dict[elseline[i]] = elseline[i]
-    printdict(dict)
+    #printdict(dict)
     return dict
 
 def annotate(filename, linenum, linetext):
 
     multiline = linetext.split("\n")
-    cmd = "sed -i '%di %s'" % (linenum, multiline[0])
-    for i in range(1, len(multiline)):
-        cmd += "\\\n'%s'" % (multiline[i]) 
-    cmd += " %s" % (filename)
+    for i in range(0, len(multiline)): # insert each annotation to a newline
+        cmd = "sed -i '%di %s' %s" % (linenum+i, multiline[i], filename)
 
-    proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
-    proc.stdin.close()
+        proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
+        proc.stdin.close()
 
 def main():
     args = parse_args()
@@ -70,9 +68,12 @@ def main():
         dict = parse_dict(thenline, elseline)
 
         anchors = rule_dict[targ_file]
+        anchors = {int(k):v for k,v in anchors.items()}
         if len(anchors):            
-            for linenum in sorted(anchors.keys(), reverse=True):                
-                annotate(file_to_write, dict[int(linenum)], list(anchors[linenum].values())[0])
+            for linenum in sorted(anchors.keys(), reverse=True):           
+                # annotate(file_to_write, dict[int(linenum)], list(anchors[linenum].values())[0])
+                for brc_anno in list(anchors[linenum].values()):
+                    annotate(file_to_write, dict[int(linenum)], brc_anno)
     return
 
 if __name__ == "__main__":    

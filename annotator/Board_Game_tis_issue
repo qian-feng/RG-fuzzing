@@ -1,0 +1,17 @@
+/data/cb-multios-aif/challenges/Board_Game/src/moves.c
+error: use of undeclared identifier 'tmp'
+
+Additionally, on line 35 & 37, error: use of undeclared identifier 'srcy'
+// IJON_Range(26,srcy,7,7);
+// IJON_Range(25,srcy,0,7);
+
+
+----------------------------------------------------------------
+
+/data/cb-multios-aif/challenges/Board_Game/src/service.c:44:15: error: use of undeclared identifier 'tmp'
+
+
+----------------------------------------------------------------
+
+
+IJON_Range => AIF_RANGE

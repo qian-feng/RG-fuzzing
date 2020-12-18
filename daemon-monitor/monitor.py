@@ -28,7 +28,7 @@ untouch_dict = {}
 def parse_args():
     p = argparse.ArgumentParser("")
     p.add_argument("-i", dest="afl_queue", required=True)
-    p.add_argument("-o", dest="output_dir", required=True)
+    #p.add_argument("-o", dest="output_dir", required=True)
     p.add_argument("-m", dest="tmp_outdir", required=True)
     p.add_argument("-l", dest="logfile", required=True)
     p.add_argument("cmd", nargs="+", help="cmdline")
@@ -74,19 +74,24 @@ def create_shm(size):
 # Task: parse addr and call addr2line 
 # Output form: txt file with each line be:
 #     <hex_addr>, <line_info>, <brc index>
-def print_untouched(binary, joblist, filename):
+# def print_untouched(binary, joblist, filename):
+def print_untouched(joblist):
     brc_id = 0
-    with open(filename, "w+") as fp:
-        for each in joblist:
-            cmd = "addr2line -e %s 0x%x" % (binary, each)
-            proc = subprocess.Popen(cmd.split(),  stdout = subprocess.PIPE, stderr = subprocess.PIPE)
-            stdout, stderr = proc.communicate()
-            # write to file
-            fp.write("0x%x,%s,%d\n" % (each, stdout.strip("\n"), brc_id))
-            # write to dict
-            untouch_dict[each] = [brc_id, UNTOUCH, stdout.strip("\n")]
-            brc_id = brc_id + 1
+    for each in joblist:
+        untouch_dict[each] = [brc_id, UNTOUCH, ""]
+        brc_id = brc_id + 1
     assert len(joblist) == len(untouch_dict)
+    # with open(filename, "w+") as fp:
+    #     for each in joblist:
+    #         cmd = "addr2line -e %s 0x%x" % (binary, each)
+    #         proc = subprocess.Popen(cmd.split(),  stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+    #         stdout, stderr = proc.communicate()
+    #         # write to file
+    #         fp.write("0x%x,%s,%d\n" % (each, stdout.strip("\n"), brc_id))
+    #         # write to dict
+    #         untouch_dict[each] = [brc_id, UNTOUCH, stdout.strip("\n")]
+    #         brc_id = brc_id + 1
+    # assert len(joblist) == len(untouch_dict)
 
 def dump_covered():
     filename = "/data/cover.log"
@@ -104,8 +109,8 @@ def main():
     # initialization stage:
     instrumented = GetInstrumentedPCs(args.cmd[0])
     shm = create_shm(len(instrumented))
-    #shm = create_shm(SIZE) # fixed length now. 
-    print_untouched(args.cmd[0], instrumented, os.path.join(args.output_dir, args.cmd[0]+".txt")) 
+    # print_untouched(args.cmd[0], instrumented, os.path.join(args.output_dir, args.cmd[0]+".txt")) 
+    print_untouched(instrumented) 
     print("[+] Initialization done!\n")
     # second stage of initialization:
     # TODO: load from TIS and update for status=2
@@ -129,6 +134,7 @@ def main():
                 f1.write("time,covered,cov-ratio\n")
 
         newseed = newseed[0]
+        print(newseed)
 
         parse_file = "%s/%d.txt"%(args.tmp_outdir, q_index)
         cmd = "LD_LIBRARY_PATH=%s %s < %s 1>%s 2>/dev/null" % (os.getcwd(), args.cmd[0], newseed, parse_file)

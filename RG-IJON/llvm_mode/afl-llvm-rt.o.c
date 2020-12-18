@@ -104,9 +104,14 @@ void ijon_min(uint32_t addr, uint64_t val){
 }
 
 void aif_range(uint32_t addr, int index, int val, int low, int high) { 
+  // here is the context
+  uint32_t addr1 = addr;
+  __afl_state = (__afl_state^addr1)%MAP_SIZE;
+  addr1 = __afl_state;
+
 #ifdef LOGGING
   FILE *fp1 = fopen("/data/debug.log", "a+");
-  fprintf(fp1, "[aif_range][109]: addr: %p, index(%lu), val(%d), low(%d), high(%d)\n", addr, index, val, low, high);
+  fprintf(fp1, "[aif_range][109]: addr: %p, index(%lu), val(%d), low(%d), high(%d)\n", addr1, index, val, low, high);
   fclose(fp1);
 #endif 
   // if(index != -1) {
@@ -119,7 +124,10 @@ void aif_range(uint32_t addr, int index, int val, int low, int high) {
   distance = MAX(0, distance);
 
   if(distance == 0) {
-    // todo, delete correlated seeds. 
+    // mute the site
+    __afl_max_ptr[addr1%MAXMAP_SIZE] = 0xffffffffffffffff; // so no more seed kept for this site
+    // need to delete corresponding ones in the dir already
+    
     return; // if already inside the range, let's delete those seeds and return early. 
   }
 #ifdef LOGGING
@@ -128,9 +136,9 @@ void aif_range(uint32_t addr, int index, int val, int low, int high) {
   fclose(fp3);
 #endif 
   distance = 0xffffffffffffffff-distance;
-  if(__afl_max_ptr[addr%MAXMAP_SIZE] < distance) {
-    __afl_max_ptr[addr%MAXMAP_SIZE] = distance; // remember distance
-    __aif_max_index_ptr[addr%MAXMAP_SIZE] = index; // remember which watch point this is for
+  if(__afl_max_ptr[addr1%MAXMAP_SIZE] < distance) {
+    __afl_max_ptr[addr1%MAXMAP_SIZE] = distance; // remember distance
+    __aif_max_index_ptr[addr1%MAXMAP_SIZE] = index; // remember which watch point this is for
   }
 #ifdef LOGGING
   FILE *fp = fopen("/data/debug.log", "a+");

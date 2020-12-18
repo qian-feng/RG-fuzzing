@@ -28,3 +28,6 @@ test/RD_output-backup/
 test/log.txt
 daemon-monitor/AFL_*
 daemon-monitor/RG_*
+daemon-monitor/workdir_*
+cb-multios-fast/
+cb-multios-taint/
