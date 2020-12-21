@@ -1,0 +1,1772 @@
+{
+  "file": "board.c",
+  "line": 75,
+  "args": "()",
+  "state": [
+    {
+      "base": "Frama_C_entropy_source",
+      "values": [ { "value": "[--..--]" } ]
+    },
+    { "base": "__TIS_errno", "values": [ { "value": "{0; 75}" } ] },
+    { "base": "__fc_random_counter", "values": [ { "value": "[--..--]" } ] },
+    { "base": "__fc_heap_status", "values": [ { "value": "[--..--]" } ] },
+    {
+      "base": "__tis_rand48_state",
+      "values": [ { "offset": "[0..6]", "value": "[--..--]" } ]
+    },
+    {
+      "base": "__fc_fds",
+      "values": [ { "offset": "[0..1023]", "value": "[--..--]" } ]
+    },
+    { "base": "__fc_rand_r_counter", "values": [ { "value": "[--..--]" } ] },
+    { "base": "__fc_rand_r_seed", "values": [ { "value": "[--..--]" } ] },
+    { "base": "tis_entropy_source", "values": [ { "value": "[--..--]" } ] },
+    { "base": "__tis_filesystem", "values": [ { "value": "[--..--]" } ] },
+    {
+      "base": "__fc_fopen",
+      "values": [ { "offset": "[0..41]", "value": "{0}" } ]
+    },
+    {
+      "base": "__fc_stderr",
+      "values": [ { "value": "{{ &__fc_initial_stderr }}" } ]
+    },
+    {
+      "base": "__fc_stdin",
+      "values": [ { "value": "{{ &__fc_initial_stdin }}" } ]
+    },
+    {
+      "base": "__fc_stdout",
+      "values": [ { "value": "{{ &__fc_initial_stdout }}" } ]
+    },
+    {
+      "base": "__tis_strtok_internal_state",
+      "values": [
+        { "value": "{{ NULL ; &S___tis_strtok_internal_state[0] }}" }
+      ]
+    },
+    {
+      "base": "__fe_dfl_env",
+      "values": [
+        { "offset": ".__rounding_mode", "value": "{0}" },
+        { "offset": ".__exception_mask", "value": "{31}" },
+        { "offset": ".__pending_exceptions", "value": "{0}" }
+      ]
+    },
+    { "base": "optarg", "values": [ { "value": "{0}" } ] },
+    { "base": "optind", "values": [ { "value": "{1}" } ] },
+    { "base": "opterr", "values": [ { "value": "{1}" } ] },
+    { "base": "optopt", "values": [ { "value": "{0}" } ] },
+    { "base": "optreset", "values": [ { "value": "{0}" } ] },
+    { "base": "EMSG", "values": [ { "offset": "[0]", "value": "{0}" } ] },
+    { "base": "place", "values": [ { "value": "{{ &EMSG[0] }}" } ] },
+    {
+      "base": "__frama_c_locale",
+      "values": [ { "value": "{{ &__C_locale }}" } ]
+    },
+    {
+      "base": "__frama_c_locale_names",
+      "values": [ { "offset": "[0]", "value": "{{ \"C\" }}" } ]
+    },
+    {
+      "base": "__C_locale",
+      "values": [
+        { "offset": ".decimal_point", "value": "{{ \".\" }}" },
+        { "offset": ".thousands_sep", "value": "{{ \"\" }}" },
+        { "offset": ".grouping", "value": "{{ \"\" }}" },
+        { "offset": ".int_curr_symbol", "value": "{{ \"\" }}" },
+        { "offset": ".currency_symbol", "value": "{{ \"\" }}" },
+        { "offset": ".mon_decimal_point", "value": "{{ \"\" }}" },
+        { "offset": ".mon_thousands_sep", "value": "{{ \"\" }}" },
+        { "offset": ".mon_grouping", "value": "{{ \"\" }}" },
+        { "offset": ".positive_sign", "value": "{{ \"\" }}" },
+        { "offset": ".negative_sign", "value": "{{ \"\" }}" },
+        {
+          "offset":
+            "{.int_frac_digits; .frac_digits; .p_cs_precedes; .p_sep_by_space; .n_cs_precedes; .n_sep_by_space; .p_sign_posn; .n_sign_posn; .int_p_cs_precedes; .int_p_sep_by_space; .int_n_cs_precedes; .int_n_sep_by_space; .int_p_sign_posn; .int_n_sign_posn}",
+          "value": "{127}"
+        },
+        { "offset": ".[bits 752 to 767]", "value": "{0}" }
+      ]
+    },
+    { "base": "__tis_locale", "values": [ { "value": "{0}" } ] },
+    {
+      "base": "__tis_current_locale",
+      "values": [ { "value": "{{ &__tis_locale }}" } ]
+    },
+    { "base": "signgam", "values": [ { "value": "{0}" } ] },
+    { "base": "__sem_failed", "values": [ { "value": "{-1}" } ] },
+    {
+      "base": "__fc_stdin_buffer",
+      "values": [ { "offset": "[0..8191]", "value": "{0}" } ]
+    },
+    {
+      "base": "__fc_initial_stdin",
+      "values": [
+        {
+          "offset":
+            "{.__fc_file_desc; .__fc_position; .__fc_error; .__fc_eof; .__fc_flags; .__fc_ungetc; .__fc_ungetbuf[0..2]; .[bits 32 to 63]; .[bits 144 to 159]; .[bits 248 to 255]}",
+          "value": "{0}"
+        },
+        { "offset": ".__fc_buf_mode", "value": "{1}" },
+        { "offset": ".[bits 288 to 319]", "value": "{0}" },
+        {
+          "offset": ".__fc_buf_base",
+          "value": "{{ &__fc_stdin_buffer[0] }}"
+        },
+        { "offset": ".__fc_buf_size", "value": "{8192}" },
+        {
+          "offset": "{.__fc_buf_rpos; .__fc_buf_rsize; .__fc_buf_wpos}",
+          "value": "{0}"
+        },
+        {
+          "offset": ".__fc_opaque",
+          "value": "{{ (void *)&__fc_initial_stdin }}"
+        },
+        { "offset": ".__fc_close", "value": "{{ &__fc_file_close }}" },
+        { "offset": ".__fc_read", "value": "{{ &__fc_file_read }}" },
+        { "offset": "{.__fc_seek; .__fc_write}", "value": "{0}" }
+      ]
+    },
+    {
+      "base": "__fc_stdout_buffer",
+      "values": [ { "offset": "[0..8191]", "value": "{0}" } ]
+    },
+    {
+      "base": "__fc_initial_stdout",
+      "values": [
+        { "offset": ".__fc_file_desc", "value": "{1}" },
+        {
+          "offset":
+            "{.__fc_position; .__fc_error; .__fc_eof; .[bits 32 to 63]; .[bits 144 to 159]}",
+          "value": "{0}"
+        },
+        { "offset": ".__fc_flags", "value": "{1}" },
+        {
+          "offset":
+            "{.__fc_ungetc; .__fc_ungetbuf[0..2]; .[bits 248 to 255]}",
+          "value": "{0}"
+        },
+        { "offset": ".__fc_buf_mode", "value": "{1}" },
+        { "offset": ".[bits 288 to 319]", "value": "{0}" },
+        {
+          "offset": ".__fc_buf_base",
+          "value": "{{ &__fc_stdout_buffer[0] }}"
+        },
+        { "offset": ".__fc_buf_size", "value": "{8192}" },
+        {
+          "offset": "{.__fc_buf_rpos; .__fc_buf_rsize; .__fc_buf_wpos}",
+          "value": "{0}"
+        },
+        {
+          "offset": ".__fc_opaque",
+          "value": "{{ (void *)&__fc_initial_stdout }}"
+        },
+        { "offset": ".__fc_close", "value": "{{ &__fc_file_close }}" },
+        { "offset": "{.__fc_read; .__fc_seek}", "value": "{0}" },
+        { "offset": ".__fc_write", "value": "{{ &__fc_file_write }}" }
+      ]
+    },
+    {
+      "base": "__fc_initial_stderr",
+      "values": [
+        { "offset": ".__fc_file_desc", "value": "{2}" },
+        {
+          "offset":
+            "{.__fc_position; .__fc_error; .__fc_eof; .[bits 32 to 63]; .[bits 144 to 159]}",
+          "value": "{0}"
+        },
+        { "offset": ".__fc_flags", "value": "{1}" },
+        {
+          "offset":
+            "{.__fc_ungetc; .__fc_ungetbuf[0..2]; .[bits 248 to 255]}",
+          "value": "{0}"
+        },
+        { "offset": ".__fc_buf_mode", "value": "{2}" },
+        {
+          "offset":
+            "{.__fc_buf_base; .__fc_buf_size; .__fc_buf_rpos; .__fc_buf_rsize; .__fc_buf_wpos; .[bits 288 to 319]}",
+          "value": "{0}"
+        },
+        {
+          "offset": ".__fc_opaque",
+          "value": "{{ (void *)&__fc_initial_stderr }}"
+        },
+        { "offset": ".__fc_close", "value": "{{ &__fc_file_close }}" },
+        { "offset": "{.__fc_read; .__fc_seek}", "value": "{0}" },
+        { "offset": ".__fc_write", "value": "{{ &__fc_file_write }}" }
+      ]
+    },
+    {
+      "base": "__tis_tmpnam_buffer",
+      "values": [ { "offset": "[0..1023]", "value": "{0}" } ]
+    },
+    { "base": "environ", "values": [ { "value": "{0}" } ] },
+    { "base": "__tis_allocated_env", "values": [ { "value": "{0}" } ] },
+    { "base": "__tis_nb_allocated", "values": [ { "value": "{0}" } ] },
+    { "base": "mbs", "values": [ { "value": "{0}" } ] },
+    {
+      "base": "__tis_atexit_functions",
+      "values": [ { "offset": "[0..31]", "value": "{0}" } ]
+    },
+    { "base": "__tis_void_function_cpt", "values": [ { "value": "{0}" } ] },
+    {
+      "base": "__tis_strtok_internal_state_0",
+      "values": [ { "value": "{0}" } ]
+    },
+    { "base": "__fc_time", "values": [ { "value": "[--..--]" } ] },
+    { "base": "__fc_time_tm", "values": [ { "value": "{0}" } ] },
+    {
+      "base": "__p_fc_time_tm",
+      "values": [ { "value": "{{ &__fc_time_tm }}" } ]
+    },
+    {
+      "base": "tzname",
+      "values": [
+        { "offset": "[0]", "value": "{{ NULL ; &S_0_tzname[0] }}" },
+        { "offset": "[1]", "value": "{{ NULL ; &S_1_tzname[0] }}" }
+      ]
+    },
+    {
+      "base": "keys",
+      "values": [ { "offset": "[0..127]", "value": "{0}" } ]
+    },
+    {
+      "base": "threads",
+      "values": [
+        { "offset": "[0]", "value": "{1}" },
+        { "offset": "[1..15]", "value": "{0}" }
+      ]
+    },
+    { "base": "last_thread_id", "values": [ { "value": "{1}" } ] },
+    {
+      "base": "__fc_sockfds",
+      "values": [ { "offset": "[0..1023]", "value": "[--..--]" } ]
+    },
+    { "base": "__fc_socket_counter", "values": [ { "value": "[--..--]" } ] },
+    { "base": "tis_map_failed", "values": [ { "value": "[--..--]" } ] },
+    { "base": "__tis_unknown", "values": [ { "value": "[--..--]" } ] },
+    {
+      "base": "__fc_opendir",
+      "values": [
+        {
+          "offset": "[0]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[0].__fc_dir_inode",
+          "value": "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[0].__fc_dir_entries",
+          "value": "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[1]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[1].__fc_dir_inode",
+          "value": "{{ NULL ; &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[1].__fc_dir_entries",
+          "value": "{{ NULL ; &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[2]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[2].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[2].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[3]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[3].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[3].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[4]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[4].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[4].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[5]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[5].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[5].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[6]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[6].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[6].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[7]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[7].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[7].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[8]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[8].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[8].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[9]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[9].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[9].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[10]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[10].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[10].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[11]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[11].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[11].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[12]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[12].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[12].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[13]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[13].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[13].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[14]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[14].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[14].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[15]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[15].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[15].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[16]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[16].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[16].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[17]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[17].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[17].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[18]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[18].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[18].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[19]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[19].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[19].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[20]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[20].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[20].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[21]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[21].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[21].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[22]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[22].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[22].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[23]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[23].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[23].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[24]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[24].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[24].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[25]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[25].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[25].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[26]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[26].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[26].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[27]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[27].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[27].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[28]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[28].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[28].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[29]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[29].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[29].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[30]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[30].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[30].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[31]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[31].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[31].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[32]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[32].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[32].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[33]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[33].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[33].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[34]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[34].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[34].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[35]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[35].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[35].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[36]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[36].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[36].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[37]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[37].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[37].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[38]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[38].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[38].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[39]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[39].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[39].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[40]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[40].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[40].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[41]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[41].__fc_dir_inode",
+          "value":
+            "{{ NULL ; &S___fc_dir_inode_0___fc_opendir[0] ;\n   &S___fc_dir_inode_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[41].__fc_dir_entries",
+          "value":
+            "{{ NULL ; &S___fc_dir_entries_0___fc_opendir[0] ;\n   &S___fc_dir_entries_1___fc_opendir[0] }}"
+        }
+      ]
+    },
+    {
+      "base": "__p_fc_opendir",
+      "values": [ { "value": "{{ NULL ; &S___p_fc_opendir[0] }}" } ]
+    },
+    { "base": "__mkfs_FOPEN_MAX", "values": [ { "value": "{42}" } ] },
+    { "base": "__mkfs_R_OK", "values": [ { "value": "{4}" } ] },
+    { "base": "__mkfs_W_OK", "values": [ { "value": "{2}" } ] },
+    { "base": "__mkfs_X_OK", "values": [ { "value": "{1}" } ] },
+    { "base": "__mkfs_F_OK", "values": [ { "value": "{0}" } ] },
+    { "base": "__mkfs_O_RDWR", "values": [ { "value": "{2}" } ] },
+    { "base": "__mkfs_O_WRONLY", "values": [ { "value": "{1}" } ] },
+    { "base": "__mkfs_O_RDONLY", "values": [ { "value": "{0}" } ] },
+    { "base": "__mkfs_O_CREAT", "values": [ { "value": "{32}" } ] },
+    {
+      "base": "__mkfs_fs_files",
+      "values": [
+        { "offset": "[0].__mkfs_fullpath", "value": "{{ \"/dev/stdin\" }}" },
+        { "offset": "[0].__mkfs_stat", "value": "{{ &fc_inode_1 }}" },
+        {
+          "offset": "[0].__mkfs_content",
+          "value": "{{ &fc_file_contents_1 }}"
+        },
+        {
+          "offset":
+            "[0]{.__mkfs_data; .__mkfs_allocated_data; .[bits 264 to 319]}",
+          "value": "{0}"
+        },
+        { "offset": "[1].__mkfs_fullpath", "value": "{{ \"/dev/stdout\" }}" },
+        { "offset": "[1].__mkfs_stat", "value": "{{ &fc_inode_4 }}" },
+        {
+          "offset": "[1].__mkfs_content",
+          "value": "{{ &fc_file_contents_4 }}"
+        },
+        {
+          "offset":
+            "[1]{.__mkfs_data; .__mkfs_allocated_data; .[bits 264 to 319]}",
+          "value": "{0}"
+        },
+        { "offset": "[2].__mkfs_fullpath", "value": "{{ \"/dev/stderr\" }}" },
+        { "offset": "[2].__mkfs_stat", "value": "{{ &fc_inode_5 }}" },
+        {
+          "offset": "[2].__mkfs_content",
+          "value": "{{ &fc_file_contents_5 }}"
+        },
+        {
+          "offset":
+            "{[2]{.__mkfs_data; .__mkfs_allocated_data; .[bits 264 to 319]}; [3..102]}",
+          "value": "{0}"
+        }
+      ]
+    },
+    { "base": "__mkfs_fs_files_nb", "values": [ { "value": "{3}" } ] },
+    { "base": "__mkfs_fs_files_nb_max", "values": [ { "value": "{103}" } ] },
+    { "base": "__mkfs_uid", "values": [ { "value": "{1000}" } ] },
+    { "base": "__mkfs_gid", "values": [ { "value": "{1000}" } ] },
+    { "base": "__mkfs_euid", "values": [ { "value": "{1000}" } ] },
+    { "base": "__mkfs_egid", "values": [ { "value": "{1000}" } ] },
+    { "base": "__mkfs_next_inode", "values": [ { "value": "{5}" } ] },
+    {
+      "base": "mkfs_data_table_size",
+      "values": [ { "value": "{219604096115589900}" } ]
+    },
+    {
+      "base": "mkfs_data_table",
+      "values": [
+        { "offset": "[0..41][0..219604096115589899]", "value": "{0}" }
+      ]
+    },
+    {
+      "base": "__mkfs_file_desc",
+      "values": [ { "offset": "[0..41]", "value": "{0}" } ]
+    },
+    {
+      "base": "mkfs_opened_files",
+      "values": [ { "offset": "[0..41]", "value": "{0}" } ]
+    },
+    {
+      "base": "__mkfs_fs_stdin",
+      "values": [ { "value": "{{ &__mkfs_fs_files[0] }}" } ]
+    },
+    {
+      "base": "__mkfs_fs_stdout",
+      "values": [ { "value": "{{ &__mkfs_fs_files[1] }}" } ]
+    },
+    {
+      "base": "__mkfs_fs_stderr",
+      "values": [ { "value": "{{ &__mkfs_fs_files[2] }}" } ]
+    },
+    { "base": "init_std_file_info", "values": [ { "value": "{0}" } ] },
+    {
+      "base": "mkfs_opened_socket",
+      "values": [ { "offset": "[0..41]", "value": "{0}" } ]
+    },
+    { "base": "current_umask", "values": [ { "value": "{0}" } ] },
+    {
+      "base": "inode_table",
+      "values": [ { "offset": "[0..41]", "value": "{0}" } ]
+    },
+    { "base": "inode_nb_max", "values": [ { "value": "{42}" } ] },
+    { "base": "next_inode_index", "values": [ { "value": "{0}" } ] },
+    { "base": "cwd", "values": [ { "value": "{{ \"/\" }}" } ] },
+    { "base": "maps", "values": [ { "value": "{0}" } ] },
+    {
+      "base": "__mkfs_fs_dirs",
+      "values": [
+        { "offset": "[0].__mkfs_fullpath", "value": "{{ \"/\" }}" },
+        { "offset": "[0].__mkfs_stat", "value": "{{ &fc_inode_3 }}" },
+        {
+          "offset": "[0].__mkfs_dir_entries",
+          "value": "{{ &fc_dir_contents_3[0] }}"
+        },
+        { "offset": "[1].__mkfs_fullpath", "value": "{{ \"/dev\" }}" },
+        { "offset": "[1].__mkfs_stat", "value": "{{ &fc_inode_2 }}" },
+        {
+          "offset": "[1].__mkfs_dir_entries",
+          "value": "{{ &fc_dir_contents_2[0] }}"
+        },
+        { "offset": "[2..11]", "value": "{0}" }
+      ]
+    },
+    { "base": "__mkfs_fs_dirs_nb", "values": [ { "value": "{2}" } ] },
+    { "base": "__mkfs_fs_dirs_nb_max", "values": [ { "value": "{12}" } ] },
+    {
+      "base": "fc_dir_dot",
+      "values": [
+        {
+          "offset": "{.d_ino; .d_off; .d_reclen; .d_type; .[bits 32 to 63]}",
+          "value": "{0}"
+        },
+        { "offset": ".d_name[0]", "value": "{46}" },
+        {
+          "offset": "{.d_name[1..255]; .[bits 2200 to 2239]}",
+          "value": "{0}"
+        }
+      ]
+    },
+    {
+      "base": "fc_dir_dot_dot",
+      "values": [
+        {
+          "offset": "{.d_ino; .d_off; .d_reclen; .d_type; .[bits 32 to 63]}",
+          "value": "{0}"
+        },
+        { "offset": ".d_name[0..1]", "value": "{46}" },
+        {
+          "offset": "{.d_name[2..255]; .[bits 2200 to 2239]}",
+          "value": "{0}"
+        }
+      ]
+    },
+    {
+      "base": "fc_inode_1",
+      "values": [
+        { "offset": ".st_dev", "value": "{0}" },
+        { "offset": ".st_ino", "value": "{1}" },
+        { "offset": ".st_mode", "value": "{8484}" },
+        { "offset": ".st_nlink", "value": "{1}" },
+        { "offset": "{.st_uid; .st_gid}", "value": "{1000}" },
+        {
+          "offset":
+            "{.st_rdev; .st_size; .st_atime; .st_atim; .st_mtime; .st_mtim; .st_ctime; .st_ctim; .[bits 224 to 255]}",
+          "value": "{0}"
+        },
+        { "offset": ".st_blksize", "value": "{1}" },
+        { "offset": ".[bits 928 to 959]", "value": "{0}" },
+        { "offset": ".st_blocks", "value": "{1}" }
+      ]
+    },
+    {
+      "base": "fc_inode_4",
+      "values": [
+        { "offset": ".st_dev", "value": "{0}" },
+        { "offset": ".st_ino", "value": "{4}" },
+        { "offset": ".st_mode", "value": "{8338}" },
+        { "offset": ".st_nlink", "value": "{1}" },
+        { "offset": "{.st_uid; .st_gid}", "value": "{1000}" },
+        { "offset": "{.st_rdev; .[bits 224 to 255]}", "value": "{0}" },
+        { "offset": ".st_size", "value": "{100}" },
+        {
+          "offset":
+            "{.st_atime; .st_atim; .st_mtime; .st_mtim; .st_ctime; .st_ctim}",
+          "value": "{0}"
+        },
+        { "offset": ".st_blksize", "value": "{1}" },
+        { "offset": ".[bits 928 to 959]", "value": "{0}" },
+        { "offset": ".st_blocks", "value": "{1}" }
+      ]
+    },
+    {
+      "base": "fc_inode_5",
+      "values": [
+        { "offset": ".st_dev", "value": "{0}" },
+        { "offset": ".st_ino", "value": "{5}" },
+        { "offset": ".st_mode", "value": "{8338}" },
+        { "offset": ".st_nlink", "value": "{1}" },
+        { "offset": "{.st_uid; .st_gid}", "value": "{1000}" },
+        { "offset": "{.st_rdev; .[bits 224 to 255]}", "value": "{0}" },
+        { "offset": ".st_size", "value": "{100}" },
+        {
+          "offset":
+            "{.st_atime; .st_atim; .st_mtime; .st_mtim; .st_ctime; .st_ctim}",
+          "value": "{0}"
+        },
+        { "offset": ".st_blksize", "value": "{1}" },
+        { "offset": ".[bits 928 to 959]", "value": "{0}" },
+        { "offset": ".st_blocks", "value": "{1}" }
+      ]
+    },
+    {
+      "base": "fc_inode_2",
+      "values": [
+        { "offset": ".st_dev", "value": "{0}" },
+        { "offset": ".st_ino", "value": "{2}" },
+        { "offset": ".st_mode", "value": "{16804}" },
+        { "offset": ".st_nlink", "value": "{1}" },
+        { "offset": "{.st_uid; .st_gid}", "value": "{1000}" },
+        {
+          "offset":
+            "{.st_rdev; .st_size; .st_atime; .st_atim; .st_mtime; .st_mtim; .st_ctime; .st_ctim; .[bits 224 to 255]}",
+          "value": "{0}"
+        },
+        { "offset": ".st_blksize", "value": "{1}" },
+        { "offset": ".[bits 928 to 959]", "value": "{0}" },
+        { "offset": ".st_blocks", "value": "{1}" }
+      ]
+    },
+    {
+      "base": "fc_dir_2_0",
+      "values": [
+        { "offset": ".d_ino", "value": "{1}" },
+        { "offset": "{.d_off; .d_reclen; .[bits 32 to 63]}", "value": "{0}" },
+        { "offset": ".d_type", "value": "{4}" },
+        { "offset": ".d_name[0]", "value": "{115}" },
+        { "offset": ".d_name[1]", "value": "{116}" },
+        { "offset": ".d_name[2]", "value": "{100}" },
+        { "offset": ".d_name[3]", "value": "{105}" },
+        { "offset": ".d_name[4]", "value": "{110}" },
+        {
+          "offset": "{.d_name[5..255]; .[bits 2200 to 2239]}",
+          "value": "{0}"
+        }
+      ]
+    },
+    {
+      "base": "fc_dir_2_1",
+      "values": [
+        { "offset": ".d_ino", "value": "{4}" },
+        { "offset": "{.d_off; .d_reclen; .[bits 32 to 63]}", "value": "{0}" },
+        { "offset": ".d_type", "value": "{4}" },
+        { "offset": ".d_name[0]", "value": "{115}" },
+        { "offset": ".d_name[1]", "value": "{116}" },
+        { "offset": ".d_name[2]", "value": "{100}" },
+        { "offset": ".d_name[3]", "value": "{111}" },
+        { "offset": ".d_name[4]", "value": "{117}" },
+        { "offset": ".d_name[5]", "value": "{116}" },
+        {
+          "offset": "{.d_name[6..255]; .[bits 2200 to 2239]}",
+          "value": "{0}"
+        }
+      ]
+    },
+    {
+      "base": "fc_dir_2_2",
+      "values": [
+        { "offset": ".d_ino", "value": "{5}" },
+        { "offset": "{.d_off; .d_reclen; .[bits 32 to 63]}", "value": "{0}" },
+        { "offset": ".d_type", "value": "{4}" },
+        { "offset": ".d_name[0]", "value": "{115}" },
+        { "offset": ".d_name[1]", "value": "{116}" },
+        { "offset": ".d_name[2]", "value": "{100}" },
+        { "offset": ".d_name[3]", "value": "{101}" },
+        { "offset": ".d_name[4..5]", "value": "{114}" },
+        {
+          "offset": "{.d_name[6..255]; .[bits 2200 to 2239]}",
+          "value": "{0}"
+        }
+      ]
+    },
+    {
+      "base": "fc_dir_contents_2",
+      "values": [
+        { "offset": "[0]", "value": "{{ &fc_dir_dot }}" },
+        { "offset": "[1]", "value": "{{ &fc_dir_dot_dot }}" },
+        { "offset": "[2]", "value": "{{ &fc_dir_2_0 }}" },
+        { "offset": "[3]", "value": "{{ &fc_dir_2_1 }}" },
+        { "offset": "[4]", "value": "{{ &fc_dir_2_2 }}" },
+        { "offset": "[5]", "value": "{0}" }
+      ]
+    },
+    {
+      "base": "fc_inode_3",
+      "values": [
+        { "offset": ".st_dev", "value": "{0}" },
+        { "offset": ".st_ino", "value": "{3}" },
+        { "offset": ".st_mode", "value": "{16804}" },
+        { "offset": ".st_nlink", "value": "{1}" },
+        { "offset": "{.st_uid; .st_gid}", "value": "{1000}" },
+        {
+          "offset":
+            "{.st_rdev; .st_size; .st_atime; .st_atim; .st_mtime; .st_mtim; .st_ctime; .st_ctim; .[bits 224 to 255]}",
+          "value": "{0}"
+        },
+        { "offset": ".st_blksize", "value": "{1}" },
+        { "offset": ".[bits 928 to 959]", "value": "{0}" },
+        { "offset": ".st_blocks", "value": "{1}" }
+      ]
+    },
+    {
+      "base": "fc_dir_3_0",
+      "values": [
+        { "offset": ".d_ino", "value": "{2}" },
+        { "offset": "{.d_off; .d_reclen; .[bits 32 to 63]}", "value": "{0}" },
+        { "offset": ".d_type", "value": "{4}" },
+        { "offset": ".d_name[0]", "value": "{100}" },
+        { "offset": ".d_name[1]", "value": "{101}" },
+        { "offset": ".d_name[2]", "value": "{118}" },
+        {
+          "offset": "{.d_name[3..255]; .[bits 2200 to 2239]}",
+          "value": "{0}"
+        }
+      ]
+    },
+    {
+      "base": "fc_dir_contents_3",
+      "values": [
+        { "offset": "[0]", "value": "{{ &fc_dir_dot }}" },
+        { "offset": "[1]", "value": "{{ &fc_dir_dot_dot }}" },
+        { "offset": "[2]", "value": "{{ &fc_dir_3_0 }}" },
+        { "offset": "[3]", "value": "{0}" }
+      ]
+    },
+    { "base": "g_heap", "values": [ { "value": "{0}" } ] },
+    {
+      "base": "__ctype",
+      "values": [
+        { "offset": "[0..8]", "value": "{129}" },
+        { "offset": "[9..13]", "value": "{193}" },
+        { "offset": "[14..31]", "value": "{129}" },
+        { "offset": "[32]", "value": "{81}" },
+        { "offset": "[33..47]", "value": "{49}" },
+        { "offset": "[48..57]", "value": "{19}" },
+        { "offset": "[58..64]", "value": "{49}" },
+        { "offset": "[65..90]", "value": "{25}" },
+        { "offset": "[91..96]", "value": "{49}" },
+        { "offset": "[97..122]", "value": "{21}" },
+        { "offset": "[123..126]", "value": "{49}" },
+        { "offset": "[127]", "value": "{129}" },
+        { "offset": "[128..255]", "value": "{0}" }
+      ]
+    },
+    { "base": "cgc_stderr", "values": [ { "value": "{{ &_stderr }}" } ] },
+    { "base": "cgc_stdout", "values": [ { "value": "{{ &_stdout }}" } ] },
+    { "base": "cgc_stdin", "values": [ { "value": "{{ &_stdin }}" } ] },
+    {
+      "base": "_stdin",
+      "values": [
+        { "offset": ".fd", "value": "{0}" },
+        { "offset": ".rw", "value": "{1}" },
+        {
+          "offset":
+            "{.idx; .length; .xlat_map; .xlat_map_inv; .buffer[0..1023]}",
+          "value": "{0}"
+        }
+      ]
+    },
+    {
+      "base": "_stdout",
+      "values": [
+        { "offset": ".fd", "value": "{1}" },
+        { "offset": ".rw", "value": "{2}" },
+        { "offset": ".idx", "value": "{-1}" },
+        {
+          "offset": "{.length; .xlat_map; .xlat_map_inv; .buffer[0..1023]}",
+          "value": "{0}"
+        }
+      ]
+    },
+    {
+      "base": "_stderr",
+      "values": [
+        { "offset": "{.fd; .rw}", "value": "{2}" },
+        { "offset": ".idx", "value": "{-1}" },
+        {
+          "offset": "{.length; .xlat_map; .xlat_map_inv; .buffer[0..1023]}",
+          "value": "{0}"
+        }
+      ]
+    },
+    {
+      "base": "board",
+      "values": [ { "value": "{{ &__malloc_cgc_create_board_l31_0 }}" } ]
+    },
+    { "base": "temp_pos", "values": [ { "value": "{0}" } ] },
+    { "base": "tmp", "values": [ { "value": "UNINITIALIZED" } ] },
+    {
+      "base": "board",
+      "values": [ { "value": "{{ &__malloc_cgc_create_board_l31_0 }}" } ]
+    },
+    { "base": "posy", "values": [ { "value": "{0}" } ] },
+    { "base": "posx", "values": [ { "value": "{2}" } ] },
+    { "base": "player", "values": [ { "value": "{64}" } ] },
+    { "base": "tmp", "values": [ { "value": "UNINITIALIZED" } ] },
+    { "base": "secret", "values": [ { "value": "{1128775680}" } ] },
+    { "base": "idx", "values": [ { "value": "{0}" } ] },
+    {
+      "base": "player",
+      "values": [ { "value": "{{ NULL ; &__malloc_main_l239 }}" } ]
+    },
+    { "base": "whose_turn", "values": [ { "value": "{64}" } ] },
+    {
+      "base": "ttt",
+      "values": [ { "value": "{{ &__malloc_cgc_create_board_l31_0 }}" } ]
+    },
+    { "base": "tmp_1", "values": [ { "value": "UNINITIALIZED" } ] },
+    { "base": "cgc_argc", "values": [ { "value": "[--..--]" } ] },
+    {
+      "base": "cgc_argv",
+      "values": [ { "value": "{{ NULL ; &S_cgc_argv[0] }}" } ]
+    },
+    {
+      "base": "player",
+      "values": [ { "value": "{{ NULL ; &__malloc_main_l239 }}" } ]
+    },
+    { "base": "max_input", "values": [ { "value": "{256}" } ] },
+    {
+      "base": "input",
+      "values": [ { "value": "{{ &__malloc_main_l241[0] }}" } ]
+    },
+    { "base": "choice", "values": [ { "value": "{3}" } ] },
+    { "base": "game_over", "values": [ { "value": "{0}" } ] },
+    { "base": "player_set", "values": [ { "value": "{1}" } ] },
+    { "base": "whose_turn", "values": [ { "value": "{-64; 0; 64}" } ] },
+    { "base": "l_code", "values": [ { "value": "[--..--]" } ] },
+    { "base": "tmp_3", "values": [ { "value": "{0; 1; 2}" } ] },
+    { "base": "tmp_4", "values": [ { "value": "[--..--]" } ] },
+    { "base": "secret_0", "values": [ { "value": "{1128775680}" } ] },
+    { "base": "idx_0", "values": [ { "value": "{0}" } ] },
+    { "base": "idx_1", "values": [ { "value": "{0}" } ] },
+    {
+      "base": "board",
+      "values": [ { "value": "{{ &__malloc_cgc_create_board_l31_0 }}" } ]
+    },
+    { "base": "depth", "values": [ { "value": "{0}" } ] },
+    { "base": "player", "values": [ { "value": "{64}" } ] },
+    { "base": "best_posy", "values": [ { "value": "{{ &best_posy }}" } ] },
+    { "base": "best_posx", "values": [ { "value": "{{ &best_posx }}" } ] },
+    { "base": "move_status", "values": [ { "value": "{2; 16}" } ] },
+    { "base": "score", "values": [ { "value": "{0; 10}" } ] },
+    { "base": "temp_posy", "values": [ { "value": "{0}" } ] },
+    { "base": "temp_posx", "values": [ { "value": "{0; 1}" } ] },
+    { "base": "best_score", "values": [ { "value": "{0; 10}" } ] },
+    { "base": "tmp_0", "values": [ { "value": "{-1000}" } ] },
+    { "base": "i", "values": [ { "value": "{0}" } ] },
+    { "base": "j", "values": [ { "value": "{2}" } ] },
+    { "base": "tmp_2", "values": [ { "value": "UNINITIALIZED" } ] },
+    {
+      "base": "board",
+      "values": [ { "value": "{{ &__malloc_cgc_create_board_l31_0 }}" } ]
+    },
+    { "base": "best_posx", "values": [ { "value": "{-1}" } ] },
+    { "base": "best_posy", "values": [ { "value": "{-1}" } ] },
+    { "base": "tmp", "values": [ { "value": "UNINITIALIZED" } ] },
+    { "base": "cgc_internal_prng", "values": [ { "value": "{0}" } ] },
+    { "base": "__retres", "values": [ { "value": "UNINITIALIZED" } ] },
+    { "base": "__retres", "values": [ { "value": "UNINITIALIZED" } ] },
+    { "base": "__retres", "values": [ { "value": "UNINITIALIZED" } ] },
+    { "base": "__retres", "values": [ { "value": "UNINITIALIZED" } ] },
+    {
+      "base": "S___tis_strtok_internal_state",
+      "values": [ { "offset": "[0..1]", "value": "[--..--]" } ]
+    },
+    {
+      "base": "S_0_tzname",
+      "values": [ { "offset": "[0..1]", "value": "[--..--]" } ]
+    },
+    {
+      "base": "S_1_tzname",
+      "values": [ { "offset": "[0..1]", "value": "[--..--]" } ]
+    },
+    {
+      "base": "S___fc_dir_inode_0___fc_opendir",
+      "values": [
+        {
+          "offset":
+            "[0]{.st_dev; .st_ino; .st_mode; .st_nlink; .st_uid; .st_gid; .st_rdev}",
+          "value": "[--..--]"
+        },
+        { "offset": "[0].[bits 224 to 255]", "value": "UNINITIALIZED" },
+        {
+          "offset":
+            "[0]{.st_size; .st_atime; .st_atim; .st_mtime; .st_mtim; .st_ctime; .st_ctim; .st_blksize}",
+          "value": "[--..--]"
+        },
+        { "offset": "[0].[bits 928 to 959]", "value": "UNINITIALIZED" },
+        {
+          "offset":
+            "{[0].st_blocks; [1]{.st_dev; .st_ino; .st_mode; .st_nlink; .st_uid; .st_gid; .st_rdev}}",
+          "value": "[--..--]"
+        },
+        { "offset": "[1].[bits 224 to 255]", "value": "UNINITIALIZED" },
+        {
+          "offset":
+            "[1]{.st_size; .st_atime; .st_atim; .st_mtime; .st_mtim; .st_ctime; .st_ctim; .st_blksize}",
+          "value": "[--..--]"
+        },
+        { "offset": "[1].[bits 928 to 959]", "value": "UNINITIALIZED" },
+        { "offset": "[1].st_blocks", "value": "[--..--]" }
+      ]
+    },
+    {
+      "base": "S___fc_dir_entries_0___fc_opendir",
+      "values": [
+        {
+          "offset": "[0]",
+          "value": "{{ NULL ; &S_0_S___fc_dir_entries_0___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[1]",
+          "value": "{{ NULL ; &S_1_S___fc_dir_entries_0___fc_opendir[0] }}"
+        }
+      ]
+    },
+    {
+      "base": "S_0_S___fc_dir_entries_0___fc_opendir",
+      "values": [
+        { "offset": "[0].d_ino", "value": "[--..--]" },
+        { "offset": "[0].[bits 32 to 63]", "value": "UNINITIALIZED" },
+        {
+          "offset": "[0]{.d_off; .d_reclen; .d_type; .d_name[0..255]}",
+          "value": "[--..--]"
+        },
+        { "offset": "[0].[bits 2200 to 2239]", "value": "UNINITIALIZED" },
+        { "offset": "[1].d_ino", "value": "[--..--]" },
+        { "offset": "[1].[bits 32 to 63]", "value": "UNINITIALIZED" },
+        {
+          "offset": "[1]{.d_off; .d_reclen; .d_type; .d_name[0..255]}",
+          "value": "[--..--]"
+        },
+        { "offset": "[1].[bits 2200 to 2239]", "value": "UNINITIALIZED" }
+      ]
+    },
+    {
+      "base": "S_1_S___fc_dir_entries_0___fc_opendir",
+      "values": [
+        { "offset": "[0].d_ino", "value": "[--..--]" },
+        { "offset": "[0].[bits 32 to 63]", "value": "UNINITIALIZED" },
+        {
+          "offset": "[0]{.d_off; .d_reclen; .d_type; .d_name[0..255]}",
+          "value": "[--..--]"
+        },
+        { "offset": "[0].[bits 2200 to 2239]", "value": "UNINITIALIZED" },
+        { "offset": "[1].d_ino", "value": "[--..--]" },
+        { "offset": "[1].[bits 32 to 63]", "value": "UNINITIALIZED" },
+        {
+          "offset": "[1]{.d_off; .d_reclen; .d_type; .d_name[0..255]}",
+          "value": "[--..--]"
+        },
+        { "offset": "[1].[bits 2200 to 2239]", "value": "UNINITIALIZED" }
+      ]
+    },
+    {
+      "base": "S___fc_dir_inode_1___fc_opendir",
+      "values": [
+        {
+          "offset":
+            "[0]{.st_dev; .st_ino; .st_mode; .st_nlink; .st_uid; .st_gid; .st_rdev}",
+          "value": "[--..--]"
+        },
+        { "offset": "[0].[bits 224 to 255]", "value": "UNINITIALIZED" },
+        {
+          "offset":
+            "[0]{.st_size; .st_atime; .st_atim; .st_mtime; .st_mtim; .st_ctime; .st_ctim; .st_blksize}",
+          "value": "[--..--]"
+        },
+        { "offset": "[0].[bits 928 to 959]", "value": "UNINITIALIZED" },
+        {
+          "offset":
+            "{[0].st_blocks; [1]{.st_dev; .st_ino; .st_mode; .st_nlink; .st_uid; .st_gid; .st_rdev}}",
+          "value": "[--..--]"
+        },
+        { "offset": "[1].[bits 224 to 255]", "value": "UNINITIALIZED" },
+        {
+          "offset":
+            "[1]{.st_size; .st_atime; .st_atim; .st_mtime; .st_mtim; .st_ctime; .st_ctim; .st_blksize}",
+          "value": "[--..--]"
+        },
+        { "offset": "[1].[bits 928 to 959]", "value": "UNINITIALIZED" },
+        { "offset": "[1].st_blocks", "value": "[--..--]" }
+      ]
+    },
+    {
+      "base": "S___fc_dir_entries_1___fc_opendir",
+      "values": [
+        {
+          "offset": "[0]",
+          "value": "{{ NULL ; &S_0_S___fc_dir_entries_1___fc_opendir[0] }}"
+        },
+        {
+          "offset": "[1]",
+          "value": "{{ NULL ; &S_1_S___fc_dir_entries_1___fc_opendir[0] }}"
+        }
+      ]
+    },
+    {
+      "base": "S_0_S___fc_dir_entries_1___fc_opendir",
+      "values": [
+        { "offset": "[0].d_ino", "value": "[--..--]" },
+        { "offset": "[0].[bits 32 to 63]", "value": "UNINITIALIZED" },
+        {
+          "offset": "[0]{.d_off; .d_reclen; .d_type; .d_name[0..255]}",
+          "value": "[--..--]"
+        },
+        { "offset": "[0].[bits 2200 to 2239]", "value": "UNINITIALIZED" },
+        { "offset": "[1].d_ino", "value": "[--..--]" },
+        { "offset": "[1].[bits 32 to 63]", "value": "UNINITIALIZED" },
+        {
+          "offset": "[1]{.d_off; .d_reclen; .d_type; .d_name[0..255]}",
+          "value": "[--..--]"
+        },
+        { "offset": "[1].[bits 2200 to 2239]", "value": "UNINITIALIZED" }
+      ]
+    },
+    {
+      "base": "S_1_S___fc_dir_entries_1___fc_opendir",
+      "values": [
+        { "offset": "[0].d_ino", "value": "[--..--]" },
+        { "offset": "[0].[bits 32 to 63]", "value": "UNINITIALIZED" },
+        {
+          "offset": "[0]{.d_off; .d_reclen; .d_type; .d_name[0..255]}",
+          "value": "[--..--]"
+        },
+        { "offset": "[0].[bits 2200 to 2239]", "value": "UNINITIALIZED" },
+        { "offset": "[1].d_ino", "value": "[--..--]" },
+        { "offset": "[1].[bits 32 to 63]", "value": "UNINITIALIZED" },
+        {
+          "offset": "[1]{.d_off; .d_reclen; .d_type; .d_name[0..255]}",
+          "value": "[--..--]"
+        },
+        { "offset": "[1].[bits 2200 to 2239]", "value": "UNINITIALIZED" }
+      ]
+    },
+    {
+      "base": "S___p_fc_opendir",
+      "values": [
+        {
+          "offset": "[0]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[0].__fc_dir_inode",
+          "value": "{{ NULL ; &S___fc_dir_inode_0_S___p_fc_opendir[0] }}"
+        },
+        {
+          "offset": "[0].__fc_dir_entries",
+          "value": "{{ NULL ; &S___fc_dir_entries_0_S___p_fc_opendir[0] }}"
+        },
+        {
+          "offset": "[1]{.__fc_dir_id; .__fc_dir_position}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": "[1].__fc_dir_inode",
+          "value": "{{ NULL ; &S___fc_dir_inode_1_S___p_fc_opendir[0] }}"
+        },
+        {
+          "offset": "[1].__fc_dir_entries",
+          "value": "{{ NULL ; &S___fc_dir_entries_1_S___p_fc_opendir[0] }}"
+        }
+      ]
+    },
+    {
+      "base": "S___fc_dir_inode_0_S___p_fc_opendir",
+      "values": [
+        {
+          "offset":
+            "[0]{.st_dev; .st_ino; .st_mode; .st_nlink; .st_uid; .st_gid; .st_rdev}",
+          "value": "[--..--]"
+        },
+        { "offset": "[0].[bits 224 to 255]", "value": "UNINITIALIZED" },
+        {
+          "offset":
+            "[0]{.st_size; .st_atime; .st_atim; .st_mtime; .st_mtim; .st_ctime; .st_ctim; .st_blksize}",
+          "value": "[--..--]"
+        },
+        { "offset": "[0].[bits 928 to 959]", "value": "UNINITIALIZED" },
+        {
+          "offset":
+            "{[0].st_blocks; [1]{.st_dev; .st_ino; .st_mode; .st_nlink; .st_uid; .st_gid; .st_rdev}}",
+          "value": "[--..--]"
+        },
+        { "offset": "[1].[bits 224 to 255]", "value": "UNINITIALIZED" },
+        {
+          "offset":
+            "[1]{.st_size; .st_atime; .st_atim; .st_mtime; .st_mtim; .st_ctime; .st_ctim; .st_blksize}",
+          "value": "[--..--]"
+        },
+        { "offset": "[1].[bits 928 to 959]", "value": "UNINITIALIZED" },
+        { "offset": "[1].st_blocks", "value": "[--..--]" }
+      ]
+    },
+    {
+      "base": "S___fc_dir_entries_0_S___p_fc_opendir",
+      "values": [
+        {
+          "offset": "[0]",
+          "value":
+            "{{ NULL ; &S_0_S___fc_dir_entries_0_S___p_fc_opendir[0] }}"
+        },
+        {
+          "offset": "[1]",
+          "value":
+            "{{ NULL ; &S_1_S___fc_dir_entries_0_S___p_fc_opendir[0] }}"
+        }
+      ]
+    },
+    {
+      "base": "S_0_S___fc_dir_entries_0_S___p_fc_opendir",
+      "values": [
+        { "offset": "[0].d_ino", "value": "[--..--]" },
+        { "offset": "[0].[bits 32 to 63]", "value": "UNINITIALIZED" },
+        {
+          "offset": "[0]{.d_off; .d_reclen; .d_type; .d_name[0..255]}",
+          "value": "[--..--]"
+        },
+        { "offset": "[0].[bits 2200 to 2239]", "value": "UNINITIALIZED" },
+        { "offset": "[1].d_ino", "value": "[--..--]" },
+        { "offset": "[1].[bits 32 to 63]", "value": "UNINITIALIZED" },
+        {
+          "offset": "[1]{.d_off; .d_reclen; .d_type; .d_name[0..255]}",
+          "value": "[--..--]"
+        },
+        { "offset": "[1].[bits 2200 to 2239]", "value": "UNINITIALIZED" }
+      ]
+    },
+    {
+      "base": "S_1_S___fc_dir_entries_0_S___p_fc_opendir",
+      "values": [
+        { "offset": "[0].d_ino", "value": "[--..--]" },
+        { "offset": "[0].[bits 32 to 63]", "value": "UNINITIALIZED" },
+        {
+          "offset": "[0]{.d_off; .d_reclen; .d_type; .d_name[0..255]}",
+          "value": "[--..--]"
+        },
+        { "offset": "[0].[bits 2200 to 2239]", "value": "UNINITIALIZED" },
+        { "offset": "[1].d_ino", "value": "[--..--]" },
+        { "offset": "[1].[bits 32 to 63]", "value": "UNINITIALIZED" },
+        {
+          "offset": "[1]{.d_off; .d_reclen; .d_type; .d_name[0..255]}",
+          "value": "[--..--]"
+        },
+        { "offset": "[1].[bits 2200 to 2239]", "value": "UNINITIALIZED" }
+      ]
+    },
+    {
+      "base": "S___fc_dir_inode_1_S___p_fc_opendir",
+      "values": [
+        {
+          "offset":
+            "[0]{.st_dev; .st_ino; .st_mode; .st_nlink; .st_uid; .st_gid; .st_rdev}",
+          "value": "[--..--]"
+        },
+        { "offset": "[0].[bits 224 to 255]", "value": "UNINITIALIZED" },
+        {
+          "offset":
+            "[0]{.st_size; .st_atime; .st_atim; .st_mtime; .st_mtim; .st_ctime; .st_ctim; .st_blksize}",
+          "value": "[--..--]"
+        },
+        { "offset": "[0].[bits 928 to 959]", "value": "UNINITIALIZED" },
+        {
+          "offset":
+            "{[0].st_blocks; [1]{.st_dev; .st_ino; .st_mode; .st_nlink; .st_uid; .st_gid; .st_rdev}}",
+          "value": "[--..--]"
+        },
+        { "offset": "[1].[bits 224 to 255]", "value": "UNINITIALIZED" },
+        {
+          "offset":
+            "[1]{.st_size; .st_atime; .st_atim; .st_mtime; .st_mtim; .st_ctime; .st_ctim; .st_blksize}",
+          "value": "[--..--]"
+        },
+        { "offset": "[1].[bits 928 to 959]", "value": "UNINITIALIZED" },
+        { "offset": "[1].st_blocks", "value": "[--..--]" }
+      ]
+    },
+    {
+      "base": "S___fc_dir_entries_1_S___p_fc_opendir",
+      "values": [
+        {
+          "offset": "[0]",
+          "value":
+            "{{ NULL ; &S_0_S___fc_dir_entries_1_S___p_fc_opendir[0] }}"
+        },
+        {
+          "offset": "[1]",
+          "value":
+            "{{ NULL ; &S_1_S___fc_dir_entries_1_S___p_fc_opendir[0] }}"
+        }
+      ]
+    },
+    {
+      "base": "S_0_S___fc_dir_entries_1_S___p_fc_opendir",
+      "values": [
+        { "offset": "[0].d_ino", "value": "[--..--]" },
+        { "offset": "[0].[bits 32 to 63]", "value": "UNINITIALIZED" },
+        {
+          "offset": "[0]{.d_off; .d_reclen; .d_type; .d_name[0..255]}",
+          "value": "[--..--]"
+        },
+        { "offset": "[0].[bits 2200 to 2239]", "value": "UNINITIALIZED" },
+        { "offset": "[1].d_ino", "value": "[--..--]" },
+        { "offset": "[1].[bits 32 to 63]", "value": "UNINITIALIZED" },
+        {
+          "offset": "[1]{.d_off; .d_reclen; .d_type; .d_name[0..255]}",
+          "value": "[--..--]"
+        },
+        { "offset": "[1].[bits 2200 to 2239]", "value": "UNINITIALIZED" }
+      ]
+    },
+    {
+      "base": "S_1_S___fc_dir_entries_1_S___p_fc_opendir",
+      "values": [
+        { "offset": "[0].d_ino", "value": "[--..--]" },
+        { "offset": "[0].[bits 32 to 63]", "value": "UNINITIALIZED" },
+        {
+          "offset": "[0]{.d_off; .d_reclen; .d_type; .d_name[0..255]}",
+          "value": "[--..--]"
+        },
+        { "offset": "[0].[bits 2200 to 2239]", "value": "UNINITIALIZED" },
+        { "offset": "[1].d_ino", "value": "[--..--]" },
+        { "offset": "[1].[bits 32 to 63]", "value": "UNINITIALIZED" },
+        {
+          "offset": "[1]{.d_off; .d_reclen; .d_type; .d_name[0..255]}",
+          "value": "[--..--]"
+        },
+        { "offset": "[1].[bits 2200 to 2239]", "value": "UNINITIALIZED" }
+      ]
+    },
+    {
+      "base": "S_cgc_argv",
+      "values": [
+        { "offset": "[0]", "value": "{{ NULL ; &S_0_S_cgc_argv[0] }}" },
+        { "offset": "[1]", "value": "{{ NULL ; &S_1_S_cgc_argv[0] }}" }
+      ]
+    },
+    {
+      "base": "S_0_S_cgc_argv",
+      "values": [ { "offset": "[0..1]", "value": "[--..--]" } ]
+    },
+    {
+      "base": "S_1_S_cgc_argv",
+      "values": [ { "offset": "[0..1]", "value": "[--..--]" } ]
+    },
+    {
+      "base": "__malloc_main_l239",
+      "values": [
+        { "offset": ".name[0..23]", "value": "[--..--]" },
+        {
+          "offset": ".flair",
+          "value":
+            "{{ NULL + [--..--] ; &cgc_terminator ; &cgc_hal ; &cgc_collosus }}"
+        },
+        {
+          "offset":
+            "{.score; .num_ttt_wins; .num_rps_wins; .num_hi_lo_wins; .num_ttt_consecutive_draws; .flair_set}",
+          "value": "[--..--]"
+        },
+        {
+          "offset": ".print_stats",
+          "value":
+            "{{ NULL + [0..18446744073709551615] ; &cgc_player_print_stats }}"
+        }
+      ]
+    },
+    {
+      "base": "__malloc_main_l241",
+      "values": [ { "offset": "[0..255]", "value": "[--..--]" } ]
+    },
+    {
+      "base": "__malloc_cgc_create_board_l31",
+      "values": [
+        {
+          "offset": ".ttt_board{[0][0..2]; [1][0..1]}",
+          "value": "{-64; 0; 64}"
+        },
+        {
+          "offset": ".ttt_board{[1][2]; [2][0..2]}",
+          "value": "{-64; 0; 64} or UNINITIALIZED"
+        },
+        { "offset": ".[bits 72 to 95]", "value": "UNINITIALIZED" },
+        { "offset": ".num_moves", "value": "[--..--]" },
+        { "offset": ".winner", "value": "{8; 16; 32}" }
+      ]
+    },
+    {
+      "base": "va_arg_00_cgc_printf_call_site_03",
+      "values": [ { "value": "{{ \"-\" ; \"H\" ; \"%\" ; \"C\" }}" } ]
+    },
+    {
+      "base": "va_args_cgc_printf_call_site_03",
+      "values": [
+        {
+          "offset": "[0]",
+          "value": "{{ (void *)&va_arg_00_cgc_printf_call_site_03 }}"
+        }
+      ]
+    },
+    {
+      "base": "va_arg_00_cgc_printf_call_site_09",
+      "values": [ { "value": "{{ NULL ; &__malloc_main_l239.name[0] }}" } ]
+    },
+    {
+      "base": "va_args_cgc_printf_call_site_09",
+      "values": [
+        {
+          "offset": "[0]",
+          "value": "{{ (void *)&va_arg_00_cgc_printf_call_site_09 }}"
+        }
+      ]
+    },
+    {
+      "base": "__malloc_cgc_create_board_l31_0",
+      "values": [
+        { "offset": ".ttt_board[0][0]", "value": "{0; 64}" },
+        { "offset": ".ttt_board[0][1]", "value": "{0}" },
+        { "offset": ".ttt_board[0][2]", "value": "{64}" },
+        { "offset": ".ttt_board[1][0..1]", "value": "{0}" },
+        { "offset": ".ttt_board[1][2]", "value": "{0} or UNINITIALIZED" },
+        { "offset": ".ttt_board[2][0]", "value": "{0; 64} or UNINITIALIZED" },
+        { "offset": ".ttt_board[2][1]", "value": "{0} or UNINITIALIZED" },
+        { "offset": ".ttt_board[2][2]", "value": "{0; 64} or UNINITIALIZED" },
+        { "offset": ".[bits 72 to 95]", "value": "UNINITIALIZED" },
+        { "offset": ".num_moves", "value": "{2}" },
+        { "offset": ".winner", "value": "{0}" }
+      ]
+    }
+  ]
+}
