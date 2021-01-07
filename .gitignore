@@ -31,3 +31,4 @@ daemon-monitor/RG_*
 daemon-monitor/workdir_*
 cb-multios-fast/
 cb-multios-taint/
+linkedlist-test/
