@@ -32,52 +32,5 @@
             "198": {
                   "then": "AIF_RANGE(16,choice,1,1);"
             }
-      }, 
-      "board.c": {
-            "97": {
-                  "then": "AIF_RANGE(22,posy,0,2);\nAIF_RANGE(23,posx,0,2);"
-            }, 
-            "66": {
-                  "then": "AIF_RANGE(24,j,2,2);\nAIF_RANGE(25,posy,0,0);\nAIF_RANGE(26,posx,2,2);\nAIF_RANGE(27,score,0,10);\nAIF_RANGE(28,i,0,0);"
-            }, 
-            "67": {
-                  "then": "AIF_RANGE(29,j,0,2);\nAIF_RANGE(30,posy,0,2);\nAIF_RANGE(31,posx,0,2);\nAIF_RANGE(32,i,0,2);"
-            }, 
-            "71": {
-                  "then": "AIF_RANGE(33,j,0,0);\nAIF_RANGE(34,posy,1,1);\nAIF_RANGE(35,posx,0,0);\nAIF_RANGE(36,i,1,1);"
-            }, 
-            "111": {
-                  "then": "AIF_RANGE(66,i,0,0);\nAIF_RANGE(67,posx,1,2);\nAIF_RANGE(68,j,1,2);\nAIF_RANGE(69,posy,0,0);"
-            }, 
-            "77": {
-                  "then": "AIF_RANGE(40,j,2,2);\nAIF_RANGE(41,posx,2,2);"
-            }, 
-            "46": {
-                  "then": "AIF_RANGE(42,posy,0,2);\nAIF_RANGE(43,posx,0,2);"
-            }, 
-            "45": {
-                  "then": "AIF_RANGE(44,j,2,2);\nAIF_RANGE(45,posy,0,0);\nAIF_RANGE(46,posx,2,2);\nAIF_RANGE(47,i,0,0);"
-            }, 
-            "48": {
-                  "then": "AIF_RANGE(48,j,1,2);\nAIF_RANGE(49,posy,0,1);\nAIF_RANGE(50,posx,1,2);\nAIF_RANGE(51,i,0,1);"
-            }, 
-            "59": {
-                  "then": "AIF_RANGE(52,j,0,2);\nAIF_RANGE(53,posy,0,2);\nAIF_RANGE(54,posx,0,2);\nAIF_RANGE(55,i,0,2);"
-            }, 
-            "50": {
-                  "then": "AIF_RANGE(56,j,0,2);\nAIF_RANGE(57,posy,0,2);\nAIF_RANGE(58,posx,0,2);\nAIF_RANGE(59,i,0,2);"
-            }, 
-            "62": {
-                  "then": "AIF_RANGE(70,posy,0,2);\nAIF_RANGE(71,j,0,2);\nAIF_RANGE(72,i,0,2);\nAIF_RANGE(73,posx,0,2);"
-            }, 
-            "54": {
-                  "then": "AIF_RANGE(61,depth,0,0);\nAIF_RANGE(62,i,0,2);\nAIF_RANGE(63,player,64,64);\nAIF_RANGE(64,j,0,2);\nAIF_RANGE(65,player,64,64);"
-            }, 
-            "91": {
-                  "then": "AIF_RANGE(37,i,0,0);\nAIF_RANGE(38,posy,0,0);\nAIF_RANGE(39,score,0,0);"
-            }, 
-            "94": {
-                  "then": "AIF_RANGE(60,posx,0,2);"
-            }
       }
 }

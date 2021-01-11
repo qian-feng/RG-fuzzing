@@ -140,6 +140,7 @@ static s32 forksrv_pid,               /* PID of the fork server           */
 shared_data_t* shared_data;
 
 EXP_ST u8* trace_bits;                /* SHM with instrumentation bitmap  */
+EXP_ST u8* brc_shm_bits;              /* for the evalution and to mute sites.  */ 
 
 EXP_ST u8  virgin_bits[MAP_SIZE],     /* Regions yet untouched by fuzzing */
            virgin_tmout[MAP_SIZE],    /* Bits we haven't seen in tmouts   */
@@ -148,6 +149,7 @@ EXP_ST u8  virgin_bits[MAP_SIZE],     /* Regions yet untouched by fuzzing */
 static u8  var_bytes[MAP_SIZE];       /* Bytes that appear to be variable */
 
 static s32 shm_id;                    /* ID of the SHM region             */
+static s32 brc_shm_id;                /* ID of the brc SHM region         */
 
 static volatile u8 stop_soon,         /* Ctrl-C pressed?                  */
                    clear_screen = 1,  /* Window resized?                  */
@@ -1209,6 +1211,7 @@ static inline void classify_counts(u32* mem) {
 static void remove_shm(void) {
 
   shmctl(shm_id, IPC_RMID, NULL);
+  shmctl(brc_shm_id, IPC_RMID, NULL);
 
 }
 
@@ -1348,7 +1351,10 @@ static void cull_queue(void) {
 
 EXP_ST void setup_shm(void) {
 
+  int i;
   u8* shm_str;
+  u8* brc_shm_str;
+  
 
   if (!in_bitmap) memset(virgin_bits, 255, MAP_SIZE);
 
@@ -1359,27 +1365,50 @@ EXP_ST void setup_shm(void) {
 
   if (shm_id < 0) PFATAL("shmget() failed");
 
+  brc_shm_id = shmget(IPC_PRIVATE, sizeof(u8) * MAP_SIZE, IPC_CREAT | IPC_EXCL | 0600);
+  if (brc_shm_id < 0) PFATAL("shmget() failed");
+
   atexit(remove_shm);
 
   shm_str = alloc_printf("%d", shm_id);
+  brc_shm_str = alloc_printf("%d", brc_shm_id);
 
   /* If somebody is asking us to fuzz instrumented binaries in dumb mode,
      we don't want them to detect instrumentation, since we won't be sending
      fork server commands. This should be replaced with better auto-detection
      later on, perhaps? */
 
-  if (!dumb_mode) setenv(SHM_ENV_VAR, shm_str, 1);
+  if (!dumb_mode) {
+    setenv(SHM_ENV_VAR, shm_str, 1);
+    setenv(BRC_SHM_ENV_VAR, brc_shm_str, 1);
+
+    char *myfifo = "/tmp/fifopipe";
+    mkfifo(myfifo, 0666);
+    int fd = open(myfifo, O_WRONLY);
+    fcntl(fd, F_SETFL, O_NONBLOCK);
+    write(fd, brc_shm_str, strlen(brc_shm_str));
+    close(fd);
+  }
 
   ck_free(shm_str);
+  ck_free(brc_shm_str);
 
   shared_data = shmat(shm_id, NULL, 0);
+  brc_shm_bits = shmat(brc_shm_id, NULL, 0);
   
   if (!shared_data) PFATAL("shmat() failed");
 
   trace_bits  = &shared_data->afl_area[0];
 
-}
+  // 0 for unused/not care; 
+  // 1 for triggered but not stepped in; 
+  // 2 for hitting target range. 
+  // map size of 512
+  memset(brc_shm_bits, 0, 512); 
 
+  shared_data->tscs_by_index = NULL;
+  
+}
 
 /* Load postprocessor, if available. */
 
@@ -4978,10 +5007,11 @@ static u8 fuzz_one(char** argv) {
 
 #ifndef IGNORE_FINDS
 
-  if(ijon_should_schedule(ijon_state)) {
+  // if(ijon_should_schedule(ijon_state)) {
+  if(ijon_should_schedule(shared_data->count)) {
 
     printf("scheduled max input!!!!\n");
-    ijon_input_info* info = ijon_get_input(ijon_state); // now schedule the seeds kept for reducing distance to target range. 
+    ijon_input_info* info = ijon_get_input(shared_data); // now schedule the seeds kept for reducing distance to target range. 
 
     fd = open(info->filename, O_RDONLY);
 

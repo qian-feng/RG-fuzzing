@@ -1,3 +1,4 @@
+# bash refresh.sh RG Childs_Game
 # $1 is the mode
 # $2 is the program 
 

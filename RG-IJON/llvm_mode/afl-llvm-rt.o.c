@@ -39,9 +39,9 @@
 #include <execinfo.h>
 
 #define MAX(a,b) ((a) > (b) ? a : b)
-#define UNTOUCH  '0'
-#define TOUCHED  '1'
-#define NOTCOND  '2'
+#define NOTCARE  '0' // the initial default value
+#define TOUCHED  '1' // triggered but not yet inside range
+#define TRAPPED  '2' // trapped inside target range 
 
 #define LOGGING  0
 
@@ -64,7 +64,7 @@
    is used for instrumentation output before __afl_map_shm() has a chance to run.
    It will end up as .comm, so it shouldn't be too wasteful. */
 
-u8* __aif_untouched_ptr;
+u8* __aif_untouched_ptr; // for memorizing the ranges stepped into and deleting seeds, also for monitoring purpose. 
 
 u8  __afl_area_initial[MAP_SIZE];
 u8* __afl_area_ptr = __afl_area_initial;
@@ -104,36 +104,47 @@ void ijon_min(uint32_t addr, uint64_t val){
 }
 
 void aif_range(uint32_t addr, int index, int val, int low, int high) { 
-  // here is the context
+  
+  if (__aif_untouched_ptr[index] == TRAPPED)  {
+    return;
+  }  
+  __aif_untouched_ptr[index] = TOUCHED; 
+
+  // here is the context => angora style - TODO 
   uint32_t addr1 = addr;
   __afl_state = (__afl_state^addr1)%MAP_SIZE;
   addr1 = __afl_state;
 
 #ifdef LOGGING
-  FILE *fp1 = fopen("/data/debug.log", "a+");
-  fprintf(fp1, "[aif_range][109]: addr: %p, index(%lu), val(%d), low(%d), high(%d)\n", addr1, index, val, low, high);
-  fclose(fp1);
-#endif 
-  // if(index != -1) {
-  //   // skip the return 
-  //   if(__aif_untouched_ptr[index] != UNTOUCH) { 
-  //     return;
-  //   } 
-  // }
+  FILE *fp = fopen("/data/debug.log", "a+");
+  fprintf(fp, "[aif_range][122]: addr: %p, index(%lu), val(%d), low(%d), high(%d)\n", addr1, index, val, low, high);
+#endif   
+  
   uint64_t distance = abs(val - (low + high) / 2) - (high - low) / 2;  
   distance = MAX(0, distance);
 
   if(distance == 0) {
     // mute the site
+    __aif_untouched_ptr[index] = TRAPPED; 
     __afl_max_ptr[addr1%MAXMAP_SIZE] = 0xffffffffffffffff; // so no more seed kept for this site
-    // need to delete corresponding ones in the dir already
     
-    return; // if already inside the range, let's delete those seeds and return early. 
+    // first time trapped for this index, delete/move the corresponding testcases
+    Node *cur = shared_data->tscs_by_index;
+    Node *temp;
+ 
+    while (cur != NULL) {
+      temp = cur -> next;
+#ifdef LOGGING
+  fprintf(fp, "[aif_range][unlink file]: %s\n", cur->filename);
+#endif
+      remove(cur->filename); // delete the file
+      free(cur);             // release node memory
+      cur = temp;
+    }       
+    return;  
   }
 #ifdef LOGGING
-  FILE *fp3 = fopen("/data/debug.log", "a+");
-  fprintf(fp3, "[debug aif_range]: distance: %lu\n", distance);
-  fclose(fp3);
+  fprintf(fp, "[debug aif_range]: distance: %lu\n", distance);
 #endif 
   distance = 0xffffffffffffffff-distance;
   if(__afl_max_ptr[addr1%MAXMAP_SIZE] < distance) {
@@ -141,7 +152,6 @@ void aif_range(uint32_t addr, int index, int val, int low, int high) {
     __aif_max_index_ptr[addr1%MAXMAP_SIZE] = index; // remember which watch point this is for
   }
 #ifdef LOGGING
-  FILE *fp = fopen("/data/debug.log", "a+");
   if(index != -1){
     fprintf(fp, "[AIF_RANGE]: index %d, status:%d, distance: %llx\n", index, __aif_untouched_ptr[index]-'0', distance);
   }
@@ -150,7 +160,6 @@ void aif_range(uint32_t addr, int index, int val, int low, int high) {
   }
   fclose(fp);
 #endif
-
 }
 
 
@@ -163,16 +172,17 @@ void ijon_map_set(uint32_t addr){
 }
 
 void aif_map_set(ijon_u32_t index, ijon_u32_t addr){
+  return;
   
-#ifdef LOGGING
-  FILE *fp = fopen("/data/debug.log", "a+");
-  fprintf(fp, "[AIF_SET]: alive at index %d, status:%c\n", index, __aif_untouched_ptr[index]);
-  fclose(fp);
-#endif
-  if(__aif_untouched_ptr[index] != UNTOUCH) { 
-    return;
-  }
-  __afl_area_ptr[(__afl_state^addr)%MAP_SIZE]|=1;
+// #ifdef LOGGING
+//   FILE *fp = fopen("/data/debug.log", "a+");
+//   fprintf(fp, "[AIF_SET]: alive at index %d, status:%c\n", index, __aif_untouched_ptr[index]);
+//   fclose(fp);
+// #endif
+//   if(__aif_untouched_ptr[index] != UNTOUCH) { 
+//     return;
+//   }
+//   __afl_area_ptr[(__afl_state^addr)%MAP_SIZE]|=1;
 }
 
 uint32_t ijon_strdist(char* a,char* b){
@@ -260,6 +270,7 @@ static u8 is_persistent;
 static void __afl_map_shm(void) {
 
   u8 *id_str = getenv(SHM_ENV_VAR);
+  u8 *brc_id_str = getenv(BRC_SHM_ENV_VAR); // for acquiring the branch status bitmap 
 
   /* If we're running under AFL, attach to the appropriate region, replacing the
      early-stage __afl_area_initial region that is needed to allow some really
@@ -278,53 +289,60 @@ static void __afl_map_shm(void) {
     __aif_max_index_ptr = &shared_data->aif_index[0];
 
     /* Whooooops. */
-
-
     /* Write something into the bitmap so that even with low AFL_INST_RATIO,
        our parent doesn't give up on us. */
 
     __afl_area_ptr[0] = 1;
-
   }
 
+  // now load the branch status map in child proc. 
+  if (brc_id_str) {
+    u32 brc_shm_id = atoi(brc_id_str);    
+    
+    __aif_untouched_ptr = shmat(brc_shm_id, NULL, 0); 
+    if (__aif_untouched_ptr == (void *)-1) _exit(1);
+  }
 }
 
 /* memory shared with monitor   */
-static void __monitor_map_shm(void) {
+/* created by the fuzzer parent proc;
+   updated by fuzzer child proc;
+   read by the monitor to evaluate. */
+// static void __monitor_map_shm(void) {
     
-    u32 shm_id = shmget(KEY, SIZE, 0);
-    if(shm_id == -1) {
-      fprintf(stderr,  "fail to load shm: %d\n", shm_id);
-      _exit(1); // Abort if fails to load existing segment
-    }
-    __aif_untouched_ptr = shmat(shm_id, NULL, 0);
-    if(__aif_untouched_ptr == (void*)-1) _exit(1);
-#ifdef LOGGING
-    FILE *fp = fopen("/data/debug.log", "a+");
-    fprintf(fp,   "load shm successfully, key: %d, size: %d, id: %d\n", KEY, SIZE, shm_id);    
-    fprintf(fp, "__aif_untouched_ptr: %p\n",__aif_untouched_ptr);
+//     u32 shm_id = shmget(KEY, SIZE, 0);
+//     if(shm_id == -1) {
+//       fprintf(stderr,  "fail to load shm: %d\n", shm_id);
+//       _exit(1); // Abort if fails to load existing segment
+//     }
+//     __aif_untouched_ptr = shmat(shm_id, NULL, 0);
+//     if(__aif_untouched_ptr == (void*)-1) _exit(1);
+// #ifdef LOGGING
+//     FILE *fp = fopen("/data/debug.log", "a+");
+//     fprintf(fp,   "load shm successfully, key: %d, size: %d, id: %d\n", KEY, SIZE, shm_id);    
+//     fprintf(fp, "__aif_untouched_ptr: %p\n",__aif_untouched_ptr);
     
-    int i = 0;
-    int cnt_touched = 0;
-    int cnt_untouch = 0;
-    int cnt_notcond = 0;
-    for (i = 0; i<SIZE; i++) {
-      if(__aif_untouched_ptr[i] == TOUCHED) {
-        cnt_touched += 1;
-        //fprintf(fp, "touch index: %d\n", i);
-      }
-      if(__aif_untouched_ptr[i] == UNTOUCH) {
-        cnt_untouch += 1;
-      }
-      if(__aif_untouched_ptr[i] == NOTCOND) {
-        cnt_notcond += 1;
-      }
-    }
+//     int i = 0;
+//     int cnt_touched = 0;
+//     int cnt_untouch = 0;
+//     int cnt_notcond = 0;
+//     for (i = 0; i<SIZE; i++) {
+//       if(__aif_untouched_ptr[i] == TOUCHED) {
+//         cnt_touched += 1;
+//         //fprintf(fp, "touch index: %d\n", i);
+//       }
+//       if(__aif_untouched_ptr[i] == UNTOUCH) {
+//         cnt_untouch += 1;
+//       }
+//       if(__aif_untouched_ptr[i] == NOTCOND) {
+//         cnt_notcond += 1;
+//       }
+//     }
     
-    fprintf(fp, "[beginning]: %d touched, %d untouch, %d don't care \n", cnt_touched, cnt_untouch, cnt_notcond);
-    fclose(fp);
-#endif
-}
+//     fprintf(fp, "[beginning]: %d touched, %d untouch, %d don't care \n", cnt_touched, cnt_untouch, cnt_notcond);
+//     fclose(fp);
+// #endif
+// }
 
 /* Fork server logic. */
 
@@ -472,7 +490,7 @@ void __afl_manual_init(void) {
   if (!init_done) {
 
     __afl_map_shm();
-    __monitor_map_shm();
+    //__monitor_map_shm();
     __afl_start_forkserver();
     init_done = 1;
 

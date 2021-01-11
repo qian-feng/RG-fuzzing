@@ -23,9 +23,11 @@ typedef struct{
 
 ijon_min_state* new_ijon_min_state();
 
-u8 ijon_should_schedule(ijon_min_state* self);
+// u8 ijon_should_schedule(ijon_min_state* self);
+u8 ijon_should_schedule(int count);
 
-ijon_input_info* ijon_get_input(ijon_min_state* self);
+// ijon_input_info* ijon_get_input(ijon_min_state* self);
+ijon_input_info* ijon_get_input(shared_data_t* shared);
 
 int ijon_update_max(ijon_min_state* self, shared_data_t* shared, uint8_t* data, size_t len, int seed_id);
 

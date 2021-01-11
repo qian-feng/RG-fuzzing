@@ -32,3 +32,4 @@ daemon-monitor/workdir_*
 cb-multios-fast/
 cb-multios-taint/
 linkedlist-test/
+cb-multios/
