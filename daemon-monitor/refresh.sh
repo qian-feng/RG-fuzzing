@@ -36,4 +36,6 @@ fi
 if [[ $1 == *"COV"* ]]; then
     echo "get cov"
     cp ../cb-multios-cov/build/challenges/$2/$2 ./targets/$2.cov
+    cp ../cb-multios-cov/build/include/libcgc.so lib-cov/
+    cp ../cb-multios-cov/build/include/tiny-AES128-C/libtiny-AES128-C.so lib-cov/
 fi

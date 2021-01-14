@@ -145,7 +145,7 @@ int ijon_update_max(ijon_min_state* self, shared_data_t* shared, uint8_t* data, 
       else if(shared->afl_max[i] != 0xffffffffffffffff) {
         // a within range case!
         shared->count += 1;
-        ijon_store_max_input(self, self->num_entries, data, len, shared->aif_index[i], seed_id, shared->afl_max[i], &shared->tscs_by_index);
+        ijon_store_max_input(self, shared->count, data, len, shared->aif_index[i], seed_id, shared->afl_max[i], &shared->tscs_by_index);
         num_kept += 1;
         // self->num_entries++;
         return num_kept;
@@ -163,7 +163,7 @@ int ijon_update_max(ijon_min_state* self, shared_data_t* shared, uint8_t* data, 
       else if(shared->afl_max[i] != 0xffffffffffffffff) {
         // a within range case!
         shared->count += 1;
-        ijon_store_max_input(self, self->num_entries, data, len, shared->aif_index[i], seed_id, shared->afl_max[i], &shared->tscs_by_index);
+        ijon_store_max_input(self, shared->count, data, len, shared->aif_index[i], seed_id, shared->afl_max[i], &shared->tscs_by_index);
         num_kept += 1;
         // self->num_entries++;
         return num_kept;
@@ -173,7 +173,7 @@ int ijon_update_max(ijon_min_state* self, shared_data_t* shared, uint8_t* data, 
 
   if (minindex != -2) {
     shared->count += 1;
-    ijon_store_max_input(self, self->num_entries, data, len, minindex, seed_id, minidist, &shared->tscs_by_index);
+    ijon_store_max_input(self, shared->count, data, len, minindex, seed_id, minidist, &shared->tscs_by_index);
     num_kept += 1;
     // self->num_entries++;
   }

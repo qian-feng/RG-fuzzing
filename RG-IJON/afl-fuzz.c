@@ -1382,12 +1382,13 @@ EXP_ST void setup_shm(void) {
     setenv(SHM_ENV_VAR, shm_str, 1);
     setenv(BRC_SHM_ENV_VAR, brc_shm_str, 1);
 
-    char *myfifo = "/tmp/fifopipe";
-    mkfifo(myfifo, 0666);
-    int fd = open(myfifo, O_WRONLY);
-    fcntl(fd, F_SETFL, O_NONBLOCK);
-    write(fd, brc_shm_str, strlen(brc_shm_str));
-    close(fd);
+    // no need to write to pipe for this one.
+    // char *myfifo = "/tmp/fifopipe";
+    // mkfifo(myfifo, 0666);
+    // int fd = open(myfifo, O_WRONLY);
+    // fcntl(fd, F_SETFL, O_NONBLOCK);
+    // write(fd, brc_shm_str, strlen(brc_shm_str));
+    // close(fd);  
   }
 
   ck_free(shm_str);
