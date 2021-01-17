@@ -76,6 +76,7 @@ uint64_t  __aif_max_index[MAXMAP_SIZE];
 uint64_t* __aif_max_index_ptr = __aif_max_index;
 
 shared_data_t* shared_data = NULL;
+ijon_queue_t* ijon_queue = NULL;
 
 __thread u32 __afl_prev_loc;
 __thread u32 __afl_state;
@@ -129,7 +130,7 @@ void aif_range(uint32_t addr, int index, int val, int low, int high) {
     __afl_max_ptr[addr1%MAXMAP_SIZE] = 0xffffffffffffffff; // so no more seed kept for this site
     
     // first time trapped for this index, delete/move the corresponding testcases
-    Node *cur = shared_data->tscs_by_index;
+    Node *cur = ijon_queue->tscs_by_index;
     Node *temp;
  
     while (cur != NULL) {
@@ -271,7 +272,7 @@ static void __afl_map_shm(void) {
 
   u8 *id_str = getenv(SHM_ENV_VAR);
   u8 *brc_id_str = getenv(BRC_SHM_ENV_VAR); // for acquiring the branch status bitmap 
-
+  u8 *ijon_id_str = getenv(IJON_SHM_ENV_VAR);
   /* If we're running under AFL, attach to the appropriate region, replacing the
      early-stage __afl_area_initial region that is needed to allow some really
      hacky .init code to work correctly in projects such as OpenSSL. */
@@ -301,6 +302,15 @@ static void __afl_map_shm(void) {
     
     __aif_untouched_ptr = shmat(brc_shm_id, NULL, 0); 
     if (__aif_untouched_ptr == (void *)-1) _exit(1);
+  }
+
+  // acquire ijon queue
+  if (ijon_id_str) {
+    u32 ijon_shm_id = atoi(ijon_id_str);
+    
+    ijon_queue = shmat(ijon_shm_id, NULL, 0);
+
+    if (ijon_queue == (void *)-1) _exit(1);
   }
 }
 

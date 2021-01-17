@@ -270,6 +270,7 @@
 
 /* Environment variable used to pass SHM ID to the called program. */
 
+#define IJON_SHM_ENV_VAR    "__IJON_SHM_ID"
 #define BRC_SHM_ENV_VAR     "__BRC_SHM_ID"
 #define SHM_ENV_VAR         "__AFL_SHM_ID"
 #define AIF_SHM_SIZE         "AIF_SIZE"
@@ -338,10 +339,15 @@ typedef struct{
   u8  afl_area[MAP_SIZE];
   uint64_t afl_max[MAXMAP_SIZE];
   uint64_t aif_index[MAXMAP_SIZE]; // the index of watch point
-  Node *tscs_by_index;  // all testcases in one linked list ordered by index! 
-  int count;           // number of testcases in ijon_max queue 
+//   Node *tscs_by_index;  // all testcases in one linked list ordered by index! 
+//   int count;           // number of testcases in ijon_max queue 
   uint8_t is_selected;
 } shared_data_t;
+
+typedef struct {
+   Node *tscs_by_index;  // all testcases in one linked list ordered by index! 
+  int count;           // number of testcases in ijon_max queue
+} ijon_queue_t;
 
 
 /* Maximum allocator request size (keep well under INT_MAX): */

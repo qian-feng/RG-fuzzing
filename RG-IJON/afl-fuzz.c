@@ -138,6 +138,7 @@ static s32 forksrv_pid,               /* PID of the fork server           */
            out_dir_fd = -1;           /* FD of the lock file              */
 
 shared_data_t* shared_data;
+ijon_queue_t* ijon_queue;
 
 EXP_ST u8* trace_bits;                /* SHM with instrumentation bitmap  */
 EXP_ST u8* brc_shm_bits;              /* for the evalution and to mute sites.  */ 
@@ -150,6 +151,7 @@ static u8  var_bytes[MAP_SIZE];       /* Bytes that appear to be variable */
 
 static s32 shm_id;                    /* ID of the SHM region             */
 static s32 brc_shm_id;                /* ID of the brc SHM region         */
+static s32 ijon_shm_id;
 
 static volatile u8 stop_soon,         /* Ctrl-C pressed?                  */
                    clear_screen = 1,  /* Window resized?                  */
@@ -1212,7 +1214,7 @@ static void remove_shm(void) {
 
   shmctl(shm_id, IPC_RMID, NULL);
   shmctl(brc_shm_id, IPC_RMID, NULL);
-
+  shmctl(ijon_shm_id, IPC_RMID, NULL);
 }
 
 
@@ -1354,6 +1356,7 @@ EXP_ST void setup_shm(void) {
   int i;
   u8* shm_str;
   u8* brc_shm_str;
+  u8* ijon_shm_str;
   
 
   if (!in_bitmap) memset(virgin_bits, 255, MAP_SIZE);
@@ -1368,10 +1371,14 @@ EXP_ST void setup_shm(void) {
   brc_shm_id = shmget(IPC_PRIVATE, sizeof(u8) * MAP_SIZE, IPC_CREAT | IPC_EXCL | 0600);
   if (brc_shm_id < 0) PFATAL("shmget() failed");
 
+  ijon_shm_id = shmget(IPC_PRIVATE, sizeof(ijon_queue_t), IPC_CREAT | IPC_EXCL | 0600);
+  if (ijon_shm_id < 0) PFATAL("shmget() failed");
+
   atexit(remove_shm);
 
   shm_str = alloc_printf("%d", shm_id);
   brc_shm_str = alloc_printf("%d", brc_shm_id);
+  ijon_shm_str = alloc_printf("%d", ijon_shm_id);
 
   /* If somebody is asking us to fuzz instrumented binaries in dumb mode,
      we don't want them to detect instrumentation, since we won't be sending
@@ -1381,6 +1388,7 @@ EXP_ST void setup_shm(void) {
   if (!dumb_mode) {
     setenv(SHM_ENV_VAR, shm_str, 1);
     setenv(BRC_SHM_ENV_VAR, brc_shm_str, 1);
+    setenv(IJON_SHM_ENV_VAR, ijon_shm_str, 1);
 
     // no need to write to pipe for this one.
     // char *myfifo = "/tmp/fifopipe";
@@ -1393,9 +1401,11 @@ EXP_ST void setup_shm(void) {
 
   ck_free(shm_str);
   ck_free(brc_shm_str);
+  ck_free(ijon_shm_str);
 
   shared_data = shmat(shm_id, NULL, 0);
   brc_shm_bits = shmat(brc_shm_id, NULL, 0);
+  ijon_queue = shmat(ijon_shm_id, NULL, 0);
   
   if (!shared_data) PFATAL("shmat() failed");
 
@@ -1407,7 +1417,7 @@ EXP_ST void setup_shm(void) {
   // map size of 512
   memset(brc_shm_bits, 0, 512); 
 
-  shared_data->tscs_by_index = NULL;
+  ijon_queue->tscs_by_index = NULL;
   
 }
 
@@ -3165,9 +3175,11 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
 
   if (fault == crash_mode) {
     
-		num_kept = ijon_update_max(ijon_state, shared_data, mem, len, range_seeds);
-    range_seeds += num_kept; // new seed kept, inc seed id  
-    //ACTF("num_kept = %d, range_seeds = %d\n", num_kept, range_seeds);
+		if(num_kept = ijon_update_max(ijon_state, ijon_queue, shared_data, mem, len, range_seeds)) {
+      range_seeds += num_kept; // new seed kept, inc seed id  
+      ijon_queue->count += num_kept;
+      ACTF("num_kept = %d, range_seeds = %d, count=%d\n", num_kept, range_seeds, ijon_queue->count);
+    }
     
 
     /* Keep only if there are new bits in the map, add to queue for
@@ -5009,10 +5021,10 @@ static u8 fuzz_one(char** argv) {
 #ifndef IGNORE_FINDS
 
   // if(ijon_should_schedule(ijon_state)) {
-  if(ijon_should_schedule(shared_data->count)) {
+  if(ijon_should_schedule(ijon_queue->count)) {
 
     printf("scheduled max input!!!!\n");
-    ijon_input_info* info = ijon_get_input(shared_data); // now schedule the seeds kept for reducing distance to target range. 
+    ijon_input_info* info = ijon_get_input(ijon_queue); // now schedule the seeds kept for reducing distance to target range. 
 
     fd = open(info->filename, O_RDONLY);
 
