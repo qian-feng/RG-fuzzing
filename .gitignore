@@ -33,3 +33,5 @@ cb-multios-fast/
 cb-multios-taint/
 linkedlist-test/
 cb-multios/
+afl-2.51b*
+binutils-2.33.1*

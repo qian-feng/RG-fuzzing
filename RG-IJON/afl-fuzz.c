@@ -3175,9 +3175,9 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
 
   if (fault == crash_mode) {
     
-		if(num_kept = ijon_update_max(ijon_state, ijon_queue, shared_data, mem, len, range_seeds)) {
+		if(num_kept = ijon_update_max(ijon_state, ijon_queue, shared_data, mem, len, ijon_queue->count)) {
       range_seeds += num_kept; // new seed kept, inc seed id  
-      ijon_queue->count += num_kept;
+      //ijon_queue->count += num_kept;
       ACTF("num_kept = %d, range_seeds = %d, count=%d\n", num_kept, range_seeds, ijon_queue->count);
     }
     

@@ -33,8 +33,8 @@ u8 ijon_should_schedule(int count){
   printf("[ijon_should_schedule]: now we have  %d\n", count);
   //if(self->num_entries > 0){
   if(count > 0) {
-    return 1;
-    //return random()%100 > 20;
+    //return 1;
+    return random()%100 > 20;
   }
   return 0;
 }
@@ -45,18 +45,20 @@ ijon_input_info* ijon_get_input(ijon_queue_t* shared){
 
   // fill in filename and len
   uint32_t rnd = random()%(shared->count); 
-  printf("[ijon_get_input]: altogether %d, rnd=%d\n", shared->count, rnd);
+  //printf("[ijon_get_input]: altogether %d, rnd=%d\n", shared->count, rnd);
   Node *cur = shared->tscs_by_index;
-  printf("head node file: %s\n", cur->filename);
-  for(int i = 0; i<(shared->count); i++){
-    if(rnd == 0){
-      assert(asprintf(&info->filename, "%s", cur->filename)>0);
-      info->len = cur->len;
-    }
-    rnd -= 1;
+  //printf("head node file: %s\n", cur->filename);
+  for(int i = 0; i<rnd; i++){
+    // if(rnd == 0){
+    //   assert(asprintf(&info->filename, "%s", cur->filename)>0);
+    //   info->len = cur->len;
+    // }
+    // rnd -= 1;
     cur = cur->next;
   }
-  printf("[ijon_get_input]: altogether %d, pick %s\n", shared->count, info->filename);
+  assert(asprintf(&info->filename, "%s", cur->filename)>0);
+  info->len = cur->len;
+  printf("[ijon_get_input]: altogether %d, pick %d, %s\n", shared->count, rnd, info->filename);
   return info;
   //printf("Altogether %d entries to pick from\n", self->num_entries);
   //uint32_t rnd = random()%self->num_entries; 
@@ -85,7 +87,7 @@ void ijon_store_max_input(ijon_min_state* self, int i, uint8_t* data, size_t len
 	
 	char* filename = NULL;
 	//assert(asprintf(&filename, "%s/finding_%lu_%lu", self->max_dir, self->num_updates, time(0)) > 0);
-  assert(asprintf(&filename, "%s/id:%06d_%d_%llx", self->max_dir, seed_id, index, distance) > 0);
+  assert(asprintf(&filename, "%s/id:%06d_%d_%llx", self->max_dir, i, index, distance) > 0);
   assert(asprintf(&inf->filename, "%s", filename) > 0);
 
 	self->num_updates+=1;
@@ -117,7 +119,7 @@ void ijon_store_max_input(ijon_min_state* self, int i, uint8_t* data, size_t len
     new_node->next = cur->next;
     cur->next = new_node;
   }
-  printf("[Node insertion - %d]: file: %s\n", i, (*head_ref)->filename);
+  printf("[Node insertion - %d]: file: %s\n", i, filename);
 	free(filename);
 }
 
@@ -131,32 +133,29 @@ int ijon_update_max(ijon_min_state* self, ijon_queue_t* ijon_q, shared_data_t* s
   uint64_t minidist = 0xffffffffffffffff;
   int minindex = -2;
   //int savei = 0;
-  // find the minimum of all local distances and save by that index 
+  // find the minimum of all local distances and save by that index ?
   for(int i = 0; i < MAXMAP_SIZE; i++){ 
-    if(shared->afl_max[i] > self->max_map[i] || shared->afl_max[i] == 0xffffffffffffffff){
-      // if(self->max_map[i]==0){ // found an input that triggers a new slot
-      //   self->num_entries++;
-      // }
+    // a progress at index i
+    if(shared->afl_max[i] > self->max_map[i]) {// || shared->afl_max[i] == 0xffffffffffffffff){
       self->max_map[i] = shared->afl_max[i];
-      printf("updated maxmap %d: %lx (len: %ld), for watch point: %ld\n", i, self->max_map[i], len, shared->aif_index[i]);
-      // ijon_store_max_input(self, i, data, len, shared->aif_index[i], seed_id, shared->afl_max[i]);
-      // num_kept += 1;
-      if(0xffffffffffffffff - shared->afl_max[i] < minidist && shared->afl_max[i] != 0xffffffffffffffff) {
-        minidist = 0xffffffffffffffff - shared->afl_max[i];
-        minindex = shared->aif_index[i];
-        //savei = i;
-      }
-      else if(shared->afl_max[i] != 0xffffffffffffffff) {
-        // a within range case!
-    //     printf("[before]%d,%p",shared->count, &(shared->count));
-    // shared->count += 1;
-    // printf("[after]%d,%p",shared->count, &(shared->count));
-        ijon_store_max_input(self, ijon_q->count, data, len, shared->aif_index[i], seed_id, shared->afl_max[i], &ijon_q->tscs_by_index);
-        num_kept += 1;
-        // self->num_entries++;
-        return num_kept;
-      }
+      ijon_store_max_input(self, ijon_q->count, data, len, shared->aif_index[i], seed_id, 0xffffffffffffffff - shared->afl_max[i], &ijon_q->tscs_by_index);
+      num_kept += 1;
+      ijon_q->count += 1;
+      
+      // if(0xffffffffffffffff - shared->afl_max[i] < minidist && shared->afl_max[i] != 0xffffffffffffffff) {
+      //   minidist = 0xffffffffffffffff - shared->afl_max[i];
+      //   minindex = shared->aif_index[i];
+      //   //savei = i;
+      // }
+      // else if(shared->afl_max[i] == 0xffffffffffffffff) {
+      //   // a within range case!
+      //   ijon_store_max_input(self, ijon_q->count, data, len, shared->aif_index[i], seed_id, shared->afl_max[i], &ijon_q->tscs_by_index);
+      //   num_kept += 1;
+      //   // self->num_entries++;
+      //   return num_kept;
+      // }
     }
+/*
     else if(should_min && (shared->afl_max[i] == self->max_map[i] ) && ( len < self->infos[i]->len) ){
       printf("minimized maxmap %d: %lx (len: %ld)\n", i, self->max_map[i], len);
 			// ijon_store_max_input(self, i, data, len, shared->aif_index[i], seed_id, shared->afl_max[i]);
@@ -176,17 +175,17 @@ int ijon_update_max(ijon_min_state* self, ijon_queue_t* ijon_q, shared_data_t* s
         // self->num_entries++;
         return num_kept;
       }
-		}
+		} */
   }
 
-  if (minindex != -2) {
-    // printf("[before]%d,%p",shared->count, &(shared->count));
-    // shared->count += 1;
-    // printf("[after]%d,%p",shared->count, &(shared->count));
-    ijon_store_max_input(self, ijon_q->count, data, len, minindex, seed_id, minidist, &ijon_q->tscs_by_index);
-    num_kept += 1;
-    // self->num_entries++;
-  }
+  // if (minindex != -2) {
+  //   // printf("[before]%d,%p",shared->count, &(shared->count));
+  //   // shared->count += 1;
+  //   // printf("[after]%d,%p",shared->count, &(shared->count));
+  //   ijon_store_max_input(self, ijon_q->count, data, len, minindex, seed_id, minidist, &ijon_q->tscs_by_index);
+  //   num_kept += 1;
+  //   // self->num_entries++;
+  // }
 
 
   return num_kept;
