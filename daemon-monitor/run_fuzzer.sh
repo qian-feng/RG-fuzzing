@@ -10,7 +10,8 @@ if [[ ${modelname} == *"AFL"* ]]; then
     rm -rf ./workdir_${targ}/${prefixname}
     mkdir -p ./workdir_${targ}/${prefixname}
     #LD_LIBRARY_PATH=./lib-vani/ 
-    AFL_NO_UI=1 /data/RG-IJON/afl-fuzz -S $modelname -m 200 -i ./workdir_${targ}/input -o ./workdir_${targ}/${prefixname} -- ../cb-multios-vani/build/challenges/${targ}/${targ}
+    # /data/RG-IJON/afl-fuzz
+    AFL_NO_UI=1 /data/afl-2.51b/afl-fuzz -S $modelname -m 200 -i ./workdir_${targ}/input -o ./workdir_${targ}/${prefixname} -- ../cb-multios-vani/build/challenges/${targ}/${targ}
     #./targets/${targ}.vani
 fi
 
