@@ -48,7 +48,7 @@
 #  define CONST_PRIO 0
 #endif /* ^USE_TRACE_PC */
 
-
+#define LOGGING 1
 
 /* Globals needed by the injected instrumentation. The __afl_area_initial region
    is used for instrumentation output before __afl_map_shm() has a chance to run.
@@ -87,6 +87,25 @@ void ijon_max(uint32_t addr, uint64_t val){
 void ijon_min(uint32_t addr, uint64_t val){
   val = 0xffffffffffffffff-val;
   ijon_max(addr, val);
+}
+
+// Use distance value as feedback, remember the smallest value of distance
+void aif_range(uint32_t addr, int index, int val, int low, int high) {
+  // 1. calculate distance value, and mark the con-sens id
+  int distance = abs(val - (low + high) / 2) - (high - low) / 2;
+
+  ijon_xor_state(addr); // update __afl_state, incorporating context. 
+#ifdef LOGGING
+    FILE *fp = fopen("/data/debug.log", "a+");
+    fprintf(fp, "[aif_range][96]: addr(%p)-conaddr(%p), index(%d), val(%d), low(%d), high(%d), dist(%d)\n", addr, __afl_state, index, val, low, high, distance);
+#endif
+  // 2. update in global memory map
+  
+
+
+#ifdef LOGGING
+  fclose(fp);
+#endif 
 }
 
 
