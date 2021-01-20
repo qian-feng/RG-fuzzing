@@ -24,12 +24,13 @@ cd $workdir
 # set up workdir
 cp ../sancov.py ./
 cp ../aggregate_edge.sh ./
-cp ../targets/${targ}.cov ./
+cp /data/cb-multios-cov/build/challenges/${targ}/${targ} ./${targ}.cov
 
+echo "${dstdir}"
 # obtain the parse_result_${targ}
 ./aggregate_edge.sh ${dstdir} ${targ} 
 
 # now we are ready to parse the $workdir/parse_result_${targ}
 cd ../
 rm $csvfile
-python parse.py -p $workdir/parse_result_${targ} -f $csvfile
+python3 parse.py -p $workdir/parse_result_${targ} -f $csvfile

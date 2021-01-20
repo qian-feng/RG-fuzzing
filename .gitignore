@@ -37,3 +37,5 @@ afl-2.51b*
 binutils-2.33.1*
 qsym/
 daemon-monitor/Recipe_Database_RG_1/
+*_AFL_*
+*_RG_*

@@ -38,16 +38,6 @@
 #include <stddef.h>
 #include <execinfo.h>
 
-#define MAX(a,b) ((a) > (b) ? a : b)
-#define NOTCARE  '0' // the initial default value
-#define TOUCHED  '1' // triggered but not yet inside range
-#define TRAPPED  '2' // trapped inside target range 
-
-#define LOGGING  0
-
-#define KEY       1000
-#define SIZE      65536
-
 /* This is a somewhat ugly hack for the experimental 'trace-pc-guard' mode.
    Basically, we need to make sure that the forkserver is initialized after
    the LLVM-generated runtime initialization pass, not before. */
@@ -64,19 +54,14 @@
    is used for instrumentation output before __afl_map_shm() has a chance to run.
    It will end up as .comm, so it shouldn't be too wasteful. */
 
-u8* __aif_untouched_ptr; // for memorizing the ranges stepped into and deleting seeds, also for monitoring purpose. 
-
 u8  __afl_area_initial[MAP_SIZE];
 u8* __afl_area_ptr = __afl_area_initial;
 
 uint64_t  __afl_max_initial[MAXMAP_SIZE];
 uint64_t* __afl_max_ptr = __afl_max_initial;
 
-uint64_t  __aif_max_index[MAXMAP_SIZE];
-uint64_t* __aif_max_index_ptr = __aif_max_index;
 
 shared_data_t* shared_data = NULL;
-ijon_queue_t* ijon_queue = NULL;
 
 __thread u32 __afl_prev_loc;
 __thread u32 __afl_state;
@@ -104,65 +89,6 @@ void ijon_min(uint32_t addr, uint64_t val){
   ijon_max(addr, val);
 }
 
-void aif_range(uint32_t addr, int index, int val, int low, int high) { 
-  
-  if (__aif_untouched_ptr[index] == TRAPPED)  {
-    return;
-  }  
-  __aif_untouched_ptr[index] = TOUCHED; 
-
-  // here is the context => angora style - TODO 
-  uint32_t addr1 = addr;
-  __afl_state = (__afl_state^addr1)%MAP_SIZE;
-  addr1 = __afl_state;
-
-#ifdef LOGGING
-  FILE *fp = fopen("/data/debug.log", "a+");
-  fprintf(fp, "[aif_range][122]: addr: %p, index(%lu), val(%d), low(%d), high(%d)\n", addr1, index, val, low, high);
-#endif   
-  
-  uint64_t distance = abs(val - (low + high) / 2) - (high - low) / 2;  
-  distance = MAX(0, distance);
-
-  if(distance == 0) {
-    // mute the site
-    __aif_untouched_ptr[index] = TRAPPED; 
-    __afl_max_ptr[addr1%MAXMAP_SIZE] = 0xffffffffffffffff; // so no more seed kept for this site
-    
-    // first time trapped for this index, delete/move the corresponding testcases
-    Node *cur = ijon_queue->tscs_by_index;
-    Node *temp;
- 
-    while (cur != NULL) {
-      temp = cur -> next;
-#ifdef LOGGING
-  fprintf(fp, "[aif_range][unlink file]: %s\n", cur->filename);
-#endif
-      remove(cur->filename); // delete the file
-      free(cur);             // release node memory
-      cur = temp;
-    }       
-    return;  
-  }
-#ifdef LOGGING
-  fprintf(fp, "[debug aif_range]: distance: %lu\n", distance);
-#endif 
-  distance = 0xffffffffffffffff-distance;
-  if(__afl_max_ptr[addr1%MAXMAP_SIZE] < distance) {
-    __afl_max_ptr[addr1%MAXMAP_SIZE] = distance; // remember distance
-    __aif_max_index_ptr[addr1%MAXMAP_SIZE] = index; // remember which watch point this is for
-  }
-#ifdef LOGGING
-  if(index != -1){
-    fprintf(fp, "[AIF_RANGE]: index %d, status:%d, distance: %llx\n", index, __aif_untouched_ptr[index]-'0', distance);
-  }
-  else {
-    fprintf(fp, "[AIF_RANGE]: index %d, status:%d, distance: %llx\n", index, index, distance);
-  }
-  fclose(fp);
-#endif
-}
-
 
 void ijon_map_inc(uint32_t addr){ 
   __afl_area_ptr[(__afl_state^addr)%MAP_SIZE]+=1;
@@ -170,20 +96,6 @@ void ijon_map_inc(uint32_t addr){
 
 void ijon_map_set(uint32_t addr){ 
   __afl_area_ptr[(__afl_state^addr)%MAP_SIZE]|=1;
-}
-
-void aif_map_set(ijon_u32_t index, ijon_u32_t addr){
-  return;
-  
-// #ifdef LOGGING
-//   FILE *fp = fopen("/data/debug.log", "a+");
-//   fprintf(fp, "[AIF_SET]: alive at index %d, status:%c\n", index, __aif_untouched_ptr[index]);
-//   fclose(fp);
-// #endif
-//   if(__aif_untouched_ptr[index] != UNTOUCH) { 
-//     return;
-//   }
-//   __afl_area_ptr[(__afl_state^addr)%MAP_SIZE]|=1;
 }
 
 uint32_t ijon_strdist(char* a,char* b){
@@ -271,8 +183,7 @@ static u8 is_persistent;
 static void __afl_map_shm(void) {
 
   u8 *id_str = getenv(SHM_ENV_VAR);
-  u8 *brc_id_str = getenv(BRC_SHM_ENV_VAR); // for acquiring the branch status bitmap 
-  u8 *ijon_id_str = getenv(IJON_SHM_ENV_VAR);
+
   /* If we're running under AFL, attach to the appropriate region, replacing the
      early-stage __afl_area_initial region that is needed to allow some really
      hacky .init code to work correctly in projects such as OpenSSL. */
@@ -287,76 +198,24 @@ static void __afl_map_shm(void) {
 
     __afl_area_ptr = &shared_data->afl_area[0];
     __afl_max_ptr = &shared_data->afl_max[0];
-    __aif_max_index_ptr = &shared_data->aif_index[0];
 
     /* Whooooops. */
+
+
     /* Write something into the bitmap so that even with low AFL_INST_RATIO,
        our parent doesn't give up on us. */
 
     __afl_area_ptr[0] = 1;
+
   }
 
-  // now load the branch status map in child proc. 
-  if (brc_id_str) {
-    u32 brc_shm_id = atoi(brc_id_str);    
-    
-    __aif_untouched_ptr = shmat(brc_shm_id, NULL, 0); 
-    if (__aif_untouched_ptr == (void *)-1) _exit(1);
-  }
-
-  // acquire ijon queue
-  if (ijon_id_str) {
-    u32 ijon_shm_id = atoi(ijon_id_str);
-    
-    ijon_queue = shmat(ijon_shm_id, NULL, 0);
-
-    if (ijon_queue == (void *)-1) _exit(1);
-  }
 }
 
-/* memory shared with monitor   */
-/* created by the fuzzer parent proc;
-   updated by fuzzer child proc;
-   read by the monitor to evaluate. */
-// static void __monitor_map_shm(void) {
-    
-//     u32 shm_id = shmget(KEY, SIZE, 0);
-//     if(shm_id == -1) {
-//       fprintf(stderr,  "fail to load shm: %d\n", shm_id);
-//       _exit(1); // Abort if fails to load existing segment
-//     }
-//     __aif_untouched_ptr = shmat(shm_id, NULL, 0);
-//     if(__aif_untouched_ptr == (void*)-1) _exit(1);
-// #ifdef LOGGING
-//     FILE *fp = fopen("/data/debug.log", "a+");
-//     fprintf(fp,   "load shm successfully, key: %d, size: %d, id: %d\n", KEY, SIZE, shm_id);    
-//     fprintf(fp, "__aif_untouched_ptr: %p\n",__aif_untouched_ptr);
-    
-//     int i = 0;
-//     int cnt_touched = 0;
-//     int cnt_untouch = 0;
-//     int cnt_notcond = 0;
-//     for (i = 0; i<SIZE; i++) {
-//       if(__aif_untouched_ptr[i] == TOUCHED) {
-//         cnt_touched += 1;
-//         //fprintf(fp, "touch index: %d\n", i);
-//       }
-//       if(__aif_untouched_ptr[i] == UNTOUCH) {
-//         cnt_untouch += 1;
-//       }
-//       if(__aif_untouched_ptr[i] == NOTCOND) {
-//         cnt_notcond += 1;
-//       }
-//     }
-    
-//     fprintf(fp, "[beginning]: %d touched, %d untouch, %d don't care \n", cnt_touched, cnt_untouch, cnt_notcond);
-//     fclose(fp);
-// #endif
-// }
 
 /* Fork server logic. */
 
 static void __afl_start_forkserver(void) {
+
   static u8 tmp[4];
   s32 child_pid;
 
@@ -366,13 +225,16 @@ static void __afl_start_forkserver(void) {
      assume we're not running in forkserver mode and just execute program. */
 
   if (write(FORKSRV_FD + 1, tmp, 4) != 4) return;
+
   while (1) {
+
     u32 was_killed;
     int status;
 
     /* Wait for parent by reading from the pipe. Abort if read fails. */
 
     if (read(FORKSRV_FD, &was_killed, 4) != 4) _exit(1);
+
     /* If we stopped the child in persistent mode, but there was a race
        condition and afl-fuzz already issued SIGKILL, write off the old
        process. */
@@ -392,9 +254,11 @@ static void __afl_start_forkserver(void) {
       /* In child process: close fds, resume execution. */
 
       if (!child_pid) {
+
         close(FORKSRV_FD);
         close(FORKSRV_FD + 1);
-        return;  
+        return;
+  
       }
 
     } else {
@@ -404,6 +268,7 @@ static void __afl_start_forkserver(void) {
 
       kill(child_pid, SIGCONT);
       child_stopped = 0;
+
     }
 
     /* In parent process: write PID to pipe, then wait for child. */
@@ -422,6 +287,7 @@ static void __afl_start_forkserver(void) {
     /* Relay wait status to pipe, then loop back. */
 
     if (write(FORKSRV_FD + 1, &status, 4) != 4) _exit(1);
+
   }
 
 }
@@ -445,7 +311,6 @@ int __afl_persistent_loop(unsigned int max_cnt) {
 
       memset(__afl_area_ptr, 0, MAP_SIZE);
       memset(__afl_max_ptr, 0, MAXMAP_SIZE*sizeof(uint64_t));
-      memset(__aif_max_index_ptr, 0, MAXMAP_SIZE*sizeof(uint64_t));
       __afl_area_ptr[0] = 1;
       __afl_prev_loc = 0;
       __afl_state = 0;
@@ -500,7 +365,6 @@ void __afl_manual_init(void) {
   if (!init_done) {
 
     __afl_map_shm();
-    //__monitor_map_shm();
     __afl_start_forkserver();
     init_done = 1;
 
@@ -547,6 +411,7 @@ void __sanitizer_cov_trace_pc_guard_init(uint32_t* start, uint32_t* stop) {
 
   x = getenv("AFL_INST_RATIO");
   if (x) inst_ratio = atoi(x);
+
   if (!inst_ratio || inst_ratio > 100) {
     fprintf(stderr, "[-] ERROR: Invalid AFL_INST_RATIO (must be 1-100).\n");
     abort();

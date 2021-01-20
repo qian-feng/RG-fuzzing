@@ -10,7 +10,8 @@ RUN apt-get update && \
     python python-pip python-dev \
     autoconf libtool nasm
 
-RUN pip install xlsxwriter pycrypto sysv_ipc
+RUN pip install xlsxwriter pycrypto 
+#sysv_ipc
 
 RUN ln -s /usr/bin/llvm-config-6.0 /usr/local/bin/llvm-config 
 RUN ln -s /usr/bin/clang-6.0 /usr/local/bin/clang

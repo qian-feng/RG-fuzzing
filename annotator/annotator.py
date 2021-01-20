@@ -51,7 +51,7 @@ def annotate(filename, linenum, linetext):
     multiline = linetext.split("\n")
     for i in range(0, len(multiline)): # insert each annotation to a newline
         cmd = "sed -i '%di %s' %s" % (linenum+i, multiline[i], filename)
-
+        #print(cmd)
         proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
         proc.stdin.close()
 
